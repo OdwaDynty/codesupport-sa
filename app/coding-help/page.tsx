@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function CodingHelpPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -26,11 +27,35 @@ export default function CodingHelpPage() {
     }));
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+ const handleSubmit = async (
+  event: FormEvent<HTMLFormElement>
+) => {
+  event.preventDefault();
 
-    setSubmitted(true);
-  };
+  const { error } = await supabase
+    .from("coding_help_requests")
+    .insert({
+      student_name: form.name,
+      email: form.email,
+      grade: form.grade,
+      language: form.language,
+      topic: form.topic,
+      problem: form.problem,
+      code: form.code || null,
+    });
+
+  if (error) {
+    console.error("Supabase error:", error);
+
+    alert(
+      "We could not submit your request. Please try again."
+    );
+
+    return;
+  }
+
+  setSubmitted(true);
+};
 
   const resetForm = () => {
     setForm({
