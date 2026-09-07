@@ -307,48 +307,57 @@ export default function AdminPage() {
 
                     </div>
 
-                    <div className="shrink-0">
+                    <div className="flex shrink-0 flex-col gap-3">
 
-                      <label
-                        htmlFor={`status-${request.id}`}
-                        className="mb-2 block text-xs text-slate-600"
-                      >
-                        Status
-                      </label>
+                       <Link
+                           href={`/admin/requests/${request.id}`}
+                            className="rounded-xl bg-emerald-400 px-4 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-emerald-300"
+                               >
+                                 View Request
+                        </Link>
 
-                      <select
-                        id={`status-${request.id}`}
-                        value={request.status}
-                        onChange={(e) =>
-                          updateStatus(
-                            request.id,
-                            e.target.value
-                          )
-                        }
-                        className="rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
-                      >
-                        <option value="New">
-                          New
-                        </option>
+                   <div>
+                        <label
+                            htmlFor={`status-${request.id}`}
+                            className="mb-2 block text-xs text-slate-600"
+                           >
+                            Status
+                          </label>
 
-                        <option value="Reviewing">
-                          Reviewing
-                        </option>
+                   <select
+                       id={`status-${request.id}`}
+                           value={request.status}
+                            onChange={(e) =>
+                       updateStatus(
+                        request.id,
+                                 e.target.value
+                                )
+                             }
+                    className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+                                >
+                  <option value="New">
+                      New
+                  </option>
 
-                        <option value="Answered">
-                          Answered
-                        </option>
+                <option value="Reviewing">
+                     Reviewing
+               </option>
 
-                        <option value="Paid Support">
-                          Paid Support
-                        </option>
+               <option value="Answered">
+                        Answered
+                </option>
 
-                        <option value="Closed">
+                <option value="Paid Support">
+                       Paid Support
+                </option>
+
+               <option value="Closed">
                           Closed
-                        </option>
-                      </select>
+               </option>
+                        </select>
+                      </div>
 
-                    </div>
+                     </div>
 
                   </div>
 
