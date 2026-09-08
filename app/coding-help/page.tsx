@@ -32,17 +32,19 @@ export default function CodingHelpPage() {
 ) => {
   event.preventDefault();
 
-  const { error } = await supabase
-    .from("coding_help_requests")
-    .insert({
-      student_name: form.name,
-      email: form.email,
-      grade: form.grade,
-      language: form.language,
-      topic: form.topic,
-      problem: form.problem,
-      code: form.code || null,
-    });
+  const { data, error } = await supabase
+  .from("coding_help_requests")
+  .insert({
+    student_name: name,
+    email,
+    grade,
+    language,
+    topic,
+    problem,
+    code,
+  })
+  .select("id, student_access_token")
+  .single();
 
   if (error) {
     console.error("Supabase error:", error);
