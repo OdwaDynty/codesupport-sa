@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 
 export default function CodingHelpPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submittedReference, setSubmittedReference] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -32,7 +33,7 @@ export default function CodingHelpPage() {
 ) => {
   event.preventDefault();
 
-  const { data, error } = await supabase
+ const { data, error } = await supabase
   .from("coding_help_requests")
   .insert({
     student_name: name,
@@ -43,7 +44,7 @@ export default function CodingHelpPage() {
     problem,
     code,
   })
-  .select("id, student_access_token")
+  .select("id, request_reference, student_access_token")
   .single();
 
   if (error) {
@@ -57,6 +58,7 @@ export default function CodingHelpPage() {
   }
 
   setSubmitted(true);
+  setSubmittedReference(data.request_reference);
 };
 
   const resetForm = () => {

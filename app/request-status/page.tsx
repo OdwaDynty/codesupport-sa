@@ -16,13 +16,13 @@ type RequestData = {
 };
 
 export default function RequestStatusPage() {
-  const [token, setToken] = useState("");
+  const [reference, setReference] = useState("");
   const [request, setRequest] = useState<RequestData | null>(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   const checkRequest = async () => {
-    if (!token.trim()) {
+    if (!reference.trim()) {
       setErrorMessage("Please enter your request reference.");
       return;
     }
@@ -37,9 +37,9 @@ export default function RequestStatusPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          token: token.trim(),
-        }),
+       body: JSON.stringify({
+           reference: reference.trim(),
+          }),
       });
 
       const data = await response.json();
@@ -78,25 +78,25 @@ export default function RequestStatusPage() {
 
         <div className="rounded-xl border border-slate-700 bg-slate-900 p-6">
           <label
-            htmlFor="token"
-            className="block text-sm font-medium text-slate-300"
-          >
-            Request Reference
-          </label>
+             htmlFor="reference"
+             className="block text-sm font-medium text-slate-300"
+               >
+              Request Reference
+         </label>
 
           <input
-            id="token"
-            type="text"
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                checkRequest();
-              }
-            }}
-            placeholder="Enter your request reference"
-            className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-emerald-500"
-          />
+              id="reference"
+               type="text"
+               value={reference}
+               onChange={(e) => setReference(e.target.value)}
+               onKeyDown={(e) => {
+               if (e.key === "Enter") {
+                  checkRequest();
+                   }
+                 }}
+                placeholder="Example: CS-2026-0003"
+              className="mt-2 w-full rounded-lg border border-slate-700 bg-slate-950 px-4 py-3 text-white placeholder-slate-500 outline-none focus:border-emerald-500"
+              />
 
           <button
             onClick={checkRequest}

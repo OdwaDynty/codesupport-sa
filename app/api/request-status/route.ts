@@ -4,12 +4,12 @@ import { createClient } from "@supabase/supabase-js";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const token = body.token?.trim();
+    const reference = body.reference?.trim();
 
-    if (!token) {
-      return NextResponse.json(
-        { error: "Request reference is required." },
-        { status: 400 }
+    if (!reference) {
+  return NextResponse.json(
+    { error: "Request reference is required." },
+    { status: 400 }
       );
     }
 
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       .select(
         "id, student_name, grade, language, topic, problem, status, admin_response, created_at, responded_at"
       )
-      .eq("student_access_token", token)
+      .eq("request_reference", reference)
       .single();
 
     if (error || !data) {
