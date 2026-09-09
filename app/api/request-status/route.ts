@@ -21,8 +21,8 @@ export async function POST(request: NextRequest) {
     const { data, error } = await supabase
       .from("coding_help_requests")
       .select(
-        "id, student_name, grade, language, topic, problem, status, admin_response, created_at, responded_at"
-      )
+         "id, student_name, grade, language, topic, problem, status, admin_response, created_at, responded_at, request_reference"
+          )
       .eq("request_reference", reference)
       .single();
 
