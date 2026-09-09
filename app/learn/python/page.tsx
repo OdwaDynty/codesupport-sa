@@ -52,7 +52,7 @@ const topics = [
     title: "If Statements",
     description: "Teach your Python programs how to make decisions.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "07",

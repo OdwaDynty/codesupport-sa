@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonOperatorsLesson() {
+export default function PythonIfStatementsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
-      setQuizResult("Correct! == compares two values, = assigns a value.");
+    if (quizAnswer === "C") {
+      setQuizResult(
+        "Correct! The code inside the if block only runs when the condition is true."
+      );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -46,25 +48,25 @@ export default function PythonOperatorsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 5 of 10</span>
+            <span className="text-slate-400">Topic 6 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python Operators
+            Python If Statements
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to do calculations, compare values, and combine
-            conditions in your Python programs.
+            Learn how to make your program run different code depending on
+            a condition.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[50%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[60%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 50%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 60%</p>
         </div>
       </header>
 
@@ -76,10 +78,10 @@ export default function PythonOperatorsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Use arithmetic operators to calculate values.</li>
-            <li>✓ Use comparison operators to compare two values.</li>
-            <li>✓ Explain the difference between = and ==.</li>
-            <li>✓ Combine conditions using and, or, not.</li>
+            <li>✓ Explain what an if statement does.</li>
+            <li>✓ Write an if statement using a comparison operator.</li>
+            <li>✓ Understand how indentation controls what runs.</li>
+            <li>✓ Combine conditions using and / or.</li>
           </ul>
         </section>
 
@@ -89,73 +91,42 @@ export default function PythonOperatorsLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Arithmetic operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            What is an if statement?
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Arithmetic operators let you do maths with numbers stored in
-            variables.
+            An <strong className="text-white">if statement</strong> lets
+            your program make a decision. It checks a condition and only
+            runs a block of code if that condition is{" "}
+            <code className="text-emerald-300">True</code>.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Operator</th>
-                  <th className="px-5 py-3 font-medium">Meaning</th>
-                  <th className="px-5 py-3 font-medium">Example</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">+</td>
-                  <td className="px-5 py-3 text-slate-300">Addition</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 + 3 → 8
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">-</td>
-                  <td className="px-5 py-3 text-slate-300">Subtraction</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 - 3 → 2
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">*</td>
-                  <td className="px-5 py-3 text-slate-300">Multiplication</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 * 3 → 15
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">/</td>
-                  <td className="px-5 py-3 text-slate-300">Division</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    6 / 3 → 2.0
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">%</td>
-                  <td className="px-5 py-3 text-slate-300">
-                    Modulus (remainder)
-                  </td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    7 % 2 → 1
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">Example</div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-blue-300">age</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">16</span>
+                {"\n\n"}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> age {">"}= 13:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;You are a teenager.&quot;)
+                </span>
+              </code>
+            </pre>
           </div>
 
-          <div className="mt-6 rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-5">
-            <p className="text-sm leading-6 text-yellow-200">
-              <strong className="text-yellow-300">Note:</strong> unlike
-              Java, dividing two whole numbers in Python with{" "}
-              <code className="text-emerald-300">/</code> always gives you
-              a decimal result — <code>6 / 3</code> gives{" "}
-              <code>2.0</code>, not <code>2</code>.
-            </p>
-          </div>
+          <p className="mt-5 leading-8 text-slate-300">
+            Since <code className="text-emerald-300">age {">"}= 13</code> is
+            true when age is 16, the message gets printed. If age had been
+            10, nothing would print at all.
+          </p>
         </section>
 
         {/* Section 2 */}
@@ -164,65 +135,49 @@ export default function PythonOperatorsLesson() {
             02 • Understand
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Comparison operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Indentation matters
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Comparison operators compare two values and give you back a
-            boolean — <code className="text-emerald-300">True</code> or{" "}
-            <code className="text-emerald-300">False</code>.
+            This is the biggest difference from Java: Python doesn&apos;t
+            use curly braces <code className="text-emerald-300">{"{ }"}</code>{" "}
+            to mark a block of code. Instead, it uses{" "}
+            <strong className="text-white">indentation</strong> — the
+            spacing at the start of a line. Every line that&apos;s indented
+            under the <code className="text-emerald-300">if</code> belongs
+            to that if statement.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Operator</th>
-                  <th className="px-5 py-3 font-medium">Meaning</th>
-                  <th className="px-5 py-3 font-medium">Example</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">==</td>
-                  <td className="px-5 py-3 text-slate-300">Equal to</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 == 5 → True
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">!=</td>
-                  <td className="px-5 py-3 text-slate-300">Not equal to</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 != 3 → True
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">{">"}</td>
-                  <td className="px-5 py-3 text-slate-300">Greater than</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 {">"} 3 → True
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">{"<"}</td>
-                  <td className="px-5 py-3 text-slate-300">Less than</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 {"<"} 3 → False
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> condition:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-orange-300">
+                  # this line runs only if condition is True
+                </span>
+                {"\n"}
+                {"    "}
+                <span className="text-orange-300">
+                  # so does this one, if still indented
+                </span>
+                {"\n"}
+                <span className="text-slate-500">
+                  # this line always runs — it&apos;s not indented
+                </span>
+              </code>
+            </pre>
           </div>
 
-          <div className="mt-6 rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-5">
-            <p className="text-sm leading-6 text-yellow-200">
-              <strong className="text-yellow-300">Important:</strong>{" "}
-              <code className="text-emerald-300">=</code> assigns a value
-              to a variable. <code className="text-emerald-300">==</code>{" "}
-              compares two values. Mixing these up is one of the most
-              common beginner mistakes — see below.
-            </p>
-          </div>
+          <p className="mt-5 leading-8 text-slate-300">
+            Standard practice is to indent with{" "}
+            <strong className="text-white">4 spaces</strong>. Most code
+            editors do this automatically when you press Tab after a
+            colon.
+          </p>
         </section>
 
         {/* Section 3 */}
@@ -231,52 +186,45 @@ export default function PythonOperatorsLesson() {
             03 • Examples
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Logical operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Combining conditions
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Python uses plain English words for its logical operators,
-            instead of symbols like Java&apos;s{" "}
-            <code className="text-emerald-300">{"&&"}</code> and{" "}
-            <code className="text-emerald-300">{"||"}</code>.
+            You can use <code className="text-emerald-300">and</code> /{" "}
+            <code className="text-emerald-300">or</code> from the last
+            lesson to check more than one condition at once:
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Combining conditions
+              Multiple conditions
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-slate-300">age {">"} 12 </span>
-                <span className="text-purple-400">and</span>
-                <span className="text-slate-300"> age {"<"} 18</span>
-                {"\n"}
-                <span className="text-slate-500">
-                  {"  "}# True only if BOTH conditions are true
-                </span>
+                <span className="text-blue-300">mark</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">75</span>
                 {"\n\n"}
-                <span className="text-slate-300">
-                  grade == &quot;A&quot;{" "}
-                </span>
-                <span className="text-purple-400">or</span>
-                <span className="text-slate-300">
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400">
                   {" "}
-                  grade == &quot;B&quot;
+                  mark {">"}= 50 and mark {"<"} 100:
                 </span>
                 {"\n"}
-                <span className="text-slate-500">
-                  {"  "}# True if EITHER condition is true
-                </span>
-                {"\n\n"}
-                <span className="text-purple-400">not</span>
-                <span className="text-slate-300"> passed</span>
-                {"\n"}
-                <span className="text-slate-500">
-                  {"  "}# flips True to False, and False to True
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;Valid pass mark.&quot;)
                 </span>
               </code>
             </pre>
           </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            This only prints the message if <strong>both</strong> conditions
+            are true.
+          </p>
         </section>
 
         {/* Quiz */}
@@ -286,7 +234,7 @@ export default function PythonOperatorsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What is the difference between = and ==?
+            When does the code inside an if block run?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -300,7 +248,7 @@ export default function PythonOperatorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. They mean the same thing
+                A. Every time the program runs
               </span>
             </label>
 
@@ -314,7 +262,7 @@ export default function PythonOperatorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. == compares two values, = assigns a value
+                B. Only when the condition is false
               </span>
             </label>
 
@@ -328,7 +276,7 @@ export default function PythonOperatorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. = compares two values, == assigns a value
+                C. Only when the condition is true
               </span>
             </label>
           </div>
@@ -368,18 +316,12 @@ export default function PythonOperatorsLesson() {
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Creates two variables,{" "}
-                <strong className="text-white">mark_one</strong> and{" "}
-                <strong className="text-white">mark_two</strong>, with any
-                values.
+                Creates a variable called{" "}
+                <strong className="text-white">temperature</strong>.
               </li>
               <li>
-                Calculates their total in a variable called{" "}
-                <strong className="text-white">total</strong>.
-              </li>
-              <li>
-                Prints whether <strong className="text-white">total</strong>{" "}
-                is greater than 100.
+                Prints &quot;It&apos;s a hot day&quot; if the temperature is
+                greater than 30.
               </li>
             </ol>
 
@@ -388,9 +330,9 @@ export default function PythonOperatorsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use <code>+</code> to add the two marks together, then use{" "}
-                <code>{">"}</code> with <code>print()</code> to display the
-                result of the comparison.
+                Use an <code>if</code> statement with the{" "}
+                <code>{">"}</code> operator, and remember to indent the
+                line that should print.
               </div>
             </details>
 
@@ -399,12 +341,10 @@ export default function PythonOperatorsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`mark_one = 65
-mark_two = 42
+                <code>{`temperature = 34
 
-total = mark_one + mark_two
-
-print(total > 100)`}</code>
+if temperature > 30:
+    print("It's a hot day")`}</code>
               </pre>
             </details>
           </div>
@@ -423,29 +363,32 @@ print(total > 100)`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using = instead of ==
+                Forgetting the colon
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                if age = 18:
+                {`if age > 18
+    print("Adult")`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Python will actually give you a syntax error here, which is
-                helpful — but the fix is the same idea as elsewhere: use{" "}
-                <code>==</code> when comparing two values.
+                Every <code>if</code> line needs a colon{" "}
+                <code>:</code> at the end — Python will give a syntax
+                error without it.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using &amp;&amp; or || instead of and/or
+                Inconsistent indentation
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if age > 12 && age < 18:`}
+                {`if age > 18:
+   print("Adult")
+     print("Can vote")`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                That&apos;s Java syntax — Python uses the words{" "}
-                <code>and</code>, <code>or</code>, and <code>not</code>{" "}
-                instead of symbols.
+                Mixing different amounts of indentation causes an{" "}
+                <code>IndentationError</code>. Stick to a consistent
+                number of spaces (4 is standard) throughout your program.
               </p>
             </div>
           </div>
@@ -460,9 +403,8 @@ print(total > 100)`}</code>
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can compare values, the next step is learning how
-            to make your program actually respond to those comparisons
-            using if statements.
+            Now that your program can make decisions, the next step is
+            learning how to handle both outcomes with if / else.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -474,7 +416,7 @@ print(total > 100)`}</code>
             </Link>
 
             <Link
-             href="/learn/python/if-statements"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
