@@ -17,7 +17,7 @@ const topics = [
     description:
       "Learn how Python programs store and work with information.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",

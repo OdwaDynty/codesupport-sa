@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonIntroductionLesson() {
+export default function PythonVariablesLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "A") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! print() displays text or values on the screen."
+        "Correct! A variable is a named place where a program can store a value."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function PythonIntroductionLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 1 of 10</span>
+            <span className="text-slate-400">Topic 2 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Introduction to Python
+            Python Variables
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Understand what Python is, why it&apos;s a great first
-            language, and write your very first line of code.
+            Learn how variables allow your Python programs to store and
+            work with information.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[10%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[20%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 10%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 20%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function PythonIntroductionLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what Python is used for.</li>
-            <li>✓ Explain why Python is a popular first language.</li>
-            <li>✓ Use the print() function to display text.</li>
-            <li>✓ Write and understand a simple Python program.</li>
+            <li>✓ Explain what a variable is.</li>
+            <li>✓ Create a variable in Python.</li>
+            <li>✓ Store different types of values.</li>
+            <li>✓ Change the value stored in a variable.</li>
           </ul>
         </section>
 
@@ -91,24 +91,44 @@ export default function PythonIntroductionLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">What is Python?</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            What is a variable?
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Python is a programming language known for being easy to read
-            and write. It&apos;s used to build websites, analyse data,
-            automate tasks, and even power artificial intelligence. Because
-            its syntax is close to plain English, it&apos;s one of the most
-            popular languages for beginners to start with.
+            A variable is a named place where a program can store a value.
+            Think of it like a labelled box. In Python, creating one is
+            even simpler than in Java — there&apos;s no need to state the
+            data type up front.
           </p>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            Unlike Java, which you may have seen elsewhere on this
-            platform, Python doesn&apos;t need curly braces{" "}
-            <code className="text-emerald-300">{"{ }"}</code> or semicolons{" "}
-            <code className="text-emerald-300">;</code> — instead, Python
-            uses <strong className="text-white">indentation</strong>{" "}
-            (spacing) to show which lines of code belong together.
-          </p>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Example
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`age = 16`}</code>
+            </pre>
+
+            <div className="mt-5 space-y-3 text-sm leading-6 text-slate-400">
+              <p>
+                <span className="font-semibold text-white">age</span> is
+                the name of the variable.
+              </p>
+
+              <p>
+                <span className="font-semibold text-white">16</span> is the
+                value stored inside the variable.
+              </p>
+
+              <p>
+                No data type or semicolon needed — Python figures out{" "}
+                <code className="text-emerald-300">age</code> is a whole
+                number just from the value you gave it.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Section 2 */}
@@ -118,29 +138,51 @@ export default function PythonIntroductionLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Displaying output with print()
+            Creating a variable
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The most basic thing any program can do is display a message.
-            In Python, you do that with the{" "}
-            <code className="text-emerald-300">print()</code> function.
+            A basic Python variable follows this pattern:
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">Example</div>
-
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`print("Hello, World!")
-print("Welcome to CodeSupport SA")`}</code>
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-blue-300">variableName</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">value</span>
+              </code>
             </pre>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            That&apos;s the entire program — no class, no main method,
-            nothing else needed. Running it prints two lines to the
-            screen, exactly as they appear in the quotes.
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-blue-300">age</div>
+              <p className="mt-2 text-sm text-slate-400">
+                The variable name
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-orange-300">16</div>
+              <p className="mt-2 text-sm text-slate-400">
+                The stored value
+              </p>
+            </div>
+          </div>
+
+          <p className="mt-6 leading-8 text-slate-300">
+            You can also change the value stored in a variable at any time,
+            just by assigning it again:
           </p>
+
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
+              <code>{`age = 16
+age = 17
+print(age)  # prints 17`}</code>
+            </pre>
+          </div>
         </section>
 
         {/* Section 3 */}
@@ -150,24 +192,42 @@ print("Welcome to CodeSupport SA")`}</code>
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Your first Python program
+            Storing different kinds of values
           </h2>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              hello.py
+              Python examples
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8 text-emerald-300">
-              <code>{`print("Hello, World!")`}</code>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+              <code>
+                <span className="text-blue-300">age</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">16</span>
+                {"\n"}
+                <span className="text-blue-300">average</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">72.5</span>
+                {"\n"}
+                <span className="text-blue-300">name</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">
+                  &quot;Nampho&quot;
+                </span>
+                {"\n"}
+                <span className="text-blue-300">passed</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">True</span>
+              </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Running this file prints exactly one line:{" "}
-            <code className="text-emerald-300">Hello, World!</code>. It&apos;s
-            traditionally the very first program anyone writes when
-            learning a new language.
+            Notice <code className="text-emerald-300">True</code> starts
+            with a capital letter in Python — that&apos;s different from
+            Java&apos;s <code>true</code>, and it&apos;s a common thing to
+            trip up on if you&apos;ve used another language before.
           </p>
         </section>
 
@@ -178,7 +238,7 @@ print("Welcome to CodeSupport SA")`}</code>
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            Which function displays text on the screen in Python?
+            What is the purpose of a variable?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -191,7 +251,9 @@ print("Welcome to CodeSupport SA")`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">A. print()</span>
+              <span className="text-sm text-slate-300">
+                A. To delete information from a program
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -204,7 +266,7 @@ print("Welcome to CodeSupport SA")`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. System.out.println()
+                B. To store a value that a program can use
               </span>
             </label>
 
@@ -217,7 +279,9 @@ print("Welcome to CodeSupport SA")`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">C. display()</span>
+              <span className="text-sm text-slate-300">
+                C. To automatically create a website
+              </span>
             </label>
           </div>
 
@@ -247,27 +311,42 @@ print("Welcome to CodeSupport SA")`}</code>
             04 • Exercise
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Your turn
+          </h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Python program that prints three lines to the screen:
+              Create three Python variables:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Your name.</li>
-              <li>The school or place you are learning from.</li>
-              <li>The message &quot;I am learning Python!&quot;</li>
+              <li>
+                A variable called <strong className="text-white">age</strong>{" "}
+                that stores your age.
+              </li>
+
+              <li>
+                A variable called{" "}
+                <strong className="text-white">school</strong> that stores the
+                name of your school.
+              </li>
+
+              <li>
+                A variable called{" "}
+                <strong className="text-white">averageMark</strong> that stores
+                your average mark.
+              </li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Hint
               </summary>
+
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You&apos;ll need three separate{" "}
-                <code>print(...)</code> lines, each with text inside
-                quotes.
+                You don&apos;t need to declare a data type — just pick a
+                name, an equals sign, and a value.
               </div>
             </details>
 
@@ -275,10 +354,13 @@ print("Welcome to CodeSupport SA")`}</code>
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Solution
               </summary>
+
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`print("Nampho")
-print("CodeSupport SA")
-print("I am learning Python!")`}</code>
+                <code>{`age = 16
+
+school = "My School"
+
+averageMark = 72.5`}</code>
               </pre>
             </details>
           </div>
@@ -297,29 +379,32 @@ print("I am learning Python!")`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the quotes around text
+                Starting a variable name with a number
               </div>
+
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                print(Hello)
+                1age = 16
               </pre>
+
               <p className="mt-2 text-sm text-slate-500">
-                Text needs quotes: <code>print(&quot;Hello&quot;)</code>.
-                Without them, Python thinks{" "}
-                <code>Hello</code> is a variable name, not text.
+                Python variable names must start with a letter or
+                underscore, never a digit.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Mismatched quotes
+                Using lowercase true/false
               </div>
+
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`print("Hello')`}
+                passed = true
               </pre>
+
               <p className="mt-2 text-sm text-slate-500">
-                Start and end a piece of text with the{" "}
-                <strong>same</strong> type of quote — either both double{" "}
-                <code>&quot;</code> or both single <code>&apos;</code>.
+                Python capitalizes its boolean values —{" "}
+                <code>True</code> and <code>False</code>, not{" "}
+                <code>true</code> and <code>false</code>.
               </p>
             </div>
           </div>
@@ -334,8 +419,8 @@ print("I am learning Python!")`}</code>
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can display output, the next step is learning how
-            to store information using variables.
+            Once you understand variables, the next step is learning about
+            the different data types Python provides.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -347,7 +432,7 @@ print("I am learning Python!")`}</code>
             </Link>
 
             <Link
-             href="/learn/python/variables"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
@@ -356,6 +441,7 @@ print("I am learning Python!")`}</code>
         </section>
       </div>
 
+      {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-slate-500">
           CodeSupport SA • Learn. Practise. Build. Get Help.
