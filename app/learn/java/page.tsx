@@ -3,76 +3,90 @@ import Link from "next/link";
 const topics = [
   {
     number: "01",
+    slug: "introduction",
     title: "Introduction to Java",
     description:
       "Understand what Java is, how Java programs work and what you need to write your first program.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "02",
+    slug: "variables",
     title: "Variables",
-    description:
-      "Learn how programs store information using variables.",
+    description: "Learn how programs store information using variables.",
     level: "Beginner",
+    available: true,
   },
   {
     number: "03",
+    slug: "data-types",
     title: "Data Types",
     description:
       "Understand integers, decimals, characters, text and boolean values.",
     level: "Beginner",
+    available: true,
   },
   {
     number: "04",
+    slug: "input-output",
     title: "Input and Output",
     description:
       "Learn how to display information and receive input from the user.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "05",
+    slug: "operators",
     title: "Operators",
-    description:
-      "Work with arithmetic, comparison and logical operators.",
+    description: "Work with arithmetic, comparison and logical operators.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "06",
+    slug: "if-statements",
     title: "If Statements",
     description:
       "Teach your program to make decisions based on conditions.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "07",
+    slug: "if-else",
     title: "If / Else",
     description:
       "Create programs that can choose between different outcomes.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "08",
+    slug: "nested-if",
     title: "Nested If Statements",
-    description:
-      "Learn how to place decisions inside other decisions.",
+    description: "Learn how to place decisions inside other decisions.",
     level: "Intermediate",
+    available: false,
   },
   {
     number: "09",
+    slug: "for-loops",
     title: "For Loops",
-    description:
-      "Repeat instructions using a for loop.",
+    description: "Repeat instructions using a for loop.",
     level: "Intermediate",
+    available: false,
   },
   {
     number: "10",
+    slug: "while-loops",
     title: "While Loops",
-    description:
-      "Repeat instructions while a condition remains true.",
+    description: "Repeat instructions while a condition remains true.",
     level: "Intermediate",
+    available: false,
   },
 ];
-
 export default function JavaPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
@@ -136,51 +150,45 @@ export default function JavaPage() {
         </div>
 
         <div className="space-y-4">
-          {topics.map((topic, index) => (
-            <Link
-              key={topic.number}
-              href={
-                index === 1
-                  ? "/learn/java/variables"
-                  : index === 5
-                    ? "/learn/java/if-statements"
-                    : "#"
-              }
-              className={`group flex flex-col gap-5 rounded-2xl border p-6 transition sm:flex-row sm:items-center ${
-                index === 1 || index === 5
-                  ? "border-white/10 bg-slate-900 hover:border-emerald-400/40"
-                  : "cursor-default border-white/5 bg-slate-900/50"
-              }`}
-            >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 font-mono text-sm text-emerald-400">
-                {topic.number}
-              </div>
+        {topics.map((topic) => (
+  <Link
+    key={topic.number}
+    href={topic.available ? `/learn/java/${topic.slug}` : "#"}
+    className={`group flex flex-col gap-5 rounded-2xl border p-6 transition sm:flex-row sm:items-center ${
+      topic.available
+        ? "border-white/10 bg-slate-900 hover:border-emerald-400/40"
+        : "cursor-default border-white/5 bg-slate-900/50"
+    }`}
+  >
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 font-mono text-sm text-emerald-400">
+      {topic.number}
+    </div>
 
-              <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-3">
-                  <h3 className="font-bold">{topic.title}</h3>
+    <div className="flex-1">
+      <div className="flex flex-wrap items-center gap-3">
+        <h3 className="font-bold">{topic.title}</h3>
 
-                  <span className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-slate-500">
-                    {topic.level}
-                  </span>
-                </div>
+        <span className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-slate-500">
+          {topic.level}
+        </span>
+      </div>
 
-                <p className="mt-2 text-sm leading-6 text-slate-400">
-                  {topic.description}
-                </p>
-              </div>
+      <p className="mt-2 text-sm leading-6 text-slate-400">
+        {topic.description}
+      </p>
+    </div>
 
-              <div className="text-sm font-medium text-slate-500">
-                {index === 1 || index === 5 ? (
-                  <span className="text-emerald-400 group-hover:text-emerald-300">
-                    Start →
-                  </span>
-                ) : (
-                  "Coming soon"
-                )}
-              </div>
-            </Link>
-          ))}
+    <div className="text-sm font-medium text-slate-500">
+      {topic.available ? (
+        <span className="text-emerald-400 group-hover:text-emerald-300">
+          Start →
+        </span>
+      ) : (
+        "Coming soon"
+      )}
+    </div>
+  </Link>
+))}
         </div>
       </section>
 
