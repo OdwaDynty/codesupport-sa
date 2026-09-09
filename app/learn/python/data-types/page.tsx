@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonVariablesLesson() {
+export default function PythonDataTypesLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
     if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! A variable is a named place where a program can store a value."
+        "Correct! float is used for numbers that can have decimal places."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function PythonVariablesLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 2 of 10</span>
+            <span className="text-slate-400">Topic 3 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python Variables
+            Python Data Types
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how variables allow your Python programs to store and
-            work with information.
+            Learn the different kinds of values a Python variable can
+            store.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[20%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[30%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 20%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 30%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function PythonVariablesLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what a variable is.</li>
-            <li>✓ Create a variable in Python.</li>
-            <li>✓ Store different types of values.</li>
-            <li>✓ Change the value stored in a variable.</li>
+            <li>✓ Name the main Python data types.</li>
+            <li>✓ Explain the difference between int and float.</li>
+            <li>✓ Use text (str) and True/False (bool) values.</li>
+            <li>✓ Check a variable&apos;s type using type().</li>
           </ul>
         </section>
 
@@ -92,42 +92,27 @@ export default function PythonVariablesLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What is a variable?
+            Python figures out the type for you
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            A variable is a named place where a program can store a value.
-            Think of it like a labelled box. In Python, creating one is
-            even simpler than in Java — there&apos;s no need to state the
-            data type up front.
+            In the Variables lesson, you saw that Python doesn&apos;t make
+            you state a data type up front — it works out the type
+            automatically from the value you give it. This is different
+            from Java, where you have to declare the type explicitly.
+            Python still has data types underneath, though, and knowing
+            them matters just as much.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              Example
-            </div>
+            <div className="text-sm font-medium text-slate-400">Example</div>
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`age = 16`}</code>
+              <code>{`score = 87
+average = 72.5
+grade = "A"
+passed = True`}</code>
             </pre>
-
-            <div className="mt-5 space-y-3 text-sm leading-6 text-slate-400">
-              <p>
-                <span className="font-semibold text-white">age</span> is
-                the name of the variable.
-              </p>
-
-              <p>
-                <span className="font-semibold text-white">16</span> is the
-                value stored inside the variable.
-              </p>
-
-              <p>
-                No data type or semicolon needed — Python figures out{" "}
-                <code className="text-emerald-300">age</code> is a whole
-                number just from the value you gave it.
-              </p>
-            </div>
           </div>
         </section>
 
@@ -138,50 +123,61 @@ export default function PythonVariablesLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Creating a variable
+            The main data types
           </h2>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            A basic Python variable follows this pattern:
-          </p>
-
-          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-blue-300">variableName</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">value</span>
-              </code>
-            </pre>
-          </div>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-blue-300">age</div>
-              <p className="mt-2 text-sm text-slate-400">
-                The variable name
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-mono text-purple-400">int</span>
+                <span className="text-sm text-slate-500">Whole numbers</span>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Used for values with no decimal point, like an age or a
+                score. Example: <code className="text-emerald-300">16</code>,{" "}
+                <code className="text-emerald-300">100</code>,{" "}
+                <code className="text-emerald-300">-4</code>
               </p>
             </div>
 
             <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-orange-300">16</div>
-              <p className="mt-2 text-sm text-slate-400">
-                The stored value
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-mono text-purple-400">float</span>
+                <span className="text-sm text-slate-500">Decimal numbers</span>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Used for values that need decimal places, like an average
+                or a price. Example:{" "}
+                <code className="text-emerald-300">72.5</code>,{" "}
+                <code className="text-emerald-300">3.14</code>
               </p>
             </div>
-          </div>
 
-          <p className="mt-6 leading-8 text-slate-300">
-            You can also change the value stored in a variable at any time,
-            just by assigning it again:
-          </p>
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-mono text-purple-400">str</span>
+                <span className="text-sm text-slate-500">Text (string)</span>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Used for words and sentences. Written in single or double
+                quotes. Example:{" "}
+                <code className="text-emerald-300">
+                  &quot;Hello, World!&quot;
+                </code>
+              </p>
+            </div>
 
-          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
-              <code>{`age = 16
-age = 17
-print(age)  # prints 17`}</code>
-            </pre>
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-mono text-purple-400">bool</span>
+                <span className="text-sm text-slate-500">True or false</span>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Used when a value can only be one of two states. Example:{" "}
+                <code className="text-emerald-300">True</code>,{" "}
+                <code className="text-emerald-300">False</code>
+              </p>
+            </div>
           </div>
         </section>
 
@@ -192,12 +188,17 @@ print(age)  # prints 17`}</code>
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Storing different kinds of values
+            Checking a variable&apos;s type
           </h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            If you&apos;re ever unsure what type a variable is, Python has
+            a built-in function to tell you:
+          </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Python examples
+              Using type()
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
@@ -206,29 +207,14 @@ print(age)  # prints 17`}</code>
                 <span className="text-slate-400">=</span>{" "}
                 <span className="text-orange-300">16</span>
                 {"\n"}
-                <span className="text-blue-300">average</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">72.5</span>
+                <span className="text-slate-300">print(type(age))</span>
                 {"\n"}
-                <span className="text-blue-300">name</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">
-                  &quot;Nampho&quot;
+                <span className="text-slate-500">
+                  {"  "}# {"<"}class &apos;int&apos;{">"}
                 </span>
-                {"\n"}
-                <span className="text-blue-300">passed</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">True</span>
               </code>
             </pre>
           </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Notice <code className="text-emerald-300">True</code> starts
-            with a capital letter in Python — that&apos;s different from
-            Java&apos;s <code>true</code>, and it&apos;s a common thing to
-            trip up on if you&apos;ve used another language before.
-          </p>
         </section>
 
         {/* Quiz */}
@@ -238,7 +224,7 @@ print(age)  # prints 17`}</code>
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What is the purpose of a variable?
+            Which data type would you use to store a test average like 72.5?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -251,9 +237,7 @@ print(age)  # prints 17`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                A. To delete information from a program
-              </span>
+              <span className="text-sm text-slate-300">A. int</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -265,9 +249,7 @@ print(age)  # prints 17`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                B. To store a value that a program can use
-              </span>
+              <span className="text-sm text-slate-300">B. float</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -279,9 +261,7 @@ print(age)  # prints 17`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                C. To automatically create a website
-              </span>
+              <span className="text-sm text-slate-300">C. bool</span>
             </label>
           </div>
 
@@ -311,31 +291,34 @@ print(age)  # prints 17`}</code>
             04 • Exercise
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            Your turn
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Create three Python variables:
+              Create four Python variables using the correct data type for
+              each:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                A variable called <strong className="text-white">age</strong>{" "}
-                that stores your age.
+                A variable called{" "}
+                <strong className="text-white">learner_count</strong> that
+                stores the number of learners in a class (a whole number).
               </li>
-
               <li>
                 A variable called{" "}
-                <strong className="text-white">school</strong> that stores the
-                name of your school.
+                <strong className="text-white">average_mark</strong> that
+                stores a class average of 68.4.
               </li>
-
               <li>
                 A variable called{" "}
-                <strong className="text-white">averageMark</strong> that stores
-                your average mark.
+                <strong className="text-white">subject_name</strong> that
+                stores the text &quot;Mathematics&quot;.
+              </li>
+              <li>
+                A variable called{" "}
+                <strong className="text-white">is_passing</strong> that
+                stores whether a learner passed.
               </li>
             </ol>
 
@@ -343,10 +326,9 @@ print(age)  # prints 17`}</code>
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Hint
               </summary>
-
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You don&apos;t need to declare a data type — just pick a
-                name, an equals sign, and a value.
+                Think about whether each value is a whole number, a
+                decimal, text, or true/false.
               </div>
             </details>
 
@@ -354,13 +336,14 @@ print(age)  # prints 17`}</code>
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Solution
               </summary>
-
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`age = 16
+                <code>{`learner_count = 30
 
-school = "My School"
+average_mark = 68.4
 
-averageMark = 72.5`}</code>
+subject_name = "Mathematics"
+
+is_passing = True`}</code>
               </pre>
             </details>
           </div>
@@ -379,16 +362,15 @@ averageMark = 72.5`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Starting a variable name with a number
+                Forgetting quotes around text
               </div>
-
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                1age = 16
+                name = Nampho
               </pre>
-
               <p className="mt-2 text-sm text-slate-500">
-                Python variable names must start with a letter or
-                underscore, never a digit.
+                Without quotes, Python thinks{" "}
+                <code>Nampho</code> is a variable name, not text — use{" "}
+                <code>name = &quot;Nampho&quot;</code>.
               </p>
             </div>
 
@@ -396,15 +378,12 @@ averageMark = 72.5`}</code>
               <div className="font-semibold text-red-300">
                 Using lowercase true/false
               </div>
-
               <pre className="mt-3 font-mono text-sm text-slate-400">
                 passed = true
               </pre>
-
               <p className="mt-2 text-sm text-slate-500">
-                Python capitalizes its boolean values —{" "}
-                <code>True</code> and <code>False</code>, not{" "}
-                <code>true</code> and <code>false</code>.
+                Python&apos;s boolean values are capitalized:{" "}
+                <code>True</code> and <code>False</code>.
               </p>
             </div>
           </div>
@@ -419,8 +398,8 @@ averageMark = 72.5`}</code>
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Once you understand variables, the next step is learning about
-            the different data types Python provides.
+            Now that you know the main data types, the next step is
+            learning how to get input from the user and display output.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -432,7 +411,7 @@ averageMark = 72.5`}</code>
             </Link>
 
             <Link
-              href="/learn/python/data-types"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
@@ -441,7 +420,6 @@ averageMark = 72.5`}</code>
         </section>
       </div>
 
-      {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-slate-500">
           CodeSupport SA • Learn. Practise. Build. Get Help.

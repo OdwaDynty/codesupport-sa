@@ -26,7 +26,7 @@ const topics = [
     description:
       "Work with numbers, text, boolean values and other basic data types.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "04",
