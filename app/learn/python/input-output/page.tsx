@@ -395,7 +395,7 @@ print(age + 1)  # Error!`}
             </Link>
 
             <Link
-              href="/learn/python"
+              href="/learn/python/operators"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

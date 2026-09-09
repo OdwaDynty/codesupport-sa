@@ -44,7 +44,7 @@ const topics = [
     description:
       "Use arithmetic, comparison and logical operators in your programs.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "06",
