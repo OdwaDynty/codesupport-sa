@@ -84,7 +84,7 @@ export default function RequestDetailPage() {
     });
   };
 
-  const saveResponse = async () => {
+const saveResponse = async () => {
   if (!request) return;
 
   if (!response.trim()) {
@@ -117,7 +117,37 @@ export default function RequestDetailPage() {
     status: "Answered",
   });
 
-  setResponseMessage("Response saved successfully.");
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  try {
+    const notifyResponse = await fetch("/api/notify/response", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session?.access_token}`,
+      },
+      body: JSON.stringify({ requestId: request.id }),
+    });
+
+    const notifyData = await notifyResponse.json();
+
+    if (!notifyResponse.ok) {
+      console.error("Email notification failed:", notifyData.error);
+      setResponseMessage(
+        "Response saved, but the email notification failed to send."
+      );
+      setSavingResponse(false);
+      return;
+    }
+
+    setResponseMessage("Response saved and the student has been notified by email.");
+  } catch (notifyError) {
+    console.error("Email notification error:", notifyError);
+    setResponseMessage("Response saved, but the email notification failed to send.");
+  }
+
   setSavingResponse(false);
 };
 
@@ -265,72 +295,59 @@ export default function RequestDetailPage() {
         </section>
 
         {/* Student Code */}
-        {request.code && (
-          <section className="mt-8">
+       {request.code && (
+  <section className="mt-8">
+    <h2 className="text-lg font-bold">Student Code</h2>
+    <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+      <div className="border-b border-white/10 px-5 py-4">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+          {request.language}
+        </p>
+      </div>
+      <pre className="overflow-auto p-6 font-mono text-sm leading-7 text-emerald-300">
+        <code>{request.code}</code>
+      </pre>
+    </div>
+  </section>
+)}
 
-            <h2 className="text-lg font-bold">
-              Student Code
-            </h2>
+<section className="mt-8">
+  <div className="rounded-lg border border-slate-700 bg-slate-800 p-6">
+    <h2 className="text-xl font-semibold text-white">Your Response</h2>
 
-            <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+    <p className="mt-1 text-sm text-slate-400">
+      Write a response to the student about their coding problem.
+    </p>
 
-              <div className="border-b border-white/10 px-5 py-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                  {request.language}
-                </p>
-              </div>
+    <textarea
+      value={response}
+      onChange={(e) => setResponse(e.target.value)}
+      placeholder="Write your response to the student here..."
+      rows={8}
+      className="mt-4 w-full rounded-lg border border-slate-600 bg-slate-900 p-4 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+    />
 
-              <pre className="overflow-auto p-6 font-mono text-sm leading-7 text-emerald-300">
-                <code>
-                  {request.code}
-                </code>
-              </pre>
+    <div className="mt-4 flex items-center gap-4">
+      <button
+        onClick={saveResponse}
+        disabled={savingResponse}
+        className="rounded-lg bg-emerald-600 px-5 py-2.5 font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {savingResponse ? "Saving..." : "Save Response"}
+      </button>
 
-            </div>
-            <div className="mt-8 rounded-lg border border-slate-700 bg-slate-800 p-6">
-  <h2 className="text-xl font-semibold text-white">
-    Your Response
-  </h2>
+      {responseMessage && (
+        <p className="text-sm text-emerald-400">{responseMessage}</p>
+      )}
+    </div>
 
-  <p className="mt-1 text-sm text-slate-400">
-    Write a response to the student about their coding problem.
-  </p>
-
-  <textarea
-    value={response}
-    onChange={(e) => setResponse(e.target.value)}
-    placeholder="Write your response to the student here..."
-    rows={8}
-    className="mt-4 w-full rounded-lg border border-slate-600 bg-slate-900 p-4 text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"
-  />
-
-  <div className="mt-4 flex items-center gap-4">
-    <button
-      onClick={saveResponse}
-      disabled={savingResponse}
-      className="rounded-lg bg-emerald-600 px-5 py-2.5 font-medium text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
-    >
-      {savingResponse ? "Saving..." : "Save Response"}
-    </button>
-
-    {responseMessage && (
-      <p className="text-sm text-emerald-400">
-        {responseMessage}
+    {request?.responded_at && (
+      <p className="mt-4 text-xs text-slate-500">
+        Last responded: {new Date(request.responded_at).toLocaleString()}
       </p>
     )}
   </div>
-
-  {request?.responded_at && (
-    <p className="mt-4 text-xs text-slate-500">
-      Last responded:{" "}
-      {new Date(request.responded_at).toLocaleString()}
-    </p>
-  )}
-</div>
-
-          </section>
-        )}
-
+</section>
         {/* Status Management */}
         <section className="mt-8">
 
