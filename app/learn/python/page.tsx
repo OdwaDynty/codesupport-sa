@@ -61,7 +61,7 @@ const topics = [
     description:
       "Create programs that respond differently to different conditions.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "08",

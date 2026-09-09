@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonIfStatementsLesson() {
+export default function PythonIfElseLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! The code inside the if block only runs when the condition is true."
+        "Correct! else runs only when the if condition was false."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function PythonIfStatementsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 6 of 10</span>
+            <span className="text-slate-400">Topic 7 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python If Statements
+            Python If / Else
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to make your program run different code depending on
-            a condition.
+            Learn how to make your program respond differently depending on
+            whether a condition is true or false.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[60%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[70%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 60%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 70%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function PythonIfStatementsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what an if statement does.</li>
-            <li>✓ Write an if statement using a comparison operator.</li>
-            <li>✓ Understand how indentation controls what runs.</li>
-            <li>✓ Combine conditions using and / or.</li>
+            <li>✓ Explain what the else block does.</li>
+            <li>✓ Write an if / else statement.</li>
+            <li>✓ Use elif to check multiple conditions in order.</li>
+            <li>✓ Understand that only one block in the chain ever runs.</li>
           </ul>
         </section>
 
@@ -92,14 +92,15 @@ export default function PythonIfStatementsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What is an if statement?
+            What does else do?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            An <strong className="text-white">if statement</strong> lets
-            your program make a decision. It checks a condition and only
-            runs a block of code if that condition is{" "}
-            <code className="text-emerald-300">True</code>.
+            An if statement on its own only handles one outcome — if the
+            condition is false, nothing happens.{" "}
+            <strong className="text-white">else</strong> gives you a
+            second block of code that runs specifically when the condition
+            is false.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -107,25 +108,35 @@ export default function PythonIfStatementsLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-blue-300">age</span>{" "}
+                <span className="text-blue-300">mark</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">16</span>
+                <span className="text-orange-300">42</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> age {">"}= 13:</span>
+                <span className="text-slate-400"> mark {">"}= 50:</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  print(&quot;You are a teenager.&quot;)
+                  print(&quot;You passed.&quot;)
+                </span>
+                {"\n"}
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400">:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;You did not pass.&quot;)
                 </span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Since <code className="text-emerald-300">age {">"}= 13</code> is
-            true when age is 16, the message gets printed. If age had been
-            10, nothing would print at all.
+            Since mark is 42, the condition is false, so this prints{" "}
+            <code className="text-emerald-300">You did not pass.</code>{" "}
+            Notice <code className="text-emerald-300">else</code> lines up
+            with <code>if</code> — same indentation level — and its own
+            block is indented under it, same as the if block.
           </p>
         </section>
 
@@ -136,94 +147,61 @@ export default function PythonIfStatementsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Indentation matters
+            Checking more than two outcomes with elif
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This is the biggest difference from Java: Python doesn&apos;t
-            use curly braces <code className="text-emerald-300">{"{ }"}</code>{" "}
-            to mark a block of code. Instead, it uses{" "}
-            <strong className="text-white">indentation</strong> — the
-            spacing at the start of a line. Every line that&apos;s indented
-            under the <code className="text-emerald-300">if</code> belongs
-            to that if statement.
-          </p>
-
-          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> condition:</span>
-                {"\n"}
-                {"    "}
-                <span className="text-orange-300">
-                  # this line runs only if condition is True
-                </span>
-                {"\n"}
-                {"    "}
-                <span className="text-orange-300">
-                  # so does this one, if still indented
-                </span>
-                {"\n"}
-                <span className="text-slate-500">
-                  # this line always runs — it&apos;s not indented
-                </span>
-              </code>
-            </pre>
-          </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Standard practice is to indent with{" "}
-            <strong className="text-white">4 spaces</strong>. Most code
-            editors do this automatically when you press Tab after a
-            colon.
-          </p>
-        </section>
-
-        {/* Section 3 */}
-        <section className="mt-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Examples
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold">
-            Combining conditions
-          </h2>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            You can use <code className="text-emerald-300">and</code> /{" "}
-            <code className="text-emerald-300">or</code> from the last
-            lesson to check more than one condition at once:
+            When you have more than two possible outcomes, chain conditions
+            together using <code className="text-emerald-300">elif</code>{" "}
+            (short for &quot;else if&quot;). Python checks each condition
+            in order and runs the <strong className="text-white">first</strong>{" "}
+            one that&apos;s true, then skips the rest.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Multiple conditions
+              Grading example
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
                 <span className="text-blue-300">mark</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">75</span>
+                <span className="text-orange-300">72</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400">
-                  {" "}
-                  mark {">"}= 50 and mark {"<"} 100:
-                </span>
+                <span className="text-slate-400"> mark {">"}= 80:</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  print(&quot;Valid pass mark.&quot;)
+                  print(&quot;Grade: A&quot;)
+                </span>
+                {"\n"}
+                <span className="text-purple-400">elif</span>
+                <span className="text-slate-400"> mark {">"}= 60:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;Grade: B&quot;)
+                </span>
+                {"\n"}
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400">:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;Grade: C&quot;)
                 </span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This only prints the message if <strong>both</strong> conditions
-            are true.
+            With mark = 72: the first condition (80+) is false, so Python
+            checks the next one. <code className="text-emerald-300">mark {">"}= 60</code>{" "}
+            is true, so it prints{" "}
+            <code className="text-emerald-300">Grade: B</code> — and never
+            even looks at the final else.
           </p>
         </section>
 
@@ -234,7 +212,7 @@ export default function PythonIfStatementsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            When does the code inside an if block run?
+            When does the code inside an else block run?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -262,7 +240,7 @@ export default function PythonIfStatementsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Only when the condition is false
+                B. Only when the if condition was false
               </span>
             </label>
 
@@ -276,7 +254,7 @@ export default function PythonIfStatementsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Only when the condition is true
+                C. Only when the if condition was true
               </span>
             </label>
           </div>
@@ -304,7 +282,7 @@ export default function PythonIfStatementsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            04 • Exercise
+            03 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
@@ -317,12 +295,10 @@ export default function PythonIfStatementsLesson() {
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
                 Creates a variable called{" "}
-                <strong className="text-white">temperature</strong>.
+                <strong className="text-white">age</strong>.
               </li>
-              <li>
-                Prints &quot;It&apos;s a hot day&quot; if the temperature is
-                greater than 30.
-              </li>
+              <li>Prints &quot;You can vote&quot; if age is 18 or older.</li>
+              <li>Otherwise, prints &quot;You cannot vote yet&quot;.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -330,9 +306,9 @@ export default function PythonIfStatementsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use an <code>if</code> statement with the{" "}
-                <code>{">"}</code> operator, and remember to indent the
-                line that should print.
+                Use an <code>if</code> block for the voting-age condition,
+                and an <code>else</code> block for everyone else. Don&apos;t
+                forget the colons.
               </div>
             </details>
 
@@ -341,10 +317,12 @@ export default function PythonIfStatementsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`temperature = 34
+                <code>{`age = 16
 
-if temperature > 30:
-    print("It's a hot day")`}</code>
+if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote yet")`}</code>
               </pre>
             </details>
           </div>
@@ -363,32 +341,32 @@ if temperature > 30:
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the colon
+                Writing a condition on the else
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if age > 18
-    print("Adult")`}
+                else age {"<"} 18:
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Every <code>if</code> line needs a colon{" "}
-                <code>:</code> at the end — Python will give a syntax
-                error without it.
+                <code>else</code> never takes a condition of its own — it
+                catches whatever the if (and any elif) missed. Need another
+                condition? Use <code>elif</code> instead.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Inconsistent indentation
+                Mismatched indentation between if and else
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if age > 18:
-   print("Adult")
-     print("Can vote")`}
+                {`if age >= 18:
+    print("Adult")
+  else:
+    print("Minor")`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Mixing different amounts of indentation causes an{" "}
-                <code>IndentationError</code>. Stick to a consistent
-                number of spaces (4 is standard) throughout your program.
+                <code>if</code> and its matching <code>else</code> must
+                line up at exactly the same indentation level, or Python
+                will raise an error.
               </p>
             </div>
           </div>
@@ -403,8 +381,8 @@ if temperature > 30:
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that your program can make decisions, the next step is
-            learning how to handle both outcomes with if / else.
+            Now that you can handle two or more outcomes, the next step is
+            learning how to place decisions inside other decisions.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -416,7 +394,7 @@ if temperature > 30:
             </Link>
 
             <Link
-              href="/learn/python/if-else"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
