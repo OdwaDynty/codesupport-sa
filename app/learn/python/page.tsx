@@ -3,73 +3,89 @@ import Link from "next/link";
 const topics = [
   {
     number: "01",
+    slug: "introduction",
     title: "Introduction to Python",
     description:
       "Understand what Python is and write your first simple Python program.",
     level: "Beginner",
+    available: true,
   },
   {
     number: "02",
+    slug: "variables",
     title: "Variables",
     description:
       "Learn how Python programs store and work with information.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "03",
+    slug: "data-types",
     title: "Data Types",
     description:
       "Work with numbers, text, boolean values and other basic data types.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "04",
+    slug: "input-output",
     title: "Input and Output",
     description:
       "Learn how to receive information from users and display results.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "05",
+    slug: "operators",
     title: "Operators",
     description:
       "Use arithmetic, comparison and logical operators in your programs.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "06",
+    slug: "if-statements",
     title: "If Statements",
-    description:
-      "Teach your Python programs how to make decisions.",
+    description: "Teach your Python programs how to make decisions.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "07",
+    slug: "if-else",
     title: "If / Else",
     description:
       "Create programs that respond differently to different conditions.",
     level: "Beginner",
+    available: false,
   },
   {
     number: "08",
+    slug: "nested-conditions",
     title: "Nested Conditions",
-    description:
-      "Use one decision inside another decision.",
+    description: "Use one decision inside another decision.",
     level: "Intermediate",
+    available: false,
   },
   {
     number: "09",
+    slug: "for-loops",
     title: "For Loops",
-    description:
-      "Repeat instructions using Python's for loop.",
+    description: "Repeat instructions using Python's for loop.",
     level: "Intermediate",
+    available: false,
   },
   {
     number: "10",
+    slug: "while-loops",
     title: "While Loops",
-    description:
-      "Repeat instructions while a condition remains true.",
+    description: "Repeat instructions while a condition remains true.",
     level: "Intermediate",
+    available: false,
   },
 ];
 
@@ -135,9 +151,14 @@ export default function PythonPage() {
 
         <div className="space-y-4">
           {topics.map((topic) => (
-            <div
+            <Link
               key={topic.number}
-              className="flex flex-col gap-5 rounded-2xl border border-white/5 bg-slate-900/50 p-6 sm:flex-row sm:items-center"
+              href={topic.available ? `/learn/python/${topic.slug}` : "#"}
+              className={`group flex flex-col gap-5 rounded-2xl border p-6 transition sm:flex-row sm:items-center ${
+                topic.available
+                  ? "border-white/10 bg-slate-900 hover:border-emerald-400/40"
+                  : "cursor-default border-white/5 bg-slate-900/50"
+              }`}
             >
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 font-mono text-sm text-emerald-400">
                 {topic.number}
@@ -157,8 +178,16 @@ export default function PythonPage() {
                 </p>
               </div>
 
-              <div className="text-sm text-slate-500">Coming soon</div>
-            </div>
+              <div className="text-sm font-medium text-slate-500">
+                {topic.available ? (
+                  <span className="text-emerald-400 group-hover:text-emerald-300">
+                    Start →
+                  </span>
+                ) : (
+                  "Coming soon"
+                )}
+              </div>
+            </Link>
           ))}
         </div>
       </section>
