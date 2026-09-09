@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function OperatorsLesson() {
+export default function IfStatementsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
-      setQuizResult("Correct! == compares two values, = assigns a value.");
+    if (quizAnswer === "C") {
+      setQuizResult(
+        "Correct! The code inside the if block only runs when the condition is true."
+      );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -46,25 +48,25 @@ export default function OperatorsLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 5 of 10</span>
+            <span className="text-slate-400">Topic 6 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java Operators
+            Java If Statements
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to do calculations, compare values, and combine
-            conditions in your Java programs.
+            Learn how to make your program run different code depending on
+            a condition.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[50%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[60%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 50%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 60%</p>
         </div>
       </header>
 
@@ -76,10 +78,10 @@ export default function OperatorsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Use arithmetic operators to calculate values.</li>
-            <li>✓ Use comparison operators to compare two values.</li>
-            <li>✓ Explain the difference between = and ==.</li>
-            <li>✓ Combine conditions using logical operators.</li>
+            <li>✓ Explain what an if statement does.</li>
+            <li>✓ Write an if statement using a comparison operator.</li>
+            <li>✓ Understand when the code inside an if block runs.</li>
+            <li>✓ Combine conditions using && and ||.</li>
           </ul>
         </section>
 
@@ -89,71 +91,47 @@ export default function OperatorsLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Arithmetic operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            What is an if statement?
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Arithmetic operators let you do maths with numbers stored in
-            variables.
+            An <strong className="text-white">if statement</strong> lets
+            your program make a decision. It checks a condition — the same
+            kind of comparison you learned in the Operators lesson — and
+            only runs a block of code if that condition is{" "}
+            <code className="text-emerald-300">true</code>.
           </p>
-
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Operator</th>
-                  <th className="px-5 py-3 font-medium">Meaning</th>
-                  <th className="px-5 py-3 font-medium">Example</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">+</td>
-                  <td className="px-5 py-3 text-slate-300">Addition</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 + 3 → 8
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">-</td>
-                  <td className="px-5 py-3 text-slate-300">Subtraction</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 - 3 → 2
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">*</td>
-                  <td className="px-5 py-3 text-slate-300">Multiplication</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 * 3 → 15
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">/</td>
-                  <td className="px-5 py-3 text-slate-300">Division</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    6 / 3 → 2
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">%</td>
-                  <td className="px-5 py-3 text-slate-300">
-                    Modulus (remainder)
-                  </td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    7 % 2 → 1
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <div className="text-sm font-medium text-slate-400">Example</div>
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`int total = 5 + 3;
-System.out.println(total); // prints 8`}</code>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">age</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">16</span>
+                <span className="text-slate-400">;</span>
+                {"\n\n"}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;You are a teenager.&quot;);
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"}"}</span>
+              </code>
             </pre>
           </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Since <code className="text-emerald-300">age {">"}= 13</code> is
+            true when age is 16, the message inside the curly braces gets
+            printed. If age had been 10, nothing would print at all.
+          </p>
         </section>
 
         {/* Section 2 */}
@@ -162,65 +140,43 @@ System.out.println(total); // prints 8`}</code>
             02 • Understand
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Comparison operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">The structure</h2>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            Comparison operators compare two values and give you back a
-            boolean — <code className="text-emerald-300">true</code> or{" "}
-            <code className="text-emerald-300">false</code>. You&apos;ll use
-            these constantly once you start writing if statements.
-          </p>
-
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Operator</th>
-                  <th className="px-5 py-3 font-medium">Meaning</th>
-                  <th className="px-5 py-3 font-medium">Example</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">==</td>
-                  <td className="px-5 py-3 text-slate-300">Equal to</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 == 5 → true
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">!=</td>
-                  <td className="px-5 py-3 text-slate-300">Not equal to</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 != 3 → true
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">{">"}</td>
-                  <td className="px-5 py-3 text-slate-300">Greater than</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 {">"} 3 → true
-                  </td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">{"<"}</td>
-                  <td className="px-5 py-3 text-slate-300">Less than</td>
-                  <td className="px-5 py-3 font-mono text-slate-400">
-                    5 {"<"} 3 → false
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> (</span>
+                <span className="text-blue-300">condition</span>
+                <span className="text-slate-400">) {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-orange-300">
+                  // code that runs only if condition is true
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"}"}</span>
+              </code>
+            </pre>
           </div>
 
-          <div className="mt-6 rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-5">
-            <p className="text-sm leading-6 text-yellow-200">
-              <strong className="text-yellow-300">Important:</strong>{" "}
-              <code className="text-emerald-300">=</code> assigns a value to
-              a variable. <code className="text-emerald-300">==</code>{" "}
-              compares two values. Mixing these up is one of the most
-              common beginner mistakes — see below.
-            </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-purple-400">condition</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Any expression that evaluates to true or false — usually
+                built with comparison operators like{" "}
+                <code>==</code>, <code>{">"}</code>, or <code>{"<"}</code>.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-purple-400">{"{ }"}</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                The curly braces mark the block of code that only runs when
+                the condition is true.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -230,44 +186,48 @@ System.out.println(total); // prints 8`}</code>
             03 • Examples
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Logical operators</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Combining conditions
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Logical operators let you combine more than one condition.
+            You can use the logical operators from the last lesson to check
+            more than one condition at once:
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Combining conditions
+              Multiple conditions
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-slate-300">age {">"} 12 </span>
-                <span className="text-purple-400">{"&&"}</span>
-                <span className="text-slate-300"> age {"<"} 18</span>
-                {"\n"}
-                <span className="text-slate-500">
-                  {"  "}// true only if BOTH conditions are true
-                </span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">mark</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">75</span>
+                <span className="text-slate-400">;</span>
                 {"\n\n"}
-                <span className="text-slate-300">grade == &quot;A&quot; </span>
-                <span className="text-purple-400">{"||"}</span>
-                <span className="text-slate-300"> grade == &quot;B&quot;</span>
-                {"\n"}
-                <span className="text-slate-500">
-                  {"  "}// true if EITHER condition is true
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400">
+                  {" "}
+                  (mark {">"}= 50 {"&&"} mark {"<"} 100) {"{"}
                 </span>
-                {"\n\n"}
-                <span className="text-purple-400">{"!"}</span>
-                <span className="text-slate-300">passed</span>
                 {"\n"}
-                <span className="text-slate-500">
-                  {"  "}// flips true to false, and false to true
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Valid pass mark.&quot;);
                 </span>
+                {"\n"}
+                <span className="text-slate-400">{"}"}</span>
               </code>
             </pre>
           </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            This only prints the message if <strong>both</strong> conditions
+            are true — the mark is at least 50, and it&apos;s less than 100.
+          </p>
         </section>
 
         {/* Quiz */}
@@ -277,7 +237,7 @@ System.out.println(total); // prints 8`}</code>
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What is the difference between = and ==?
+            When does the code inside an if block run?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -291,7 +251,7 @@ System.out.println(total); // prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. They mean the same thing
+                A. Every time the program runs
               </span>
             </label>
 
@@ -305,7 +265,7 @@ System.out.println(total); // prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. == compares two values, = assigns a value
+                B. Only when the condition is false
               </span>
             </label>
 
@@ -319,7 +279,7 @@ System.out.println(total); // prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. = compares two values, == assigns a value
+                C. Only when the condition is true
               </span>
             </label>
           </div>
@@ -359,18 +319,12 @@ System.out.println(total); // prints 8`}</code>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Creates two int variables,{" "}
-                <strong className="text-white">markOne</strong> and{" "}
-                <strong className="text-white">markTwo</strong>, with any
-                values.
+                Creates an int variable called{" "}
+                <strong className="text-white">temperature</strong>.
               </li>
               <li>
-                Calculates their total in a variable called{" "}
-                <strong className="text-white">total</strong>.
-              </li>
-              <li>
-                Prints whether <strong className="text-white">total</strong>{" "}
-                is greater than 100.
+                Prints &quot;It&apos;s a hot day&quot; if the temperature is
+                greater than 30.
               </li>
             </ol>
 
@@ -379,10 +333,8 @@ System.out.println(total); // prints 8`}</code>
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use the <code>+</code> operator to add the two marks
-                together, then use <code>{">"}</code> with{" "}
-                <code>System.out.println()</code> to print the result of
-                the comparison.
+                Use an <code>if</code> statement with the{" "}
+                <code>{">"}</code> operator to compare temperature to 30.
               </div>
             </details>
 
@@ -391,12 +343,11 @@ System.out.println(total); // prints 8`}</code>
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int markOne = 65;
-int markTwo = 42;
+                <code>{`int temperature = 34;
 
-int total = markOne + markTwo;
-
-System.out.println(total > 100);`}</code>
+if (temperature > 30) {
+    System.out.println("It's a hot day");
+}`}</code>
               </pre>
             </details>
           </div>
@@ -415,28 +366,29 @@ System.out.println(total > 100);`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using = instead of ==
+                Adding a semicolon after the condition
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                if (age = 18) {"{"}
+                {`if (age > 18); {
+    System.out.println("Adult");
+}`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                This tries to assign 18 to age instead of comparing them —
-                use <code>==</code> when comparing two values.
+                That semicolon ends the if statement early — the block
+                below it will run no matter what the condition is.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Dividing two integers and expecting a decimal
+                Using = instead of ==
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`int result = 5 / 2; // gives 2, not 2.5`}
+                if (isPassing = true) {"{"}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Dividing two <code>int</code> values in Java drops the
-                decimal part. Use <code>double</code> if you need the
-                decimal.
+                Same trap as in the Operators lesson — this assigns instead
+                of comparing. Always use <code>==</code> to compare.
               </p>
             </div>
           </div>
@@ -451,15 +403,14 @@ System.out.println(total > 100);`}</code>
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can compare values, the next step is learning how
-            to make your program actually respond to those comparisons
-            using if statements.
+            Now that your program can make decisions, the next step is
+            learning how to handle both outcomes with if / else.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
-              href="/learn/java/if-statements"
-              className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+              href="/learn/java"
+              className="rounded-xl border border-white/10 bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               Back to Java
             </Link>

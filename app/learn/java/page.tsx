@@ -51,7 +51,7 @@ const topics = [
     description:
       "Teach your program to make decisions based on conditions.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "07",
