@@ -69,7 +69,7 @@ const topics = [
     title: "Nested Conditions",
     description: "Use one decision inside another decision.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "09",

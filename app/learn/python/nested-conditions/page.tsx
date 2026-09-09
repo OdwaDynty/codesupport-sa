@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonIfElseLesson() {
+export default function PythonNestedConditionsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! else runs only when the if condition was false."
+        "Correct! An if statement written inside another if (or else) block is called nesting."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function PythonIfElseLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 7 of 10</span>
+            <span className="text-slate-400">Topic 8 of 10</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Beginner</span>
+            <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python If / Else
+            Python Nested Conditions
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to make your program respond differently depending on
-            whether a condition is true or false.
+            Learn how to place one decision inside another when a single
+            condition isn&apos;t enough.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[70%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[80%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 70%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 80%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function PythonIfElseLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what the else block does.</li>
-            <li>✓ Write an if / else statement.</li>
-            <li>✓ Use elif to check multiple conditions in order.</li>
-            <li>✓ Understand that only one block in the chain ever runs.</li>
+            <li>✓ Explain what a nested condition is.</li>
+            <li>✓ Write an if statement inside another if block.</li>
+            <li>✓ Know when nesting is useful versus using and.</li>
+            <li>✓ Read nested code without getting lost in the indentation.</li>
           </ul>
         </section>
 
@@ -92,15 +92,15 @@ export default function PythonIfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What does else do?
+            What does &quot;nested&quot; mean?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            An if statement on its own only handles one outcome — if the
-            condition is false, nothing happens.{" "}
-            <strong className="text-white">else</strong> gives you a
-            second block of code that runs specifically when the condition
-            is false.
+            Sometimes one decision only makes sense to check{" "}
+            <strong className="text-white">after</strong> another decision
+            has already been made. Placing an if statement inside another
+            if (or else) block is called{" "}
+            <strong className="text-white">nesting</strong>.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -108,35 +108,34 @@ export default function PythonIfElseLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-blue-300">mark</span>{" "}
+                <span className="text-blue-300">age</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">42</span>
+                <span className="text-orange-300">16</span>
+                {"\n"}
+                <span className="text-blue-300">has_permission</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">True</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> mark {">"}= 50:</span>
+                <span className="text-slate-400"> age {">"}= 13:</span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  print(&quot;You passed.&quot;)
-                </span>
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> has_permission:</span>
                 {"\n"}
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400">:</span>
-                {"\n"}
-                {"    "}
+                {"        "}
                 <span className="text-slate-300">
-                  print(&quot;You did not pass.&quot;)
+                  print(&quot;You may join the coding club.&quot;)
                 </span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Since mark is 42, the condition is false, so this prints{" "}
-            <code className="text-emerald-300">You did not pass.</code>{" "}
-            Notice <code className="text-emerald-300">else</code> lines up
-            with <code>if</code> — same indentation level — and its own
-            block is indented under it, same as the if block.
+            Notice the inner <code className="text-emerald-300">if</code> is
+            indented twice — once for being inside the outer{" "}
+            <code>if</code>, and it only gets checked at all if the outer
+            condition was already true.
           </p>
         </section>
 
@@ -147,42 +146,64 @@ export default function PythonIfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Checking more than two outcomes with elif
+            Nesting versus and
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            When you have more than two possible outcomes, chain conditions
-            together using <code className="text-emerald-300">elif</code>{" "}
-            (short for &quot;else if&quot;). Python checks each condition
-            in order and runs the <strong className="text-white">first</strong>{" "}
-            one that&apos;s true, then skips the rest.
+            The example above could also be written using{" "}
+            <code className="text-emerald-300">and</code> from the
+            Operators lesson:
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Grading example
-            </div>
-
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
               <code>
-                <span className="text-blue-300">mark</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">72</span>
-                {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> mark {">"}= 80:</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  print(&quot;Grade: A&quot;)
+                <span className="text-slate-400">
+                  {" "}
+                  age {">"}= 13 and has_permission:
                 </span>
                 {"\n"}
-                <span className="text-purple-400">elif</span>
-                <span className="text-slate-400"> mark {">"}= 60:</span>
-                {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  print(&quot;Grade: B&quot;)
+                  print(&quot;You may join the coding club.&quot;)
+                </span>
+              </code>
+            </pre>
+          </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Both do the same thing here. Nesting becomes genuinely useful
+            when the inner decision needs its <strong>own</strong>{" "}
+            separate outcomes:
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Nesting with its own else
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> age {">"}= 13:</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> has_permission:</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  print(&quot;Welcome to the club!&quot;)
+                </span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400">:</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  print(&quot;Ask a parent for permission first.&quot;)
                 </span>
                 {"\n"}
                 <span className="text-purple-400">else</span>
@@ -190,18 +211,17 @@ export default function PythonIfElseLesson() {
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  print(&quot;Grade: C&quot;)
+                  print(&quot;Sorry, you must be at least 13.&quot;)
                 </span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            With mark = 72: the first condition (80+) is false, so Python
-            checks the next one. <code className="text-emerald-300">mark {">"}= 60</code>{" "}
-            is true, so it prints{" "}
-            <code className="text-emerald-300">Grade: B</code> — and never
-            even looks at the final else.
+            This gives three distinct outcomes, which a single{" "}
+            <code className="text-emerald-300">and</code> condition
+            couldn&apos;t express on its own. Notice how each level of
+            nesting adds another 4 spaces of indentation.
           </p>
         </section>
 
@@ -212,7 +232,7 @@ export default function PythonIfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            When does the code inside an else block run?
+            What is a nested condition?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -226,7 +246,7 @@ export default function PythonIfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. Every time the program runs
+                A. An if statement written inside another if (or else) block
               </span>
             </label>
 
@@ -240,7 +260,7 @@ export default function PythonIfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Only when the if condition was false
+                B. An if statement with two conditions joined by and
               </span>
             </label>
 
@@ -254,7 +274,7 @@ export default function PythonIfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Only when the if condition was true
+                C. An if statement that repeats several times
               </span>
             </label>
           </div>
@@ -295,10 +315,15 @@ export default function PythonIfElseLesson() {
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
                 Creates a variable called{" "}
-                <strong className="text-white">age</strong>.
+                <strong className="text-white">mark</strong>.
               </li>
-              <li>Prints &quot;You can vote&quot; if age is 18 or older.</li>
-              <li>Otherwise, prints &quot;You cannot vote yet&quot;.</li>
+              <li>
+                If the mark is 50 or above, checks a{" "}
+                <strong className="text-white">nested</strong> condition:
+                if the mark is also 80 or above, print &quot;Distinction&quot;,
+                otherwise print &quot;Pass&quot;.
+              </li>
+              <li>If the mark is below 50, print &quot;Fail&quot;.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -306,9 +331,9 @@ export default function PythonIfElseLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use an <code>if</code> block for the voting-age condition,
-                and an <code>else</code> block for everyone else. Don&apos;t
-                forget the colons.
+                You need an outer if/else for the 50 mark, and an inner
+                if/else nested inside the &quot;50 or above&quot; branch
+                for the 80 mark. Watch your indentation carefully.
               </div>
             </details>
 
@@ -317,12 +342,15 @@ export default function PythonIfElseLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`age = 16
+                <code>{`mark = 85
 
-if age >= 18:
-    print("You can vote")
+if mark >= 50:
+    if mark >= 80:
+        print("Distinction")
+    else:
+        print("Pass")
 else:
-    print("You cannot vote yet")`}</code>
+    print("Fail")`}</code>
               </pre>
             </details>
           </div>
@@ -341,32 +369,34 @@ else:
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Writing a condition on the else
+                Losing track of indentation levels
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                else age {"<"} 18:
+                {`if age >= 13:
+    if has_permission:
+    print("Welcome!")`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>else</code> never takes a condition of its own — it
-                catches whatever the if (and any elif) missed. Need another
-                condition? Use <code>elif</code> instead.
+                The <code>print</code> line here is indented the same as
+                the inner <code>if</code>, not inside it — Python would
+                treat it as outside the inner block. Each level of nesting
+                needs its own extra indentation.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Mismatched indentation between if and else
+                Nesting when and would be simpler
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if age >= 18:
-    print("Adult")
-  else:
-    print("Minor")`}
+                {`if age >= 13:
+    if has_permission:
+        # ...one simple outcome`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>if</code> and its matching <code>else</code> must
-                line up at exactly the same indentation level, or Python
-                will raise an error.
+                If both conditions just lead to one single outcome, a
+                single <code>if age {">"}= 13 and has_permission:</code>{" "}
+                is cleaner than nesting.
               </p>
             </div>
           </div>
@@ -381,8 +411,8 @@ else:
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can handle two or more outcomes, the next step is
-            learning how to place decisions inside other decisions.
+            Now that you can nest decisions, the next step is learning how
+            to repeat instructions using loops.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -394,7 +424,7 @@ else:
             </Link>
 
             <Link
-              href="/learn/python/nested-conditions"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
