@@ -3,15 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function NestedIfLesson() {
+export default function ForLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "A") {
-      setQuizResult(
-        "Correct! An if statement written inside another if (or else) block is called nesting."
-      );
+    if (quizAnswer === "B") {
+      setQuizResult("Correct! This loop prints the numbers 5 times (1 to 5).");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -48,25 +46,25 @@ export default function NestedIfLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 8 of 10</span>
+            <span className="text-slate-400">Topic 9 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java Nested If Statements
+            Java For Loops
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to place one decision inside another when a single
-            condition isn&apos;t enough.
+            Learn how to repeat instructions a fixed number of times
+            without writing the same code over and over.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[80%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[90%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 80%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 90%</p>
         </div>
       </header>
 
@@ -78,10 +76,10 @@ export default function NestedIfLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what a nested if statement is.</li>
-            <li>✓ Write an if statement inside another if block.</li>
-            <li>✓ Know when nesting is useful versus using &&.</li>
-            <li>✓ Read nested code without getting lost in the braces.</li>
+            <li>✓ Explain why loops are useful.</li>
+            <li>✓ Write a for loop that repeats a set number of times.</li>
+            <li>✓ Understand each of the three parts of a for loop.</li>
+            <li>✓ Use the loop counter variable inside the loop.</li>
           </ul>
         </section>
 
@@ -92,15 +90,17 @@ export default function NestedIfLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What does &quot;nested&quot; mean?
+            Why do we need loops?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Sometimes one decision only makes sense to check{" "}
-            <strong className="text-white">after</strong> another decision
-            has already been made. Placing an if statement inside another
-            if (or else) block is called{" "}
-            <strong className="text-white">nesting</strong>.
+            Imagine you wanted to print &quot;Hello&quot; five times. You
+            could write <code className="text-emerald-300">System.out.println(&quot;Hello&quot;);</code>{" "}
+            five separate times — but what if you needed it 100 times, or
+            10,000 times? A{" "}
+            <strong className="text-white">for loop</strong> lets you
+            repeat an instruction as many times as you need, without
+            writing it out repeatedly.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -108,35 +108,18 @@ export default function NestedIfLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
+                <span className="text-purple-400">for</span>
+                <span className="text-slate-400"> (</span>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">age</span>{" "}
+                <span className="text-blue-300">i</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">16</span>
-                <span className="text-slate-400">;</span>
-                {"\n"}
-                <span className="text-purple-400">boolean</span>{" "}
-                <span className="text-blue-300">hasPermission</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">true</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
+                <span className="text-orange-300">1</span>
+                <span className="text-slate-400">; i {"<"}= 5; i++) {"{"}</span>
                 {"\n"}
                 {"    "}
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (hasPermission) {"{"}
-                </span>
-                {"\n"}
-                {"        "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;You may join the coding club.&quot;);
+                  System.out.println(&quot;Hello&quot;);
                 </span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-400">{"}"}</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -144,10 +127,9 @@ export default function NestedIfLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The inner if only gets checked at all if the outer condition (
-            <code className="text-emerald-300">age {">"}= 13</code>) was
-            already true. If age had been 10, Java would never even look at
-            the inner condition.
+            This one loop prints &quot;Hello&quot; exactly five times —
+            once for each value of <code className="text-emerald-300">i</code>{" "}
+            from 1 through 5.
           </p>
         </section>
 
@@ -158,84 +140,85 @@ export default function NestedIfLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Nesting versus &&
+            The three parts of a for loop
+          </h2>
+
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">for</span>
+                <span className="text-slate-400"> (</span>
+                <span className="text-blue-300">start</span>
+                <span className="text-slate-400">; </span>
+                <span className="text-orange-300">condition</span>
+                <span className="text-slate-400">; </span>
+                <span className="text-emerald-300">update</span>
+                <span className="text-slate-400">) {"{"} ... {"}"}</span>
+              </code>
+            </pre>
+          </div>
+
+          <div className="mt-6 space-y-4">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-blue-300">int i = 1</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                <strong className="text-white">Start:</strong> creates a
+                counter variable and sets its starting value. This runs{" "}
+                <strong>once</strong>, before the loop begins.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-orange-300">i {"<"}= 5</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                <strong className="text-white">Condition:</strong> checked
+                before every repeat. As long as it&apos;s true, the loop
+                keeps going. As soon as it&apos;s false, the loop stops.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-emerald-300">i++</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                <strong className="text-white">Update:</strong> runs at the
+                end of every repeat. <code>i++</code> is shorthand for{" "}
+                <code>i = i + 1</code> — it increases i by one each time.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Section 3 */}
+        <section className="mt-14">
+          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            03 • Examples
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold">
+            Using the counter inside the loop
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            You might notice the example above could also be written using{" "}
-            <code className="text-emerald-300">{"&&"}</code> from the
-            Operators lesson:
+            The counter variable isn&apos;t just for controlling the loop —
+            you can use its value inside the loop too:
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (age {">"}= 13 {"&&"} hasPermission) {"{"}
-                </span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;You may join the coding club.&quot;);
-                </span>
-                {"\n"}
-                <span className="text-slate-400">{"}"}</span>
-              </code>
-            </pre>
-          </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Both do the same thing here. Nesting becomes genuinely useful
-            when the inner decision needs its <strong>own</strong> separate
-            outcomes — for example, if you wanted a different message
-            depending on whether permission was true or false, but only for
-            learners aged 13 and up.
-          </p>
-
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              Nesting with its own else
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
+              Multiplication table
             </div>
 
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-purple-400">if</span>
+                <span className="text-purple-400">for</span>
                 <span className="text-slate-400">
                   {" "}
-                  (hasPermission) {"{"}
-                </span>
-                {"\n"}
-                {"        "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;Welcome to the club!&quot;);
+                  (int i = 1; i {"<"}= 5; i++) {"{"}
                 </span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400"> {"{"}</span>
-                {"\n"}
-                {"        "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;Ask a parent for permission first.&quot;);
-                </span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-400">{"}"}</span>
-                {"\n"}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400"> {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;Sorry, you must be at least 13.&quot;);
+                  System.out.println(&quot;3 x &quot; + i + &quot; = &quot; + (3 * i));
                 </span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
@@ -244,9 +227,9 @@ export default function NestedIfLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This gives three distinct outcomes, which a single{" "}
-            <code className="text-emerald-300">{"&&"}</code> condition
-            couldn&apos;t express on its own.
+            This prints five lines: &quot;3 x 1 = 3&quot;, &quot;3 x 2 =
+            6&quot;, all the way up to &quot;3 x 5 = 15&quot; — each line
+            using the current value of <code className="text-emerald-300">i</code>.
           </p>
         </section>
 
@@ -257,8 +240,14 @@ export default function NestedIfLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What is a nested if statement?
+            How many times does this loop run?
           </h2>
+
+          <pre className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+            <code>{`for (int i = 1; i <= 5; i++) {
+    System.out.println(i);
+}`}</code>
+          </pre>
 
           <div className="mt-6 space-y-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -270,9 +259,7 @@ export default function NestedIfLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                A. An if statement written inside another if (or else) block
-              </span>
+              <span className="text-sm text-slate-300">A. 4 times</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -284,9 +271,7 @@ export default function NestedIfLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                B. An if statement with two conditions joined by &&
-              </span>
+              <span className="text-sm text-slate-300">B. 5 times</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -298,9 +283,7 @@ export default function NestedIfLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                C. An if statement that repeats several times
-              </span>
+              <span className="text-sm text-slate-300">C. 6 times</span>
             </label>
           </div>
 
@@ -327,38 +310,24 @@ export default function NestedIfLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Exercise
+            04 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Java program that:
+              Write a Java for loop that prints the numbers 1 through 10,
+              each on its own line.
             </p>
-
-            <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>
-                Creates an int variable called{" "}
-                <strong className="text-white">mark</strong>.
-              </li>
-              <li>
-                If the mark is 50 or above, checks a{" "}
-                <strong className="text-white">nested</strong> condition:
-                if the mark is also 80 or above, print &quot;Distinction&quot;,
-                otherwise print &quot;Pass&quot;.
-              </li>
-              <li>If the mark is below 50, print &quot;Fail&quot;.</li>
-            </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You need an outer if/else for the 50 mark, and an inner
-                if/else nested inside the &quot;50 or above&quot; branch for
-                the 80 mark.
+                Start the counter at 1, keep the loop going while it&apos;s
+                less than or equal to 10, and increase it by 1 each time.
               </div>
             </details>
 
@@ -367,16 +336,8 @@ export default function NestedIfLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int mark = 85;
-
-if (mark >= 50) {
-    if (mark >= 80) {
-        System.out.println("Distinction");
-    } else {
-        System.out.println("Pass");
-    }
-} else {
-    System.out.println("Fail");
+                <code>{`for (int i = 1; i <= 10; i++) {
+    System.out.println(i);
 }`}</code>
               </pre>
             </details>
@@ -396,38 +357,33 @@ if (mark >= 50) {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Losing track of closing braces
+                Forgetting to update the counter (infinite loop)
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if (age >= 13) {
-    if (hasPermission) {
-        System.out.println("Welcome!");
+                {`for (int i = 1; i <= 5;) {
+    System.out.println(i);
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Nested if statements need one closing{" "}
-                <code>{"}"}</code> for every opening one. Indenting
-                consistently (as in the examples above) makes it much
-                easier to spot a missing brace.
+                Without <code>i++</code>, <code>i</code> never changes, so
+                the condition <code>i {"<"}= 5</code> stays true forever —
+                the loop never stops.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Nesting when && would be simpler
+                Off-by-one errors
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if (age >= 13) {
-    if (hasPermission) {
-        // ...one simple outcome
-    }
+                {`for (int i = 1; i < 5; i++) {
+    // only runs 4 times: 1, 2, 3, 4
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                If both conditions just lead to one single outcome (no
-                separate else branches needed), a single{" "}
-                <code>if (age {">"}= 13 {"&&"} hasPermission)</code> is
-                cleaner than nesting.
+                Using <code>{"<"}</code> instead of <code>{"<"}=</code> is
+                a very common mistake — double-check whether you meant to
+                include the final number or stop just before it.
               </p>
             </div>
           </div>
@@ -438,12 +394,12 @@ if (mark >= 50) {
           <div className="text-3xl">🎯</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the next topic?
+            Ready for the final topic?
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can nest decisions, the next step is learning how
-            to repeat instructions using loops.
+            One more loop type to go — while loops repeat based on a
+            condition, rather than a fixed number of times.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -455,7 +411,7 @@ if (mark >= 50) {
             </Link>
 
             <Link
-              href="/learn/java/for-loops"
+              href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
