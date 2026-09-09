@@ -8,7 +8,7 @@ const topics = [
     description:
       "Understand what Java is, how Java programs work and what you need to write your first program.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "02",
@@ -34,7 +34,7 @@ const topics = [
     description:
       "Learn how to display information and receive input from the user.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
