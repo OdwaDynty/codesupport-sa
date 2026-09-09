@@ -35,7 +35,7 @@ const topics = [
     description:
       "Learn how to receive information from users and display results.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
