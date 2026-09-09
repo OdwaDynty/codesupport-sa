@@ -42,7 +42,7 @@ const topics = [
     title: "Operators",
     description: "Work with arithmetic, comparison and logical operators.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "06",
