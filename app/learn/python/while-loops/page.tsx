@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function PythonForLoopsLesson() {
+export default function PythonWhileLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "C") {
       setQuizResult(
-        "Correct! range(1, 6) produces 1, 2, 3, 4, 5 — five values, since the end number is excluded."
+        "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,26 @@ export default function PythonForLoopsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 9 of 10</span>
+            <span className="text-slate-400">Topic 10 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python For Loops
+            Python While Loops
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to repeat instructions a fixed number of times
-            without writing the same code over and over.
+            Learn how to repeat instructions while a condition stays true —
+            even when you don&apos;t know exactly how many times in
+            advance.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[90%] rounded-full bg-emerald-400" />
+            <div className="h-full w-full rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 90%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
         </div>
       </header>
 
@@ -78,10 +79,10 @@ export default function PythonForLoopsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain why loops are useful.</li>
-            <li>✓ Write a for loop using range().</li>
-            <li>✓ Understand how range() controls the number of repeats.</li>
-            <li>✓ Use the loop variable inside the loop.</li>
+            <li>✓ Explain what a while loop does.</li>
+            <li>✓ Write a while loop with a condition.</li>
+            <li>✓ Understand the difference between for and while loops.</li>
+            <li>✓ Avoid writing an infinite loop.</li>
           </ul>
         </section>
 
@@ -92,16 +93,15 @@ export default function PythonForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Why do we need loops?
+            What is a while loop?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Imagine you wanted to print &quot;Hello&quot; five times. You
-            could write <code className="text-emerald-300">print(&quot;Hello&quot;)</code>{" "}
-            five separate times — but what if you needed it 100 times, or
-            10,000 times? A{" "}
-            <strong className="text-white">for loop</strong> lets you
-            repeat an instruction as many times as you need.
+            A <strong className="text-white">while loop</strong> keeps
+            repeating a block of code for as long as its condition stays
+            true. Unlike a for loop with range(), it doesn&apos;t have a
+            built-in counter — you&apos;re responsible for creating and
+            updating the variable the condition depends on.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -109,27 +109,25 @@ export default function PythonForLoopsLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400"> i </span>
-                <span className="text-purple-400">in</span>
-                <span className="text-slate-400"> range(</span>
+                <span className="text-blue-300">count</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
                 <span className="text-orange-300">1</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">6</span>
-                <span className="text-slate-400">):</span>
+                {"\n\n"}
+                <span className="text-purple-400">while</span>
+                <span className="text-slate-400"> count {"<"}= 5:</span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  print(&quot;Hello&quot;)
-                </span>
+                <span className="text-slate-300">print(count)</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">count = count + 1</span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This one loop prints &quot;Hello&quot; exactly five times —
-            once for each value <code className="text-emerald-300">i</code>{" "}
-            takes on.
+            This prints 1 through 5, the same result as a for loop — but
+            written a different way.
           </p>
         </section>
 
@@ -140,88 +138,44 @@ export default function PythonForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            How range() works
+            When to use while instead of for
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">range()</code> generates a
-            sequence of numbers for the loop to work through. It has an
-            important quirk to remember:{" "}
-            <strong className="text-white">
-              the end number is never included.
-            </strong>
-          </p>
-
-          <div className="mt-6 space-y-4">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">range(5)</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Produces 0, 1, 2, 3, 4 — five values, starting from 0 by
-                default.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">range(1, 6)</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Produces 1, 2, 3, 4, 5 — starts at 1, stops just before 6.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">
-                range(0, 10, 2)
-              </div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Produces 0, 2, 4, 6, 8 — a third number sets the step size.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3 */}
-        <section className="mt-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Examples
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold">
-            Using the loop variable
-          </h2>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            The loop variable isn&apos;t just for controlling the loop —
-            you can use its value inside the loop too:
+            A for loop is the natural choice when you know exactly how many
+            times you want to repeat something. A while loop is better
+            when you <strong className="text-white">don&apos;t</strong>{" "}
+            know in advance — for example, repeating until the user enters
+            valid input.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Multiplication table
+              Repeating until valid input
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400"> i </span>
-                <span className="text-purple-400">in</span>
-                <span className="text-slate-400"> range(</span>
-                <span className="text-orange-300">1</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">6</span>
-                <span className="text-slate-400">):</span>
+                <span className="text-blue-300">age</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">-1</span>
+                {"\n\n"}
+                <span className="text-purple-400">while</span>
+                <span className="text-slate-400"> age {"<"} 0:</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  print(&quot;3 x&quot;, i, &quot;=&quot;, 3 * i)
+                  age = int(input(&quot;Enter your age: &quot;))
                 </span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This prints five lines, from &quot;3 x 1 = 3&quot; through
-            &quot;3 x 5 = 15&quot;, each using the current value of{" "}
-            <code className="text-emerald-300">i</code>.
+            There&apos;s no way to know in advance how many times the user
+            will enter an invalid age before getting it right — a while
+            loop handles that naturally, where a for loop wouldn&apos;t
+            fit well.
           </p>
         </section>
 
@@ -232,7 +186,7 @@ export default function PythonForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            How many values does range(1, 6) produce?
+            How many times does a while loop repeat?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -245,7 +199,9 @@ export default function PythonForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">A. 4 values</span>
+              <span className="text-sm text-slate-300">
+                A. Always exactly 10 times
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -257,7 +213,9 @@ export default function PythonForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">B. 5 values</span>
+              <span className="text-sm text-slate-300">
+                B. A fixed number of times decided before the loop starts
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -269,7 +227,10 @@ export default function PythonForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">C. 6 values</span>
+              <span className="text-sm text-slate-300">
+                C. As long as its condition stays true, however many times
+                that takes
+              </span>
             </label>
           </div>
 
@@ -296,24 +257,31 @@ export default function PythonForLoopsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            04 • Exercise
+            03 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Python for loop that prints the numbers 1 through 10,
-              each on its own line.
+              Write a Python while loop that:
             </p>
+
+            <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
+              <li>Starts a counter variable at 10.</li>
+              <li>
+                Prints the counter, then decreases it by 1, while it is
+                greater than 0 (a countdown).
+              </li>
+            </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Remember range() excludes its end number, so to include 10
-                you&apos;ll need to go up to 11.
+                Use <code>count = count - 1</code> inside the loop to
+                decrease the counter each time.
               </div>
             </details>
 
@@ -322,8 +290,11 @@ export default function PythonForLoopsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`for i in range(1, 11):
-    print(i)`}</code>
+                <code>{`count = 10
+
+while count > 0:
+    print(count)
+    count = count - 1`}</code>
               </pre>
             </details>
           </div>
@@ -342,29 +313,35 @@ export default function PythonForLoopsLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting range() excludes its end value
+                Forgetting to update the condition variable
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for i in range(1, 10):
-    # only prints 1 through 9, not 10`}
+                {`count = 1
+
+while count <= 5:
+    print(count)
+    # forgot to update count`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                This is the single most common range() mistake — always
-                add 1 to your intended end value if you want it included.
+                Without updating <code>count</code> inside the loop, the
+                condition never becomes false — this is the most common
+                cause of infinite loops.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the colon
+                Initializing the variable inside the loop
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for i in range(5)
-    print(i)`}
+                {`while count <= 5:
+    count = 1  # resets every time!
+    count = count + 1`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Every <code>for</code> line needs a colon at the end, just
-                like <code>if</code> statements.
+                The counter needs to be created{" "}
+                <strong>before</strong> the while loop starts, not inside
+                it — otherwise it resets on every repeat.
               </p>
             </div>
           </div>
@@ -372,15 +349,17 @@ export default function PythonForLoopsLesson() {
 
         {/* Completion */}
         <section className="mt-14 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-8 text-center">
-          <div className="text-3xl">🎯</div>
+          <div className="text-3xl">🏆</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the final topic?
+            You&apos;ve completed the Python fundamentals!
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            One more loop type to go — while loops repeat based on a
-            condition, rather than a fixed number of times.
+            You now know the building blocks every Python program is made
+            from — variables, data types, input/output, operators,
+            decisions and loops. The best way to make it stick is to build
+            something real.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -392,10 +371,10 @@ export default function PythonForLoopsLesson() {
             </Link>
 
             <Link
-              href="/learn/python/while-loops"
+              href="/projects"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
-              Next Topic →
+              View Projects →
             </Link>
           </div>
         </section>
