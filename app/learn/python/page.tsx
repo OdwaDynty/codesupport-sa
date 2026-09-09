@@ -77,7 +77,7 @@ const topics = [
     title: "For Loops",
     description: "Repeat instructions using Python's for loop.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "10",
