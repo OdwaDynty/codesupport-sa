@@ -458,14 +458,14 @@ System.out.println(total > 100);`}</code>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
-              href="/learn/java/if-statements"
+               href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
-            >
+              >
               Back to Java
             </Link>
 
             <Link
-              href="/learn/java"
+             href="/learn/java/if-statements"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

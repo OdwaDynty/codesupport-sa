@@ -424,7 +424,7 @@ String name = input.nextLine(); // often reads as empty`}
             </Link>
 
             <Link
-              href="/learn/java"
+              href="/learn/java/operators"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

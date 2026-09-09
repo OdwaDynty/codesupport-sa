@@ -385,7 +385,7 @@ boolean isPassing = true;`}</code>
             </Link>
 
             <Link
-              href="/learn/java"
+              href="/learn/java/input-output"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
