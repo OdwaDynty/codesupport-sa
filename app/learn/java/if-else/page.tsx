@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function IfStatementsLesson() {
+export default function IfElseLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! The code inside the if block only runs when the condition is true."
+        "Correct! else runs only when the if condition was false."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function IfStatementsLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 6 of 10</span>
+            <span className="text-slate-400">Topic 7 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java If Statements
+            Java If / Else
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to make your program run different code depending on
-            a condition.
+            Learn how to make your program respond differently depending on
+            whether a condition is true or false.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[60%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[70%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 60%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 70%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function IfStatementsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what an if statement does.</li>
-            <li>✓ Write an if statement using a comparison operator.</li>
-            <li>✓ Understand when the code inside an if block runs.</li>
-            <li>✓ Combine conditions using && and ||.</li>
+            <li>✓ Explain what the else block does.</li>
+            <li>✓ Write an if / else statement.</li>
+            <li>✓ Use else if to check multiple conditions in order.</li>
+            <li>✓ Understand that only one block in the chain ever runs.</li>
           </ul>
         </section>
 
@@ -92,15 +92,15 @@ export default function IfStatementsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What is an if statement?
+            What does else do?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            An <strong className="text-white">if statement</strong> lets
-            your program make a decision. It checks a condition — the same
-            kind of comparison you learned in the Operators lesson — and
-            only runs a block of code if that condition is{" "}
-            <code className="text-emerald-300">true</code>.
+            In the last lesson, an if statement on its own only handles one
+            outcome — if the condition is false, nothing happens at all.{" "}
+            <strong className="text-white">else</strong> gives you a second
+            block of code that runs specifically when the condition is
+            false.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -109,17 +109,26 @@ export default function IfStatementsLesson() {
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">age</span>{" "}
+                <span className="text-blue-300">mark</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">16</span>
+                <span className="text-orange-300">42</span>
                 <span className="text-slate-400">;</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
+                <span className="text-slate-400"> (mark {">"}= 50) {"{"}</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;You are a teenager.&quot;);
+                  System.out.println(&quot;You passed.&quot;);
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400"> {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;You did not pass.&quot;);
                 </span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
@@ -128,9 +137,9 @@ export default function IfStatementsLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Since <code className="text-emerald-300">age {">"}= 13</code> is
-            true when age is 16, the message inside the curly braces gets
-            printed. If age had been 10, nothing would print at all.
+            Since mark is 42, the condition <code className="text-emerald-300">mark {">"}= 50</code> is
+            false, so this prints{" "}
+            <code className="text-emerald-300">You did not pass.</code>
           </p>
         </section>
 
@@ -140,64 +149,22 @@ export default function IfStatementsLesson() {
             02 • Understand
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">The structure</h2>
-
-          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (</span>
-                <span className="text-blue-300">condition</span>
-                <span className="text-slate-400">) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-orange-300">
-                  // code that runs only if condition is true
-                </span>
-                {"\n"}
-                <span className="text-slate-400">{"}"}</span>
-              </code>
-            </pre>
-          </div>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">condition</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Any expression that evaluates to true or false — usually
-                built with comparison operators like{" "}
-                <code>==</code>, <code>{">"}</code>, or <code>{"<"}</code>.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">{"{ }"}</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                The curly braces mark the block of code that only runs when
-                the condition is true.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3 */}
-        <section className="mt-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Examples
-          </p>
-
           <h2 className="mt-3 text-3xl font-bold">
-            Combining conditions
+            Checking more than two outcomes with else if
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            You can use the logical operators from the last lesson to check
-            more than one condition at once:
+            When you have more than two possible outcomes, you can chain
+            conditions together using{" "}
+            <code className="text-emerald-300">else if</code>. Java checks
+            each condition in order, top to bottom, and runs the{" "}
+            <strong className="text-white">first</strong> block whose
+            condition is true — then skips the rest.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Multiple conditions
+              Grading example
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
@@ -205,18 +172,33 @@ export default function IfStatementsLesson() {
                 <span className="text-purple-400">int</span>{" "}
                 <span className="text-blue-300">mark</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">75</span>
+                <span className="text-orange-300">72</span>
                 <span className="text-slate-400">;</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (mark {">"}= 50 {"&&"} mark {"<"} 100) {"{"}
-                </span>
+                <span className="text-slate-400"> (mark {">"}= 80) {"{"}</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;Valid pass mark.&quot;);
+                  System.out.println(&quot;Grade: A&quot;);
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else if</span>
+                <span className="text-slate-400"> (mark {">"}= 60) {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Grade: B&quot;);
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400"> {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Grade: C&quot;);
                 </span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
@@ -225,8 +207,11 @@ export default function IfStatementsLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This only prints the message if <strong>both</strong> conditions
-            are true — the mark is at least 50, and it&apos;s less than 100.
+            With mark = 72: the first condition (80+) is false, so Java
+            checks the next one. <code className="text-emerald-300">mark {">"}= 60</code>{" "}
+            is true, so it prints{" "}
+            <code className="text-emerald-300">Grade: B</code> — and never
+            even looks at the final else.
           </p>
         </section>
 
@@ -237,7 +222,7 @@ export default function IfStatementsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            When does the code inside an if block run?
+            When does the code inside an else block run?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -265,7 +250,7 @@ export default function IfStatementsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Only when the condition is false
+                B. Only when the if condition was false
               </span>
             </label>
 
@@ -279,7 +264,7 @@ export default function IfStatementsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Only when the condition is true
+                C. Only when the if condition was true
               </span>
             </label>
           </div>
@@ -307,7 +292,7 @@ export default function IfStatementsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            04 • Exercise
+            03 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
@@ -320,11 +305,13 @@ export default function IfStatementsLesson() {
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
                 Creates an int variable called{" "}
-                <strong className="text-white">temperature</strong>.
+                <strong className="text-white">age</strong>.
               </li>
               <li>
-                Prints &quot;It&apos;s a hot day&quot; if the temperature is
-                greater than 30.
+                Prints &quot;You can vote&quot; if age is 18 or older.
+              </li>
+              <li>
+                Otherwise, prints &quot;You cannot vote yet&quot;.
               </li>
             </ol>
 
@@ -333,8 +320,8 @@ export default function IfStatementsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use an <code>if</code> statement with the{" "}
-                <code>{">"}</code> operator to compare temperature to 30.
+                Use an <code>if</code> block for the voting-age condition,
+                and an <code>else</code> block for everyone else.
               </div>
             </details>
 
@@ -343,10 +330,12 @@ export default function IfStatementsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int temperature = 34;
+                <code>{`int age = 16;
 
-if (temperature > 30) {
-    System.out.println("It's a hot day");
+if (age >= 18) {
+    System.out.println("You can vote");
+} else {
+    System.out.println("You cannot vote yet");
 }`}</code>
               </pre>
             </details>
@@ -366,29 +355,36 @@ if (temperature > 30) {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Adding a semicolon after the condition
+                Writing a condition on the else
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if (age > 18); {
-    System.out.println("Adult");
-}`}
+                {`} else (age < 18) {`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                That semicolon ends the if statement early — the block
-                below it will run no matter what the condition is.
+                <code>else</code> never takes a condition of its own — it
+                simply catches whatever the if (and any else if) missed. If
+                you need another condition, use <code>else if</code>{" "}
+                instead.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using = instead of ==
+                Putting else on its own line incorrectly
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                if (isPassing = true) {"{"}
+                {`if (age >= 18) {
+    System.out.println("Adult");
+}
+else {
+    System.out.println("Minor");
+}`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Same trap as in the Operators lesson — this assigns instead
-                of comparing. Always use <code>==</code> to compare.
+                This actually still works in Java, but it&apos;s inconsistent
+                with the style used throughout this course —{" "}
+                <code>{"} else {"}</code> on the same line is the convention
+                you&apos;ll see most often and should stick to.
               </p>
             </div>
           </div>
@@ -403,8 +399,8 @@ if (temperature > 30) {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that your program can make decisions, the next step is
-            learning how to handle both outcomes with if / else.
+            Now that you can handle two or more outcomes, the next step is
+            learning how to place decisions inside other decisions.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -416,7 +412,7 @@ if (temperature > 30) {
             </Link>
 
             <Link
-              href="/learn/java/if-else"
+              href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

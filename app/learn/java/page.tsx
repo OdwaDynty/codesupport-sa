@@ -60,7 +60,7 @@ const topics = [
     description:
       "Create programs that can choose between different outcomes.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "08",
