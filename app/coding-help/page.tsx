@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { supabase } from "@/lib/supabase";
+
 
 export default function CodingHelpPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -28,39 +28,6 @@ export default function CodingHelpPage() {
     }));
   };
 
- const handleSubmit = async (
-  event: FormEvent<HTMLFormElement>
-) => {
-  event.preventDefault();
-
- const { data, error } = await supabase
-  .from("coding_help_requests")
-  .insert({
-    student_name: name,
-    email,
-    grade,
-    language,
-    topic,
-    problem,
-    code,
-  })
-  .select("id, request_reference, student_access_token")
-  .single();
-
-  if (error) {
-    console.error("Supabase error:", error);
-
-    alert(
-      "We could not submit your request. Please try again."
-    );
-
-    return;
-  }
-
-  setSubmitted(true);
-  setSubmittedReference(data.request_reference);
-};
-
   const resetForm = () => {
     setForm({
       name: "",
@@ -75,75 +42,95 @@ export default function CodingHelpPage() {
     setSubmitted(false);
   };
 
-  if (submitted) {
-    return (
-      <main className="min-h-screen bg-slate-950 text-white">
-        <nav className="border-b border-white/10">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
-            <Link
-              href="/"
-              className="font-bold hover:text-emerald-400"
-            >
-              CodeSupport{" "}
-              <span className="text-emerald-400">SA</span>
-            </Link>
+// Fixed: use form.<field> instead of undefined bare variables
+const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
 
-            <Link
-              href="/"
-              className="text-sm text-slate-400 hover:text-emerald-400"
-            >
-              Home
-            </Link>
+  try {
+    const response = await fetch("/api/coding-help/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("Submit error:", data.error);
+      alert(data.error || "We could not submit your request. Please try again.");
+      return;
+    }
+
+    setSubmitted(true);
+    setSubmittedReference(data.reference);
+  } catch (error) {
+    console.error("Submit request error:", error);
+    alert("We could not submit your request. Please try again.");
+  }
+};
+
+ if (submitted) {
+  return (
+    <main className="min-h-screen bg-slate-950 text-white">
+      <nav className="border-b border-white/10">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+          <Link href="/" className="font-bold hover:text-emerald-400">
+            CodeSupport <span className="text-emerald-400">SA</span>
+          </Link>
+          <Link href="/" className="text-sm text-slate-400 hover:text-emerald-400">
+            Home
+          </Link>
+        </div>
+      </nav>
+
+      <section className="flex min-h-[75vh] items-center justify-center px-6 py-16">
+        <div className="w-full max-w-2xl rounded-3xl border border-emerald-400/20 bg-slate-900 p-8 text-center sm:p-12">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400/10 text-3xl">
+            ✓
           </div>
-        </nav>
 
-        <section className="flex min-h-[75vh] items-center justify-center px-6 py-16">
-          <div className="w-full max-w-2xl rounded-3xl border border-emerald-400/20 bg-slate-900 p-8 text-center sm:p-12">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-400/10 text-3xl">
-              ✓
-            </div>
+          <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            Request received
+          </p>
 
-            <p className="mt-6 text-sm font-semibold uppercase tracking-wider text-emerald-400">
-              Request received
-            </p>
+          <h1 className="mt-3 text-3xl font-bold">
+            Request submitted successfully!
+          </h1>
 
-            <h1 className="mt-3 text-3xl font-bold">
-              Your coding problem is ready.
-            </h1>
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-slate-400">
+            Your request reference is:
+          </p>
 
-            <p className="mx-auto mt-5 max-w-xl text-sm leading-7 text-slate-400">
-              Your request has been captured. For now, this is a V1
-              demo, so the request is not yet being stored in a database.
-              We will connect this form to a real submission system next.
-            </p>
+          {/* The reference — large, copyable, hard to miss */}
+          <p className="mt-3 select-all rounded-xl border border-emerald-400/30 bg-slate-950 px-6 py-4 text-2xl font-bold tracking-wide text-emerald-400">
+            {submittedReference}
+          </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
-              <Link
-                href="/practice"
-                className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-200"
-              >
-                Continue Practising
-              </Link>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-slate-400">
+            Keep this reference safe. You can use it to check the status of
+            your request at any time.
+          </p>
 
-              <Link
-                href="/support"
-                className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-300"
-              >
-                Need 1-on-1 Help?
-              </Link>
-            </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href={`/request-status?reference=${encodeURIComponent(submittedReference)}`}
+              className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-300"
+            >
+              Check My Request
+            </Link>
 
             <button
               onClick={resetForm}
-              className="mt-6 text-sm text-slate-500 hover:text-slate-300"
+              className="rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-200"
             >
-              Submit another problem
+              Submit Another Request
             </button>
           </div>
-        </section>
-      </main>
-    );
-  }
+        </div>
+      </section>
+    </main>
+  );
+}
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
