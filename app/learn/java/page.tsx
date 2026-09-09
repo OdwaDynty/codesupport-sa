@@ -84,7 +84,7 @@ const topics = [
     title: "While Loops",
     description: "Repeat instructions while a condition remains true.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 export default function JavaPage() {

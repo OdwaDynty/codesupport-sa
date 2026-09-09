@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function ForLoopsLesson() {
+export default function WhileLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
-      setQuizResult("Correct! This loop prints the numbers 5 times (1 to 5).");
+    if (quizAnswer === "C") {
+      setQuizResult(
+        "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
+      );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -46,25 +48,25 @@ export default function ForLoopsLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 9 of 10</span>
+            <span className="text-slate-400">Topic 10 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java For Loops
+            Java While Loops
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to repeat instructions a fixed number of times
-            without writing the same code over and over.
+            Learn how to repeat instructions while a condition stays true —
+            even when you don&apos;t know exactly how many times in advance.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[90%] rounded-full bg-emerald-400" />
+            <div className="h-full w-full rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 90%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
         </div>
       </header>
 
@@ -76,10 +78,10 @@ export default function ForLoopsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain why loops are useful.</li>
-            <li>✓ Write a for loop that repeats a set number of times.</li>
-            <li>✓ Understand each of the three parts of a for loop.</li>
-            <li>✓ Use the loop counter variable inside the loop.</li>
+            <li>✓ Explain what a while loop does.</li>
+            <li>✓ Write a while loop with a condition.</li>
+            <li>✓ Understand the difference between for and while loops.</li>
+            <li>✓ Avoid writing an infinite loop.</li>
           </ul>
         </section>
 
@@ -90,17 +92,15 @@ export default function ForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Why do we need loops?
+            What is a while loop?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Imagine you wanted to print &quot;Hello&quot; five times. You
-            could write <code className="text-emerald-300">System.out.println(&quot;Hello&quot;);</code>{" "}
-            five separate times — but what if you needed it 100 times, or
-            10,000 times? A{" "}
-            <strong className="text-white">for loop</strong> lets you
-            repeat an instruction as many times as you need, without
-            writing it out repeatedly.
+            A <strong className="text-white">while loop</strong> keeps
+            repeating a block of code for as long as its condition stays
+            true. Unlike a for loop, it doesn&apos;t have a built-in
+            counter — you&apos;re responsible for creating and updating the
+            variable the condition depends on.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -108,18 +108,22 @@ export default function ForLoopsLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400"> (</span>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">i</span>{" "}
+                <span className="text-blue-300">count</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
                 <span className="text-orange-300">1</span>
-                <span className="text-slate-400">; i {"<"}= 5; i++) {"{"}</span>
+                <span className="text-slate-400">;</span>
+                {"\n\n"}
+                <span className="text-purple-400">while</span>
+                <span className="text-slate-400"> (count {"<"}= 5) {"{"}</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;Hello&quot;);
+                  System.out.println(count);
                 </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">count++;</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -127,9 +131,8 @@ export default function ForLoopsLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This one loop prints &quot;Hello&quot; exactly five times —
-            once for each value of <code className="text-emerald-300">i</code>{" "}
-            from 1 through 5.
+            This prints 1 through 5, the same result as the for loop from
+            the last lesson — but written a different way.
           </p>
         </section>
 
@@ -140,86 +143,44 @@ export default function ForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            The three parts of a for loop
-          </h2>
-
-          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400"> (</span>
-                <span className="text-blue-300">start</span>
-                <span className="text-slate-400">; </span>
-                <span className="text-orange-300">condition</span>
-                <span className="text-slate-400">; </span>
-                <span className="text-emerald-300">update</span>
-                <span className="text-slate-400">) {"{"} ... {"}"}</span>
-              </code>
-            </pre>
-          </div>
-
-          <div className="mt-6 space-y-4">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-blue-300">int i = 1</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                <strong className="text-white">Start:</strong> creates a
-                counter variable and sets its starting value. This runs{" "}
-                <strong>once</strong>, before the loop begins.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-orange-300">i {"<"}= 5</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                <strong className="text-white">Condition:</strong> checked
-                before every repeat. As long as it&apos;s true, the loop
-                keeps going. As soon as it&apos;s false, the loop stops.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-emerald-300">i++</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                <strong className="text-white">Update:</strong> runs at the
-                end of every repeat. <code>i++</code> is shorthand for{" "}
-                <code>i = i + 1</code> — it increases i by one each time.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 3 */}
-        <section className="mt-14">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Examples
-          </p>
-
-          <h2 className="mt-3 text-3xl font-bold">
-            Using the counter inside the loop
+            When to use while instead of for
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The counter variable isn&apos;t just for controlling the loop —
-            you can use its value inside the loop too:
+            A for loop is the natural choice when you know exactly how many
+            times you want to repeat something. A while loop is better
+            when you <strong className="text-white">don&apos;t</strong>{" "}
+            know in advance — for example, repeating until the user enters
+            valid input.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Multiplication table
+              Repeating until valid input
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (int i = 1; i {"<"}= 5; i++) {"{"}
-                </span>
+                <span className="text-slate-300">Scanner input = </span>
+                <span className="text-purple-400">new</span>
+                <span className="text-slate-300"> Scanner(System.in);</span>
+                {"\n"}
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">age</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">-1</span>
+                <span className="text-slate-400">;</span>
+                {"\n\n"}
+                <span className="text-purple-400">while</span>
+                <span className="text-slate-400"> (age {"<"} 0) {"{"}</span>
                 {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;3 x &quot; + i + &quot; = &quot; + (3 * i));
+                  System.out.println(&quot;Enter your age:&quot;);
                 </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">age = input.nextInt();</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -227,9 +188,10 @@ export default function ForLoopsLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This prints five lines: &quot;3 x 1 = 3&quot;, &quot;3 x 2 =
-            6&quot;, all the way up to &quot;3 x 5 = 15&quot; — each line
-            using the current value of <code className="text-emerald-300">i</code>.
+            There&apos;s no way to know in advance how many times the user
+            will enter an invalid age before getting it right — a while
+            loop handles that naturally, where a for loop wouldn&apos;t fit
+            well.
           </p>
         </section>
 
@@ -240,14 +202,8 @@ export default function ForLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            How many times does this loop run?
+            How many times does a while loop repeat?
           </h2>
-
-          <pre className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-            <code>{`for (int i = 1; i <= 5; i++) {
-    System.out.println(i);
-}`}</code>
-          </pre>
 
           <div className="mt-6 space-y-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -259,7 +215,9 @@ export default function ForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">A. 4 times</span>
+              <span className="text-sm text-slate-300">
+                A. Always exactly 10 times
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -271,7 +229,9 @@ export default function ForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">B. 5 times</span>
+              <span className="text-sm text-slate-300">
+                B. A fixed number of times decided before the loop starts
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -283,7 +243,10 @@ export default function ForLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">C. 6 times</span>
+              <span className="text-sm text-slate-300">
+                C. As long as its condition stays true, however many times
+                that takes
+              </span>
             </label>
           </div>
 
@@ -310,24 +273,33 @@ export default function ForLoopsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            04 • Exercise
+            03 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Java for loop that prints the numbers 1 through 10,
-              each on its own line.
+              Write a Java while loop that:
             </p>
+
+            <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
+              <li>
+                Starts a counter variable at 10.
+              </li>
+              <li>
+                Prints the counter, then decreases it by 1, while it is
+                greater than 0 (a countdown).
+              </li>
+            </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Start the counter at 1, keep the loop going while it&apos;s
-                less than or equal to 10, and increase it by 1 each time.
+                Use <code>count--</code> instead of <code>count++</code> to
+                decrease the counter each time through the loop.
               </div>
             </details>
 
@@ -336,8 +308,11 @@ export default function ForLoopsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`for (int i = 1; i <= 10; i++) {
-    System.out.println(i);
+                <code>{`int count = 10;
+
+while (count > 0) {
+    System.out.println(count);
+    count--;
 }`}</code>
               </pre>
             </details>
@@ -357,33 +332,38 @@ export default function ForLoopsLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting to update the counter (infinite loop)
+                Forgetting to update the condition variable
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for (int i = 1; i <= 5;) {
-    System.out.println(i);
+                {`int count = 1;
+
+while (count <= 5) {
+    System.out.println(count);
+    // forgot count++;
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Without <code>i++</code>, <code>i</code> never changes, so
-                the condition <code>i {"<"}= 5</code> stays true forever —
-                the loop never stops.
+                Without updating <code>count</code> inside the loop, the
+                condition never becomes false — this is the most common
+                cause of infinite loops.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Off-by-one errors
+                Initializing the variable inside the loop
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for (int i = 1; i < 5; i++) {
-    // only runs 4 times: 1, 2, 3, 4
+                {`while (count <= 5) {
+    int count = 1; // resets every time!
+    count++;
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Using <code>{"<"}</code> instead of <code>{"<"}=</code> is
-                a very common mistake — double-check whether you meant to
-                include the final number or stop just before it.
+                The counter needs to be created{" "}
+                <strong>before</strong> the while loop starts, not inside
+                it — otherwise it resets on every repeat and never
+                actually changes from the loop&apos;s point of view.
               </p>
             </div>
           </div>
@@ -391,15 +371,17 @@ export default function ForLoopsLesson() {
 
         {/* Completion */}
         <section className="mt-14 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-8 text-center">
-          <div className="text-3xl">🎯</div>
+          <div className="text-3xl">🏆</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the final topic?
+            You&apos;ve completed the Java fundamentals!
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            One more loop type to go — while loops repeat based on a
-            condition, rather than a fixed number of times.
+            You now know the building blocks every Java program is made
+            from — variables, data types, input/output, operators,
+            decisions and loops. The best way to make it stick is to build
+            something real.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -411,10 +393,10 @@ export default function ForLoopsLesson() {
             </Link>
 
             <Link
-              href="/learn/java/while-loops"
+              href="/projects"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
-              Next Topic →
+              View Projects →
             </Link>
           </div>
         </section>
