@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function IfElseLesson() {
+export default function NestedIfLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! else runs only when the if condition was false."
+        "Correct! An if statement written inside another if (or else) block is called nesting."
       );
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
@@ -48,25 +48,25 @@ export default function IfElseLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 7 of 10</span>
+            <span className="text-slate-400">Topic 8 of 10</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Beginner</span>
+            <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java If / Else
+            Java Nested If Statements
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to make your program respond differently depending on
-            whether a condition is true or false.
+            Learn how to place one decision inside another when a single
+            condition isn&apos;t enough.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[70%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[80%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 70%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 80%</p>
         </div>
       </header>
 
@@ -78,10 +78,10 @@ export default function IfElseLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what the else block does.</li>
-            <li>✓ Write an if / else statement.</li>
-            <li>✓ Use else if to check multiple conditions in order.</li>
-            <li>✓ Understand that only one block in the chain ever runs.</li>
+            <li>✓ Explain what a nested if statement is.</li>
+            <li>✓ Write an if statement inside another if block.</li>
+            <li>✓ Know when nesting is useful versus using &&.</li>
+            <li>✓ Read nested code without getting lost in the braces.</li>
           </ul>
         </section>
 
@@ -92,15 +92,15 @@ export default function IfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What does else do?
+            What does &quot;nested&quot; mean?
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            In the last lesson, an if statement on its own only handles one
-            outcome — if the condition is false, nothing happens at all.{" "}
-            <strong className="text-white">else</strong> gives you a second
-            block of code that runs specifically when the condition is
-            false.
+            Sometimes one decision only makes sense to check{" "}
+            <strong className="text-white">after</strong> another decision
+            has already been made. Placing an if statement inside another
+            if (or else) block is called{" "}
+            <strong className="text-white">nesting</strong>.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -109,27 +109,34 @@ export default function IfElseLesson() {
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">mark</span>{" "}
+                <span className="text-blue-300">age</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">42</span>
+                <span className="text-orange-300">16</span>
+                <span className="text-slate-400">;</span>
+                {"\n"}
+                <span className="text-purple-400">boolean</span>{" "}
+                <span className="text-blue-300">hasPermission</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-orange-300">true</span>
                 <span className="text-slate-400">;</span>
                 {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (mark {">"}= 50) {"{"}</span>
+                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;You passed.&quot;);
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400">
+                  {" "}
+                  (hasPermission) {"{"}
                 </span>
                 {"\n"}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400"> {"{"}</span>
+                {"        "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;You may join the coding club.&quot;);
+                </span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;You did not pass.&quot;);
-                </span>
+                <span className="text-slate-400">{"}"}</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -137,9 +144,10 @@ export default function IfElseLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Since mark is 42, the condition <code className="text-emerald-300">mark {">"}= 50</code> is
-            false, so this prints{" "}
-            <code className="text-emerald-300">You did not pass.</code>
+            The inner if only gets checked at all if the outer condition (
+            <code className="text-emerald-300">age {">"}= 13</code>) was
+            already true. If age had been 10, Java would never even look at
+            the inner condition.
           </p>
         </section>
 
@@ -150,55 +158,27 @@ export default function IfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Checking more than two outcomes with else if
+            Nesting versus &&
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            When you have more than two possible outcomes, you can chain
-            conditions together using{" "}
-            <code className="text-emerald-300">else if</code>. Java checks
-            each condition in order, top to bottom, and runs the{" "}
-            <strong className="text-white">first</strong> block whose
-            condition is true — then skips the rest.
+            You might notice the example above could also be written using{" "}
+            <code className="text-emerald-300">{"&&"}</code> from the
+            Operators lesson:
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Grading example
-            </div>
-
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">mark</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">72</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (mark {">"}= 80) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;Grade: A&quot;);
+                <span className="text-slate-400">
+                  {" "}
+                  (age {">"}= 13 {"&&"} hasPermission) {"{"}
                 </span>
                 {"\n"}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else if</span>
-                <span className="text-slate-400"> (mark {">"}= 60) {"{"}</span>
-                {"\n"}
                 {"    "}
                 <span className="text-slate-300">
-                  System.out.println(&quot;Grade: B&quot;);
-                </span>
-                {"\n"}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400"> {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;Grade: C&quot;);
+                  System.out.println(&quot;You may join the coding club.&quot;);
                 </span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
@@ -207,11 +187,66 @@ export default function IfElseLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            With mark = 72: the first condition (80+) is false, so Java
-            checks the next one. <code className="text-emerald-300">mark {">"}= 60</code>{" "}
-            is true, so it prints{" "}
-            <code className="text-emerald-300">Grade: B</code> — and never
-            even looks at the final else.
+            Both do the same thing here. Nesting becomes genuinely useful
+            when the inner decision needs its <strong>own</strong> separate
+            outcomes — for example, if you wanted a different message
+            depending on whether permission was true or false, but only for
+            learners aged 13 and up.
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Nesting with its own else
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> (age {">"}= 13) {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400">
+                  {" "}
+                  (hasPermission) {"{"}
+                </span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Welcome to the club!&quot;);
+                </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400"> {"{"}</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Ask a parent for permission first.&quot;);
+                </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-400">{"}"}</span>
+                {"\n"}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400"> {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Sorry, you must be at least 13.&quot;);
+                </span>
+                {"\n"}
+                <span className="text-slate-400">{"}"}</span>
+              </code>
+            </pre>
+          </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            This gives three distinct outcomes, which a single{" "}
+            <code className="text-emerald-300">{"&&"}</code> condition
+            couldn&apos;t express on its own.
           </p>
         </section>
 
@@ -222,7 +257,7 @@ export default function IfElseLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            When does the code inside an else block run?
+            What is a nested if statement?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -236,7 +271,7 @@ export default function IfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. Every time the program runs
+                A. An if statement written inside another if (or else) block
               </span>
             </label>
 
@@ -250,7 +285,7 @@ export default function IfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Only when the if condition was false
+                B. An if statement with two conditions joined by &&
               </span>
             </label>
 
@@ -264,7 +299,7 @@ export default function IfElseLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Only when the if condition was true
+                C. An if statement that repeats several times
               </span>
             </label>
           </div>
@@ -305,14 +340,15 @@ export default function IfElseLesson() {
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
                 Creates an int variable called{" "}
-                <strong className="text-white">age</strong>.
+                <strong className="text-white">mark</strong>.
               </li>
               <li>
-                Prints &quot;You can vote&quot; if age is 18 or older.
+                If the mark is 50 or above, checks a{" "}
+                <strong className="text-white">nested</strong> condition:
+                if the mark is also 80 or above, print &quot;Distinction&quot;,
+                otherwise print &quot;Pass&quot;.
               </li>
-              <li>
-                Otherwise, prints &quot;You cannot vote yet&quot;.
-              </li>
+              <li>If the mark is below 50, print &quot;Fail&quot;.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -320,8 +356,9 @@ export default function IfElseLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use an <code>if</code> block for the voting-age condition,
-                and an <code>else</code> block for everyone else.
+                You need an outer if/else for the 50 mark, and an inner
+                if/else nested inside the &quot;50 or above&quot; branch for
+                the 80 mark.
               </div>
             </details>
 
@@ -330,12 +367,16 @@ export default function IfElseLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int age = 16;
+                <code>{`int mark = 85;
 
-if (age >= 18) {
-    System.out.println("You can vote");
+if (mark >= 50) {
+    if (mark >= 80) {
+        System.out.println("Distinction");
+    } else {
+        System.out.println("Pass");
+    }
 } else {
-    System.out.println("You cannot vote yet");
+    System.out.println("Fail");
 }`}</code>
               </pre>
             </details>
@@ -355,36 +396,38 @@ if (age >= 18) {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Writing a condition on the else
+                Losing track of closing braces
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`} else (age < 18) {`}
+                {`if (age >= 13) {
+    if (hasPermission) {
+        System.out.println("Welcome!");
+}`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>else</code> never takes a condition of its own — it
-                simply catches whatever the if (and any else if) missed. If
-                you need another condition, use <code>else if</code>{" "}
-                instead.
+                Nested if statements need one closing{" "}
+                <code>{"}"}</code> for every opening one. Indenting
+                consistently (as in the examples above) makes it much
+                easier to spot a missing brace.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Putting else on its own line incorrectly
+                Nesting when && would be simpler
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`if (age >= 18) {
-    System.out.println("Adult");
-}
-else {
-    System.out.println("Minor");
+                {`if (age >= 13) {
+    if (hasPermission) {
+        // ...one simple outcome
+    }
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                This actually still works in Java, but it&apos;s inconsistent
-                with the style used throughout this course —{" "}
-                <code>{"} else {"}</code> on the same line is the convention
-                you&apos;ll see most often and should stick to.
+                If both conditions just lead to one single outcome (no
+                separate else branches needed), a single{" "}
+                <code>if (age {">"}= 13 {"&&"} hasPermission)</code> is
+                cleaner than nesting.
               </p>
             </div>
           </div>
@@ -399,8 +442,8 @@ else {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can handle two or more outcomes, the next step is
-            learning how to place decisions inside other decisions.
+            Now that you can nest decisions, the next step is learning how
+            to repeat instructions using loops.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -412,7 +455,7 @@ else {
             </Link>
 
             <Link
-              href="/learn/java/nested-if"
+              href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

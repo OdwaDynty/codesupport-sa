@@ -68,7 +68,7 @@ const topics = [
     title: "Nested If Statements",
     description: "Learn how to place decisions inside other decisions.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "09",
