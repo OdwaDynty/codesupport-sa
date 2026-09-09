@@ -530,53 +530,208 @@ public class SchoolManagement {
     ],
   },
 
-  {
+    {
     id: 6,
     level: "Beginner",
     language: "Python",
     title: "Python Learner Profile",
     description:
-      "Create a small Python program that collects basic information about a learner and displays it.",
+      "Create a small Python program that collects basic information about a learner and displays a welcome message.",
     skills: [
       "Variables",
       "Input",
       "Output",
-      "Strings",
+      "Data Types",
+      "If Statements",
     ],
     goal:
-      "Create a Python program that asks for a learner's name, school and grade.",
+      "Create a Python program that asks for a learner's name, school, grade and age, then displays a summary.",
     requirements: [
       "Ask for the learner's name.",
       "Ask for the school name.",
       "Ask for the learner's grade.",
+      "Ask for the learner's age (as a number).",
       "Display all the information.",
+      "Display a message if the learner is 13 or older.",
     ],
     steps: [
-      "Create a variable for the learner's name.",
-      "Use input() to get the school.",
+      "Create a variable for the learner's name using input().",
+      "Get the school name.",
       "Get the learner's grade.",
-      "Use print() to display the information.",
+      "Get the learner's age and convert it to a number using int().",
+      "Use print() to display all the information.",
+      "Use an if statement to check the age and print an extra message.",
     ],
     hint:
-      "Use input() to ask questions and store the answers in variables.",
+      "input() always returns text — wrap it in int(...) when you need the age as a number for comparison.",
     starterCode: `# Get learner information
 
 
 # Display the learner information
+
+
+# Check the learner's age
 `,
     solution: `name = input("Enter your name: ")
 school = input("Enter your school: ")
 grade = input("Enter your grade: ")
+age = int(input("Enter your age: "))
 
 print("Learner:", name)
 print("School:", school)
-print("Grade:", grade)`,
+print("Grade:", grade)
+print("Age:", age)
+
+if age >= 13:
+    print("Welcome, teenager!")`,
     extensions: [
-      "Ask for the learner's age.",
-      "Ask for their favourite subject.",
-      "Display all the information in one sentence.",
+      "Ask for their favourite subject and include it in the summary.",
+      "Display a different message for learners under 13.",
+      "Ask for three subject marks and calculate the average.",
     ],
   },
+    {
+    id: 7,
+    level: "Intermediate",
+    language: "Python",
+    title: "Python Marks Analyzer",
+    description:
+      "Build a program that collects five subject marks, calculates the average, and reports a grade.",
+    skills: [
+      "Lists",
+      "Loops",
+      "Variables",
+      "Arithmetic",
+      "If / Elif / Else",
+    ],
+    goal:
+      "Collect five marks from the user, calculate the average, and classify the result.",
+    requirements: [
+      "Create an empty list to store the marks.",
+      "Use a loop to ask the user for five marks and add each to the list.",
+      "Calculate the total and the average of the marks.",
+      "Display the average.",
+      "Display \"Distinction\" if the average is 80 or higher, \"Pass\" if 50 or higher, otherwise \"Fail\".",
+    ],
+    steps: [
+      "Create an empty list called marks.",
+      "Use a for loop with range(5) to ask for each mark and append it to the list.",
+      "Use sum() or a loop to calculate the total.",
+      "Divide the total by the number of marks to get the average.",
+      "Use if / elif / else to classify and display the result.",
+    ],
+    hint:
+      "Python's built-in sum() function can add up every value in a list for you — sum(marks).",
+    starterCode: `marks = []
+
+# Collect five marks here
+
+
+# Calculate the average here
+
+
+# Classify the result here
+`,
+    solution: `marks = []
+
+for i in range(5):
+    mark = float(input("Enter mark " + str(i + 1) + ": "))
+    marks.append(mark)
+
+total = sum(marks)
+average = total / len(marks)
+
+print("Average:", average)
+
+if average >= 80:
+    print("Distinction")
+elif average >= 50:
+    print("Pass")
+else:
+    print("Fail")`,
+    extensions: [
+      "Display the highest and lowest mark using max() and min().",
+      "Let the user choose how many marks to enter instead of always five.",
+      "Ask for subject names alongside each mark.",
+    ],
+  },
+
+  {
+    id: 8,
+    level: "Challenge",
+    language: "Python",
+    title: "Python Class Register",
+    description:
+      "Build a small console program that stores several learners' names and marks, then displays a class report.",
+    skills: [
+      "Dictionaries",
+      "Lists",
+      "Functions",
+      "Loops",
+      "Conditions",
+    ],
+    goal:
+      "Create a Python program that demonstrates several concepts working together to manage a small class of learners.",
+    requirements: [
+      "Store each learner as a dictionary with a name and a mark.",
+      "Store several learners in a list.",
+      "Create a function that returns \"Pass\" or \"Fail\" for a given mark.",
+      "Use a loop to display every learner's name, mark and result.",
+      "Calculate and display the class average.",
+    ],
+    steps: [
+      "Write a function called get_result that takes a mark and returns \"Pass\" or \"Fail\".",
+      "Create a list of dictionaries, one per learner, each with 'name' and 'mark' keys.",
+      "Loop through the list and print each learner's details using get_result().",
+      "Add up all the marks while looping, or use a second loop.",
+      "Divide by the number of learners to get the class average.",
+    ],
+    hint:
+      "Define get_result(mark) before you use it. Access dictionary values with learner['name'] and learner['mark'].",
+    starterCode: `def get_result(mark):
+    # Return "Pass" or "Fail" here
+    pass
+
+
+learners = [
+    {"name": "Thando", "mark": 72},
+    {"name": "Ayanda", "mark": 45},
+    {"name": "Lwazi", "mark": 81},
+]
+
+# Display each learner's details
+
+
+# Calculate and display the class average
+`,
+    solution: `def get_result(mark):
+    if mark >= 50:
+        return "Pass"
+    return "Fail"
+
+
+learners = [
+    {"name": "Thando", "mark": 72},
+    {"name": "Ayanda", "mark": 45},
+    {"name": "Lwazi", "mark": 81},
+]
+
+total = 0
+
+for learner in learners:
+    result = get_result(learner["mark"])
+    print(learner["name"], "-", learner["mark"], "% -", result)
+    total = total + learner["mark"]
+
+average = total / len(learners)
+print("Class average:", average)`,
+    extensions: [
+      "Let the user add a new learner from input instead of hard-coding them.",
+      "Find and display the learner with the highest mark.",
+      "Add a subject name to each learner's dictionary.",
+    ],
+  },
+
 ];
 
 const levels = ["All", "Beginner", "Intermediate", "Challenge"];
