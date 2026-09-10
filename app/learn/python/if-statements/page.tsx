@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonIfStatementsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonIfStatementsLesson() {
       setQuizResult(
         "Correct! The code inside the if block only runs when the condition is true."
       );
+       markTopicComplete("python", "if-statements");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

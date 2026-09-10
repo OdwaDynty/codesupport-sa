@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function IfElseLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function IfElseLesson() {
       setQuizResult(
         "Correct! else runs only when the if condition was false."
       );
+      markTopicComplete("java", "if-else");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function OperatorsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -10,6 +11,7 @@ export default function OperatorsLesson() {
   const checkQuiz = () => {
     if (quizAnswer === "B") {
       setQuizResult("Correct! == compares two values, = assigns a value.");
+       markTopicComplete("java", "operators");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

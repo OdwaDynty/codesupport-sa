@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonInputOutputLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonInputOutputLesson() {
       setQuizResult(
         "Correct! input() is used to read what the user types in Python."
       );
+       markTopicComplete("python", "input-output");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

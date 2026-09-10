@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonForLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonForLoopsLesson() {
       setQuizResult(
         "Correct! range(1, 6) produces 1, 2, 3, 4, 5 — five values, since the end number is excluded."
       );
+      markTopicComplete("python", "for-loops");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

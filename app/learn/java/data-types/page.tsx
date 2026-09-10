@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function DataTypesLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function DataTypesLesson() {
       setQuizResult(
         "Correct! A double is used for numbers that can have decimal places."
       );
+      markTopicComplete("java", "data-types");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

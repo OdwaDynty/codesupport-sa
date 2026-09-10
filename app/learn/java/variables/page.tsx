@@ -473,7 +473,7 @@ double averageMark = 72.5;`}</code>
             </Link>
 
             <Link
-              href="/learn/java"
+              href="/learn/java/data-types"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

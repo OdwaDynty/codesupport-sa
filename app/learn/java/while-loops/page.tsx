@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function WhileLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function WhileLoopsLesson() {
       setQuizResult(
         "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
       );
+      markTopicComplete("java", "while-loops");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

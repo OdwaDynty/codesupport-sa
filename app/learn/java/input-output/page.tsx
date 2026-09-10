@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function InputOutputLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +14,7 @@ export default function InputOutputLesson() {
       setQuizResult(
         "Correct! Scanner is used to read input typed in by the user."
       );
+       markTopicComplete("java", "input-output");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

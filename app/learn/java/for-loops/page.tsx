@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function ForLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -10,6 +11,7 @@ export default function ForLoopsLesson() {
   const checkQuiz = () => {
     if (quizAnswer === "B") {
       setQuizResult("Correct! This loop prints the numbers 5 times (1 to 5).");
+      markTopicComplete("java", "for-loops");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

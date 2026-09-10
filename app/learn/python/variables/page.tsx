@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonVariablesLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonVariablesLesson() {
       setQuizResult(
         "Correct! A variable is a named place where a program can store a value."
       );
+       markTopicComplete("python", "variables");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

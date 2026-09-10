@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonWhileLoopsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonWhileLoopsLesson() {
       setQuizResult(
         "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
       );
+      markTopicComplete("python", "while-loops");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

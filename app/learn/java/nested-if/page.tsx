@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function NestedIfLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function NestedIfLesson() {
       setQuizResult(
         "Correct! An if statement written inside another if (or else) block is called nesting."
       );
+      markTopicComplete("java", "nested-if");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

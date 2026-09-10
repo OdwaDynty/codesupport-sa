@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonOperatorsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -10,6 +11,7 @@ export default function PythonOperatorsLesson() {
   const checkQuiz = () => {
     if (quizAnswer === "B") {
       setQuizResult("Correct! == compares two values, = assigns a value.");
+      markTopicComplete("python", "operators");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

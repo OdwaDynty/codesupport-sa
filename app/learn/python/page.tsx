@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getCompletedTopics } from "@/lib/progress";
 
 const topics = [
   {
@@ -90,6 +94,15 @@ const topics = [
 ];
 
 export default function PythonPage() {
+  const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
+
+  useEffect(() => {
+    setCompletedSlugs(getCompletedTopics("python"));
+  }, []);
+
+  const completedCount = topics.filter((t) =>
+    completedSlugs.includes(t.slug)
+  ).length;
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       <header className="border-b border-white/10">
@@ -123,13 +136,17 @@ export default function PythonPage() {
               </p>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-slate-900 px-5 py-4">
-              <div className="text-sm text-slate-500">Course progress</div>
-              <div className="mt-1 text-2xl font-bold">0 / 10</div>
-              <div className="mt-2 text-xs text-slate-500">
-                Progress tracking coming later
-              </div>
-            </div>
+           <div className="rounded-xl border border-white/10 bg-slate-900 px-5 py-4">
+  <div className="text-sm text-slate-500">Course progress</div>
+  <div className="mt-1 text-2xl font-bold">
+    {completedCount} / {topics.length}
+  </div>
+  <div className="mt-2 text-xs text-slate-500">
+    {completedCount === topics.length
+      ? "All topics complete! 🎉"
+      : "Complete each quiz to track progress"}
+  </div>
+</div>
           </div>
         </div>
       </header>
@@ -178,15 +195,17 @@ export default function PythonPage() {
                 </p>
               </div>
 
-              <div className="text-sm font-medium text-slate-500">
-                {topic.available ? (
-                  <span className="text-emerald-400 group-hover:text-emerald-300">
-                    Start →
-                  </span>
-                ) : (
-                  "Coming soon"
-                )}
-              </div>
+             <div className="text-sm font-medium text-slate-500">
+  {completedSlugs.includes(topic.slug) ? (
+    <span className="text-emerald-400">✓ Completed</span>
+  ) : topic.available ? (
+    <span className="text-emerald-400 group-hover:text-emerald-300">
+      Start →
+    </span>
+  ) : (
+    "Coming soon"
+  )}
+</div>
             </Link>
           ))}
         </div>

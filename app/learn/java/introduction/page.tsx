@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { markTopicComplete } from "@/lib/progress";
+
 export default function IntroductionLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
@@ -12,6 +14,7 @@ export default function IntroductionLesson() {
       setQuizResult(
         "Correct! main is the starting point every Java program runs from."
       );
+      markTopicComplete("java", "introduction");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {

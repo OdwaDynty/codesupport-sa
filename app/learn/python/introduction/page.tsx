@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { markTopicComplete } from "@/lib/progress";
 
 export default function PythonIntroductionLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
@@ -12,6 +13,7 @@ export default function PythonIntroductionLesson() {
       setQuizResult(
         "Correct! print() displays text or values on the screen."
       );
+      markTopicComplete("python", "introduction");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
