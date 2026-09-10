@@ -15,6 +15,7 @@ type Request = {
   problem: string;
   code: string | null;
   status: string;
+  priority: string;
   created_at: string;
 };
 
@@ -29,6 +30,7 @@ export default function AdminPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [languageFilter, setLanguageFilter] = useState("All");
+  const [priorityFilter, setPriorityFilter] = useState("All");
 
   useEffect(() => {
     checkUserAndLoadRequests();
@@ -101,6 +103,30 @@ export default function AdminPage() {
     );
   };
 
+ const updatePriority = async (
+    id: string,
+    priority: string
+  ) => {
+    const { error } = await supabase
+      .from("coding_help_requests")
+      .update({ priority })
+      .eq("id", id);
+
+    if (error) {
+      console.error(error);
+      alert("Could not update the priority.");
+      return;
+    }
+
+    setRequests((current) =>
+      current.map((request) =>
+        request.id === id
+          ? { ...request, priority }
+          : request
+      )
+    );
+  };
+
     const filteredRequests = requests.filter((request) => {
     const matchesSearch =
       searchQuery.trim() === "" ||
@@ -117,7 +143,10 @@ export default function AdminPage() {
     const matchesLanguage =
       languageFilter === "All" || request.language === languageFilter;
 
-    return matchesSearch && matchesStatus && matchesLanguage;
+    const matchesPriority =
+      priorityFilter === "All" || request.priority === priorityFilter;
+
+       return matchesSearch && matchesStatus && matchesLanguage && matchesPriority;
   });
 
   const newCount = requests.filter(
@@ -279,6 +308,19 @@ export default function AdminPage() {
             <option value="SQL">SQL</option>
             <option value="Other">Other</option>
           </select>
+
+          <select
+            value={priorityFilter}
+            onChange={(e) => setPriorityFilter(e.target.value)}
+            className="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+          >
+            <option value="All">All priorities</option>
+            <option value="Urgent">Urgent</option>
+            <option value="High">High</option>
+            <option value="Normal">Normal</option>
+            <option value="Low">Low</option>
+          </select>
+
         </div>
         
         {!loading && !error && requests.length > 0 && (
@@ -341,6 +383,20 @@ export default function AdminPage() {
                         <h2 className="text-lg font-bold">
                           {request.student_name}
                         </h2>
+
+                        <span
+                          className={`rounded-full px-3 py-1 text-xs font-semibold ${
+                            request.priority === "Urgent"
+                              ? "bg-red-400/10 text-red-300"
+                              : request.priority === "High"
+                                ? "bg-orange-400/10 text-orange-300"
+                                : request.priority === "Low"
+                                  ? "bg-slate-400/10 text-slate-400"
+                                  : "bg-white/5 text-slate-400"
+                          }`}
+                        >
+                          {request.priority}
+                        </span>
 
                         <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
                           {request.grade}
@@ -429,8 +485,32 @@ export default function AdminPage() {
                </option>
                         </select>
                       </div>
+                      
+                       <div>
+                        <label
+                          htmlFor={`priority-${request.id}`}
+                          className="mb-2 block text-xs text-slate-600"
+                        >
+                          Priority
+                        </label>
+
+                        <select
+                          id={`priority-${request.id}`}
+                          value={request.priority}
+                          onChange={(e) =>
+                            updatePriority(request.id, e.target.value)
+                          }
+                          className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+                        >
+                          <option value="Urgent">Urgent</option>
+                          <option value="High">High</option>
+                          <option value="Normal">Normal</option>
+                          <option value="Low">Low</option>
+                        </select>
+                      </div>
 
                      </div>
+                     
 
                   </div>
 
