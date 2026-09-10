@@ -1,21 +1,23 @@
 import { supabase } from "@/lib/supabase";
 
+type Language = "java" | "python";
+
 const STORAGE_PREFIX = "codesupport_progress_";
 
-function getLocalCompletedTopics(language) {
+function getLocalCompletedTopics(language: Language): string[] {
   if (typeof window === "undefined") return [];
 
   const stored = localStorage.getItem(STORAGE_PREFIX + language);
   if (!stored) return [];
 
   try {
-    return JSON.parse(stored);
+    return JSON.parse(stored) as string[];
   } catch {
     return [];
   }
 }
 
-function setLocalCompletedTopics(language, slugs) {
+function setLocalCompletedTopics(language: Language, slugs: string[]) {
   if (typeof window === "undefined") return;
   localStorage.setItem(STORAGE_PREFIX + language, JSON.stringify(slugs));
 }
@@ -23,7 +25,7 @@ function setLocalCompletedTopics(language, slugs) {
 // Returns the completed topic slugs for this language.
 // Uses the student's account if logged in, otherwise falls back
 // to this browser's localStorage.
-export async function getCompletedTopics(language) {
+export async function getCompletedTopics(language: Language): Promise<string[]> {
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -42,12 +44,12 @@ export async function getCompletedTopics(language) {
     return getLocalCompletedTopics(language);
   }
 
-  return data.map((row) => row.topic_slug);
+  return data.map((row) => row.topic_slug as string);
 }
 
 // Marks a topic complete. Saves to the student's account if logged in,
 // otherwise saves to this browser's localStorage.
-export async function markTopicComplete(language, slug) {
+export async function markTopicComplete(language: Language, slug: string) {
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -69,8 +71,8 @@ export async function markTopicComplete(language, slug) {
 // Called once when a student lands on their account page after logging in.
 // Copies any progress they made anonymously (in this browser) into their
 // account, so they don't lose it just because they created an account later.
-export async function syncLocalProgressToAccount(user) {
-  const languages = ["java", "python"];
+export async function syncLocalProgressToAccount(user: { id: string }) {
+  const languages: Language[] = ["java", "python"];
 
   for (const language of languages) {
     const localSlugs = getLocalCompletedTopics(language);
