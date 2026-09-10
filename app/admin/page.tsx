@@ -23,7 +23,12 @@ export default function AdminPage() {
 
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
+  
+
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All");
+  const [languageFilter, setLanguageFilter] = useState("All");
 
   useEffect(() => {
     checkUserAndLoadRequests();
@@ -95,6 +100,25 @@ export default function AdminPage() {
       )
     );
   };
+
+    const filteredRequests = requests.filter((request) => {
+    const matchesSearch =
+      searchQuery.trim() === "" ||
+      request.student_name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase()) ||
+      request.topic.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.problem.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      request.email.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "All" || request.status === statusFilter;
+
+    const matchesLanguage =
+      languageFilter === "All" || request.language === languageFilter;
+
+    return matchesSearch && matchesStatus && matchesLanguage;
+  });
 
   const newCount = requests.filter(
     (request) => request.status === "New"
@@ -217,6 +241,51 @@ export default function AdminPage() {
 
       {/* Requests */}
       <section className="mx-auto max-w-7xl px-6 pb-16 lg:px-8">
+        {/* Search and filters */}
+        <div className="mb-6 flex flex-col gap-3 sm:flex-row">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by name, topic, problem or email..."
+            className="flex-1 rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm text-white outline-none placeholder:text-slate-600 focus:border-emerald-400"
+          />
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+          >
+            <option value="All">All statuses</option>
+            <option value="New">New</option>
+            <option value="Reviewing">Reviewing</option>
+            <option value="Answered">Answered</option>
+            <option value="Paid Support">Paid Support</option>
+            <option value="Closed">Closed</option>
+          </select>
+
+          <select
+            value={languageFilter}
+            onChange={(e) => setLanguageFilter(e.target.value)}
+            className="rounded-xl border border-white/10 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+          >
+            <option value="All">All languages</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+            <option value="C++">C++</option>
+            <option value="C">C</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="HTML/CSS">HTML / CSS</option>
+            <option value="SQL">SQL</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        
+        {!loading && !error && requests.length > 0 && (
+          <p className="mb-4 text-sm text-slate-500">
+            Showing {filteredRequests.length} of {requests.length} requests
+          </p>
+        )}
 
         {loading && (
           <div className="rounded-2xl border border-white/10 bg-slate-900 p-10 text-center">
@@ -236,24 +305,28 @@ export default function AdminPage() {
 
         {!loading &&
           !error &&
-          requests.length === 0 && (
-            <div className="rounded-2xl border border-white/10 bg-slate-900 p-12 text-center">
+          filteredRequests.length === 0 && (
+                        <div className="rounded-2xl border border-white/10 bg-slate-900 p-12 text-center">
               <p className="text-lg font-semibold">
-                No coding requests yet.
+                {requests.length === 0
+                  ? "No coding requests yet."
+                  : "No requests match your search or filters."}
               </p>
 
               <p className="mt-2 text-sm text-slate-500">
-                New student requests will appear here.
+                {requests.length === 0
+                  ? "New student requests will appear here."
+                  : "Try adjusting your search or filters."}
               </p>
             </div>
           )}
 
         {!loading &&
           !error &&
-          requests.length > 0 && (
+          filteredRequests.length > 0 && (
             <div className="space-y-4">
 
-              {requests.map((request) => (
+              {filteredRequests.map((request) => (
                 <article
                   key={request.id}
                   className="rounded-2xl border border-white/10 bg-slate-900 p-6 transition hover:border-white/20"
