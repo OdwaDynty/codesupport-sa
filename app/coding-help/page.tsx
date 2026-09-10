@@ -7,6 +7,8 @@ import { FormEvent, useState } from "react";
 export default function CodingHelpPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submittedReference, setSubmittedReference] = useState("");
+  const [attachment, setAttachment] = useState<File | null>(null);
+  const [attachmentError, setAttachmentError] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -28,7 +30,7 @@ export default function CodingHelpPage() {
     }));
   };
 
-  const resetForm = () => {
+    const resetForm = () => {
     setForm({
       name: "",
       email: "",
@@ -39,7 +41,39 @@ export default function CodingHelpPage() {
       code: "",
     });
 
+    setAttachment(null);
+    setAttachmentError("");
     setSubmitted(false);
+  };
+
+  const handleAttachmentChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const file = event.target.files?.[0] ?? null;
+    setAttachmentError("");
+
+    if (!file) {
+      setAttachment(null);
+      return;
+    }
+
+    const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+    if (!allowedTypes.includes(file.type)) {
+      setAttachmentError("Please choose a PNG or JPG image.");
+      event.target.value = "";
+      setAttachment(null);
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setAttachmentError("Image must be smaller than 5MB.");
+      event.target.value = "";
+      setAttachment(null);
+      return;
+    }
+
+    setAttachment(file);
   };
 
 // Fixed: use form.<field> instead of undefined bare variables
@@ -47,10 +81,22 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   try {
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("email", form.email);
+    formData.append("grade", form.grade);
+    formData.append("language", form.language);
+    formData.append("topic", form.topic);
+    formData.append("problem", form.problem);
+    formData.append("code", form.code);
+
+    if (attachment) {
+      formData.append("attachment", attachment);
+    }
+
     const response = await fetch("/api/coding-help/submit", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: formData,
     });
 
     const data = await response.json();
@@ -453,6 +499,50 @@ public class Main {
                 Never include passwords, API keys or other private
                 information in your code.
               </p>
+            </div>
+          </div>
+
+      {/* Attachment */}
+          <div className="rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+                04
+              </p>
+
+              <h2 className="mt-2 text-2xl font-bold">
+                Attach a screenshot
+              </h2>
+
+              <p className="mt-2 text-sm text-slate-500">
+                Optional. A screenshot of your error or code can help us
+                understand your problem faster.
+              </p>
+            </div>
+
+            <div className="mt-7">
+            <input
+                key={submitted ? "reset" : "active"}
+                id="attachment"
+                type="file"
+                accept="image/png, image/jpeg"
+                onChange={handleAttachmentChange}
+                className="block w-full text-sm text-slate-400 file:mr-4 file:rounded-xl file:border-0 file:bg-emerald-400 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-slate-950 hover:file:bg-emerald-300"
+              />
+              <p className="mt-2 text-xs text-slate-600">
+                PNG or JPG only, up to 5MB.
+              </p>
+
+              {attachmentError && (
+                <p className="mt-2 text-xs text-red-400">
+                  {attachmentError}
+                </p>
+              )}
+
+              {attachment && !attachmentError && (
+                <p className="mt-2 text-xs text-emerald-400">
+                  Selected: {attachment.name}
+                </p>
+              )}
             </div>
           </div>
 
