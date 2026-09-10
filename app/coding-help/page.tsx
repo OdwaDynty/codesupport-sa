@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 
 export default function CodingHelpPage() {
@@ -81,6 +82,10 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
   event.preventDefault();
 
   try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
     const formData = new FormData();
     formData.append("name", form.name);
     formData.append("email", form.email);
@@ -94,8 +99,11 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
       formData.append("attachment", attachment);
     }
 
-    const response = await fetch("/api/coding-help/submit", {
+   const response = await fetch("/api/coding-help/submit", {
       method: "POST",
+      headers: session
+        ? { Authorization: `Bearer ${session.access_token}` }
+        : undefined,
       body: formData,
     });
 

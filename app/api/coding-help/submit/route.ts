@@ -29,9 +29,20 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
+    // Optional: if the student is logged in, link this request to their account
+    let userId: string | null = null;
+    const authHeader = request.headers.get("authorization");
+    const token = authHeader?.replace("Bearer ", "");
+
+    if (token) {
+      const { data: userData } = await supabase.auth.getUser(token);
+      if (userData?.user) {
+        userId = userData.user.id;
+      }
+    }
+
     let attachmentPath: string | null = null;
 
-    // Only attempt an upload if a real file was actually sent
     if (attachment && attachment.size > 0) {
       if (!ALLOWED_TYPES.includes(attachment.type)) {
         return NextResponse.json(
@@ -78,6 +89,7 @@ export async function POST(request: NextRequest) {
         problem,
         code,
         attachment_path: attachmentPath,
+        user_id: userId,
       })
       .select("request_reference")
       .single();

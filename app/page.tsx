@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthNavButton from "@/components/AuthNavButton";
 
 const languages = [
   {
@@ -107,6 +108,8 @@ export default function Home() {
             >
               Coding Help
             </Link>
+
+             <AuthNavButton />
 
             <Link
               href="/support"

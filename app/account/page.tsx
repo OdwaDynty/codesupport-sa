@@ -5,11 +5,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
+type MyRequest = {
+  id: string;
+  request_reference: string;
+  topic: string;
+  language: string;
+  status: string;
+  created_at: string;
+};
+
 export default function AccountPage() {
   const router = useRouter();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [requests, setRequests] = useState<MyRequest[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,6 +38,14 @@ export default function AccountPage() {
 
     setName(user.user_metadata?.full_name || "there");
     setEmail(user.email || "");
+
+    const { data } = await supabase
+      .from("coding_help_requests")
+      .select("id, request_reference, topic, language, status, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false });
+
+    setRequests(data || []);
     setLoading(false);
   };
 
@@ -47,7 +65,6 @@ export default function AccountPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">
-      {/* Navigation */}
       <nav className="border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link href="/" className="font-bold hover:text-emerald-400">
@@ -63,7 +80,6 @@ export default function AccountPage() {
         </div>
       </nav>
 
-      {/* Header */}
       <header className="border-b border-white/10 bg-slate-900/40">
         <div className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
@@ -78,7 +94,6 @@ export default function AccountPage() {
         </div>
       </header>
 
-      {/* Content */}
       <section className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
         <div className="grid gap-6 sm:grid-cols-2">
           <Link
@@ -104,10 +119,46 @@ export default function AccountPage() {
           </Link>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900/50 p-8 text-center">
-          <p className="text-sm text-slate-500">
-            Your request history will appear here soon.
-          </p>
+        <div className="mt-10">
+          <h2 className="text-xl font-bold">Your Coding Help Requests</h2>
+
+          {requests.length === 0 ? (
+            <div className="mt-4 rounded-2xl border border-white/10 bg-slate-900/50 p-8 text-center">
+              <p className="text-sm text-slate-500">
+                You haven&apos;t submitted any requests while signed in yet.
+              </p>
+            </div>
+          ) : (
+            <div className="mt-4 space-y-3">
+              {requests.map((request) => (
+                <Link
+                  key={request.id}
+                  href={`/request-status?reference=${encodeURIComponent(
+                    request.request_reference
+                  )}`}
+                  className="flex flex-col gap-2 rounded-xl border border-white/10 bg-slate-900 p-5 transition hover:border-emerald-400/40 sm:flex-row sm:items-center sm:justify-between"
+                >
+                  <div>
+                    <div className="font-mono text-sm text-emerald-400">
+                      {request.request_reference}
+                    </div>
+                    <div className="mt-1 text-sm text-slate-400">
+                      {request.language} • {request.topic}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-slate-400">
+                      {request.status}
+                    </span>
+                    <span className="text-xs text-slate-600">
+                      {new Date(request.created_at).toLocaleDateString()}
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>
