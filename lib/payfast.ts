@@ -15,9 +15,13 @@ function pfEncode(value: string): string {
 export function generateSignature(fields: Record<string, string>): string {
   const passphrase = process.env.PAYFAST_PASSPHRASE;
 
+  // Important: include every field exactly as given, even empty strings.
+  // PayFast's own ITN notifications include empty custom_str/custom_int
+  // fields as real fields, and their signature was computed including
+  // them — stripping empties here would make our recomputed signature
+  // never match theirs.
   let paramString = Object.entries(fields)
-    .filter(([, value]) => value !== undefined && value !== null && value !== "")
-    .map(([key, value]) => `${key}=${pfEncode(value)}`)
+    .map(([key, value]) => `${key}=${pfEncode(value ?? "")}`)
     .join("&");
 
   if (passphrase) {
