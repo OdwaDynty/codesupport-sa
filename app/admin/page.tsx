@@ -16,6 +16,7 @@ type Request = {
   code: string | null;
   status: string;
   priority: string;
+  attachment_path: string | null;
   created_at: string;
 };
 
@@ -125,6 +126,35 @@ export default function AdminPage() {
           : request
       )
     );
+  };
+
+  const viewAttachment = async (path: string) => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    try {
+      const response = await fetch("/api/admin/attachment-url", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+        body: JSON.stringify({ path }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Could not open attachment.");
+        return;
+      }
+
+      window.open(data.url, "_blank");
+    } catch (error) {
+      console.error("View attachment error:", error);
+      alert("Could not open attachment.");
+    }
   };
 
     const filteredRequests = requests.filter((request) => {
@@ -431,6 +461,16 @@ export default function AdminPage() {
                           <span className="text-emerald-400">
                             Code attached
                           </span>
+                        )}
+                       {request.attachment_path && (
+                          <button
+                            onClick={() =>
+                              viewAttachment(request.attachment_path!)
+                            }
+                            className="text-emerald-400 underline hover:text-emerald-300"
+                          >
+                            View screenshot
+                          </button>
                         )}
                       </div>
 
