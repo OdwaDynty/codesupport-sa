@@ -18,18 +18,22 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    // Note: no .select() after insert — avoids the RLS-on-RETURNING issue
-    // we hit with coding_help_requests, since anon has no SELECT policy here.
-    const { error } = await supabase.from("consultation_requests").insert({
-      student_name: name,
-      email,
-      grade,
-      duration_minutes: duration,
-      topic,
-      message,
-    });
+    // Safe to select here — this route runs server-side with the
+    // service role, so RLS never applies to it in the first place.
+    const { data, error } = await supabase
+      .from("consultation_requests")
+      .insert({
+        student_name: name,
+        email,
+        grade,
+        duration_minutes: duration,
+        topic,
+        message,
+      })
+      .select("id")
+      .single();
 
-    if (error) {
+    if (error || !data) {
       console.error("Consultation request insert error:", error);
       return NextResponse.json(
         { error: "We could not submit your request. Please try again." },
@@ -37,7 +41,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ id: data.id });
   } catch (error) {
     console.error("Support submit error:", error);
     return NextResponse.json(

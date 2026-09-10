@@ -32,7 +32,7 @@ export default function SupportPage() {
     setSubmitted(false);
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -49,7 +49,35 @@ export default function SupportPage() {
         return;
       }
 
-      setSubmitted(true);
+      const paymentResponse = await fetch("/api/support/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: data.id }),
+      });
+
+      const paymentData = await paymentResponse.json();
+
+      if (!paymentResponse.ok) {
+        alert(paymentData.error || "We could not start payment. Please try again.");
+        return;
+      }
+
+      // Build and auto-submit a hidden form that redirects the browser
+      // to PayFast — this is the standard PayFast redirect pattern.
+      const payfastForm = document.createElement("form");
+      payfastForm.method = "POST";
+      payfastForm.action = paymentData.action;
+
+      Object.entries(paymentData.fields).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value as string;
+        payfastForm.appendChild(input);
+      });
+
+      document.body.appendChild(payfastForm);
+      payfastForm.submit();
     } catch (error) {
       console.error("Submit error:", error);
       alert("We could not submit your request. Please try again.");
@@ -307,13 +335,13 @@ export default function SupportPage() {
             </div>
           </div>
 
-          {/* Payment note */}
-          <div className="rounded-2xl border border-yellow-400/20 bg-yellow-400/5 p-6">
-            <p className="text-sm leading-6 text-yellow-200">
-              <strong className="text-yellow-300">Note:</strong> submitting
-              this form sends a request only — it does not process payment.
-              We&apos;ll email you to confirm a time and arrange payment
-              separately.
+      {/* Payment note */}
+          <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-6">
+            <p className="text-sm leading-6 text-emerald-200">
+              <strong className="text-emerald-300">Note:</strong> after
+              submitting, you&apos;ll be taken to PayFast to securely
+              complete payment for your session. We&apos;ll email you once
+              payment is confirmed to arrange a time.
             </p>
           </div>
 
