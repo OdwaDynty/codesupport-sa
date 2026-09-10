@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import AuthNavButton from "@/components/AuthNavButton";
 
 
 export default function CodingHelpPage() {
@@ -220,6 +221,8 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
             >
               Projects
             </Link>
+
+            <AuthNavButton />
           </div>
         </div>
       </nav>

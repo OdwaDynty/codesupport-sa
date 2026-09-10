@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AuthNavButton from "@/components/AuthNavButton";
 import { useMemo, useState } from "react";
 
 type Exercise = {
@@ -339,6 +340,8 @@ export default function PracticePage() {
             >
               Projects
             </Link>
+
+            <AuthNavButton />
 
             <Link
               href="/support"

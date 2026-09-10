@@ -95,8 +95,8 @@ const topics = [
 export default function JavaPage() {
   const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
 
-  useEffect(() => {
-    setCompletedSlugs(getCompletedTopics("java"));
+   useEffect(() => {
+    getCompletedTopics("java").then(setCompletedSlugs);
   }, []);
 
   const completedCount = topics.filter((t) =>

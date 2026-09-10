@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AuthNavButton from "@/components/AuthNavButton";
 import { useState } from "react";
 
 type Project = {
@@ -793,6 +794,8 @@ export default function ProjectsPage() {
             >
               Practice
             </Link>
+
+             <AuthNavButton />
 
             <Link
               href="/support"

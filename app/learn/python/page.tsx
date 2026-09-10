@@ -96,8 +96,8 @@ const topics = [
 export default function PythonPage() {
   const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
 
-  useEffect(() => {
-    setCompletedSlugs(getCompletedTopics("python"));
+   useEffect(() => {
+    getCompletedTopics("python").then(setCompletedSlugs);
   }, []);
 
   const completedCount = topics.filter((t) =>

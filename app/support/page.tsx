@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import AuthNavButton from "@/components/AuthNavButton";
 import { FormEvent, useState } from "react";
 
 export default function SupportPage() {
@@ -131,6 +132,8 @@ export default function SupportPage() {
             >
               Practice
             </Link>
+
+            <AuthNavButton />
           </div>
         </div>
       </nav>

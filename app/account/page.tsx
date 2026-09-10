@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { syncLocalProgressToAccount } from "@/lib/progress";
 
 type MyRequest = {
   id: string;
@@ -35,6 +36,8 @@ export default function AccountPage() {
       router.replace("/account/login");
       return;
     }
+
+    await syncLocalProgressToAccount(user);
 
     setName(user.user_metadata?.full_name || "there");
     setEmail(user.email || "");
