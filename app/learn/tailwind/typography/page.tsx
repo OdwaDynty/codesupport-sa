@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindSpacingLesson() {
+export default function TailwindTypographyLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! m- controls margin (outside spacing), p- controls padding (inside spacing)."
+        "Correct! font-bold makes text bold, text-xl makes it larger."
       );
-      markTopicComplete("tailwind", "spacing-sizing");
+      markTopicComplete("tailwind", "typography");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,24 @@ export default function TailwindSpacingLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 3 of 9</span>
+            <span className="text-slate-400">Topic 4 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Spacing & Sizing
+            Typography
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Control the space inside and around elements, and how big
-            they are.
+            Control the size, weight and alignment of your text.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[33%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[44%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 33%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 44%</p>
         </div>
       </header>
 
@@ -80,10 +79,10 @@ export default function TailwindSpacingLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain the difference between padding and margin.</li>
-            <li>✓ Use p- and m- utilities.</li>
-            <li>✓ Target a single side using pt-, pb-, pl-, pr-.</li>
-            <li>✓ Set width and height using w- and h-.</li>
+            <li>✓ Set font size using text- utilities.</li>
+            <li>✓ Set font weight using font- utilities.</li>
+            <li>✓ Align text using text-left/center/right.</li>
+            <li>✓ Control line height using leading- utilities.</li>
           </ul>
         </section>
 
@@ -93,38 +92,29 @@ export default function TailwindSpacingLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            Padding vs. margin
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Font size</h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            <strong className="text-white">Padding</strong> is the space{" "}
-            <em>inside</em> an element, between its content and its edge.{" "}
-            <strong className="text-white">Margin</strong> is the space{" "}
-            <em>outside</em> an element, pushing other elements away from
-            it.
+            Font size utilities use{" "}
+            <code className="text-emerald-300">text-</code> followed by a
+            named size, from tiny to huge.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-8">
-            <div className="mx-auto max-w-sm bg-purple-900/30 p-6">
-              <div className="text-center text-xs text-purple-300">
-                margin (space outside)
-              </div>
-              <div className="mt-3 bg-emerald-500 p-6 text-center text-white">
-                <div className="text-xs text-emerald-100">
-                  padding (space inside)
-                </div>
-                <div className="mt-2 rounded bg-slate-950 px-3 py-2 text-sm">
-                  Content
-                </div>
-              </div>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="space-y-3">
+              <p className="text-xs">text-xs — small print</p>
+              <p className="text-sm">text-sm — small text</p>
+              <p className="text-base">text-base — normal text</p>
+              <p className="text-lg">text-lg — slightly larger</p>
+              <p className="text-xl">text-xl — larger still</p>
+              <p className="text-2xl">text-2xl — heading size</p>
+              <p className="text-4xl">text-4xl — big heading</p>
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            In Tailwind: <code className="text-emerald-300">p-</code> is
-            padding, <code className="text-emerald-300">m-</code> is
-            margin.
+            You can see the whole scale directly above — each line is
+            actually styled with the class it names.
           </p>
         </section>
 
@@ -135,55 +125,29 @@ export default function TailwindSpacingLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            The spacing scale
+            Font weight and alignment
           </h2>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            The number after <code className="text-emerald-300">p-</code>{" "}
-            or <code className="text-emerald-300">m-</code> is a step on
-            Tailwind&apos;s spacing scale — it&apos;s not pixels directly,
-            but each step is consistent (roughly 0.25rem, or 4px, per
-            step).
-          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <p className="font-normal">font-normal</p>
+              <p className="font-medium">font-medium</p>
+              <p className="font-semibold">font-semibold</p>
+              <p className="font-bold">font-bold</p>
+            </div>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Class</th>
-                  <th className="px-5 py-3 font-medium">Approx. size</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">p-1</td>
-                  <td className="px-5 py-3 text-slate-400">4px</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">p-2</td>
-                  <td className="px-5 py-3 text-slate-400">8px</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">p-4</td>
-                  <td className="px-5 py-3 text-slate-400">16px</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">p-8</td>
-                  <td className="px-5 py-3 text-slate-400">32px</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <p className="text-left text-sm text-slate-400">text-left</p>
+              <p className="text-center text-sm text-slate-400">text-center</p>
+              <p className="text-right text-sm text-slate-400">text-right</p>
+            </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            You can also target a single side:{" "}
-            <code className="text-emerald-300">pt-4</code> (top),{" "}
-            <code className="text-emerald-300">pb-4</code> (bottom),{" "}
-            <code className="text-emerald-300">pl-4</code> (left),{" "}
-            <code className="text-emerald-300">pr-4</code> (right) — the
-            same letters work for margin too:{" "}
-            <code className="text-emerald-300">mt-4</code>,{" "}
-            <code className="text-emerald-300">mb-4</code>, and so on.
+            Notice the pattern is the same everywhere in Tailwind — a
+            property prefix (<code className="text-emerald-300">font-</code>,{" "}
+            <code className="text-emerald-300">text-</code>) followed by a
+            value.
           </p>
         </section>
 
@@ -194,34 +158,34 @@ export default function TailwindSpacingLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Width and height
+            Putting it together
           </h2>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">w-</code> and{" "}
-            <code className="text-emerald-300">h-</code> control an
-            element&apos;s width and height the same way — using the
-            spacing scale, or special keywords like{" "}
-            <code className="text-emerald-300">w-full</code> (100% of the
-            parent).
-          </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Different widths
+              HTML
             </div>
 
-            <div className="space-y-3 p-6">
-              <div className="w-16 rounded bg-emerald-500 p-2 text-center text-xs text-white">
-                w-16
-              </div>
-              <div className="w-32 rounded bg-emerald-500 p-2 text-center text-xs text-white">
-                w-32
-              </div>
-              <div className="w-full rounded bg-emerald-500 p-2 text-center text-xs text-white">
-                w-full
-              </div>
-            </div>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+              <code>
+                <span className="text-slate-400">&lt;h1 class=</span>
+                <span className="text-orange-300">
+                  &quot;text-3xl font-bold text-center&quot;
+                </span>
+                <span className="text-slate-400">&gt;</span>
+                {"\n"}
+                {"  "}
+                <span className="text-slate-300">Welcome!</span>
+                {"\n"}
+                <span className="text-slate-400">&lt;/h1&gt;</span>
+              </code>
+            </pre>
+          </div>
+
+          <p className="mt-5 text-sm text-slate-500">Result:</p>
+
+          <div className="mt-3 rounded-xl bg-slate-950 p-6">
+            <h3 className="text-center text-3xl font-bold">Welcome!</h3>
           </div>
         </section>
 
@@ -232,7 +196,7 @@ export default function TailwindSpacingLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What is the difference between p- and m-?
+            Which classes would make text both bold and large?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -246,7 +210,7 @@ export default function TailwindSpacingLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. They do the same thing
+                A. text-center and p-4
               </span>
             </label>
 
@@ -260,7 +224,7 @@ export default function TailwindSpacingLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. m- controls padding, p- controls margin
+                B. font-bold and text-xl
               </span>
             </label>
 
@@ -274,7 +238,7 @@ export default function TailwindSpacingLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. m- controls margin, p- controls padding
+                C. m-bold and size-xl
               </span>
             </label>
           </div>
@@ -309,14 +273,14 @@ export default function TailwindSpacingLesson() {
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write the Tailwind classes for a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> with:
+              Write the Tailwind classes for an{" "}
+              <code className="text-emerald-300">&lt;h2&gt;</code> that is:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Padding of 6 on all sides.</li>
-              <li>A top margin of 4.</li>
-              <li>A width that fills its full parent.</li>
+              <li>2xl in size.</li>
+              <li>Semibold weight.</li>
+              <li>Centered.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -324,8 +288,8 @@ export default function TailwindSpacingLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Top margin uses <code>mt-</code>, and "full width" has its
-                own keyword class rather than a number.
+                You'll need three classes: one for size, one for weight,
+                one for alignment.
               </div>
             </details>
 
@@ -334,9 +298,9 @@ export default function TailwindSpacingLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="p-6 mt-4 w-full">
-  Hello!
-</div>`}</code>
+                <code>{`<h2 class="text-2xl font-semibold text-center">
+  My Heading
+</h2>`}</code>
               </pre>
             </details>
           </div>
@@ -355,28 +319,29 @@ export default function TailwindSpacingLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Mixing up p- and m-
+                Confusing text-xl (size) with text-center (alignment)
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="m-4"> <!-- pushes other elements away, doesn't add inner space -->`}
+                {`class="text-center-xl" — this class doesn't exist`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                If your content still looks squished against the edges,
-                you probably need <code>p-</code>, not <code>m-</code>.
+                Size and alignment are always separate classes:{" "}
+                <code>text-xl</code> and <code>text-center</code>, used
+                together, never combined into one word.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Expecting the number to mean pixels exactly
+                Using bold instead of font-bold
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`p-10 is not "10 pixels"`}
+                {`class="bold"`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                The numbers are steps on Tailwind&apos;s own scale, not raw
-                pixel counts — <code>p-10</code> is actually 40px, since
-                each step is 4px.
+                Tailwind's class is always <code>font-bold</code>, with
+                the <code>font-</code> prefix — a bare{" "}
+                <code>bold</code> doesn&apos;t exist as a class.
               </p>
             </div>
           </div>
@@ -391,8 +356,8 @@ export default function TailwindSpacingLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can control spacing, the next step is styling
-            text itself.
+            Now that you can style text, the next step is learning about
+            borders, rounded corners and shadows.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -404,7 +369,7 @@ export default function TailwindSpacingLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/typography"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

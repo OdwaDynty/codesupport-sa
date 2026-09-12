@@ -35,7 +35,7 @@ const topics = [
     title: "Typography",
     description: "Control font size, weight, alignment and line height.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
