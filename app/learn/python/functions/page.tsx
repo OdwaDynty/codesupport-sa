@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function PythonListsLesson() {
+export default function PythonFunctionsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "A") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! List indexes start at 0, so the first item is marks[0]."
+        "Correct! return sends a value back out of the function to wherever it was called."
       );
-      markTopicComplete("python", "lists");
+      markTopicComplete("python", "functions");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function PythonListsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 11 of 13</span>
+            <span className="text-slate-400">Topic 12 of 13</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python Lists
+            Python Functions
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to store many values of any type in a single
-            variable, instead of creating a new variable for each one.
+            Learn how to organize your code into reusable, named blocks
+            instead of repeating the same instructions everywhere.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[85%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[92%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 85%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 92%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function PythonListsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain why lists are useful.</li>
-            <li>✓ Create a list and access its items.</li>
-            <li>✓ Understand that list indexes start at 0.</li>
-            <li>✓ Loop through a list using a for loop.</li>
+            <li>✓ Explain what a function is and why they&apos;re useful.</li>
+            <li>✓ Write a function with parameters and a return value.</li>
+            <li>✓ Call a function.</li>
+            <li>✓ Understand the difference between a function that returns and one that doesn&apos;t.</li>
           </ul>
         </section>
 
@@ -93,30 +93,44 @@ export default function PythonListsLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Why do we need lists?</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            What is a function?
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Imagine storing five test marks. Without a list, you&apos;d
-            need five separate variables — <code className="text-emerald-300">mark1</code>,{" "}
-            <code className="text-emerald-300">mark2</code>, and so on.
-            That gets unmanageable fast. A{" "}
-            <strong className="text-white">list</strong> lets you store
-            all of them in one variable instead.
+            You&apos;ve already used functions this whole time —{" "}
+            <code className="text-emerald-300">print()</code>,{" "}
+            <code className="text-emerald-300">input()</code>,{" "}
+            <code className="text-emerald-300">range()</code> are all
+            functions Python provides for you. A{" "}
+            <strong className="text-white">function</strong> is a named
+            block of code that performs a task, which you can{" "}
+            <strong className="text-white">call</strong> (run) whenever
+            you need it. You can write your own too, using{" "}
+            <code className="text-emerald-300">def</code>.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <div className="text-sm font-medium text-slate-400">Example</div>
 
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`marks = [65, 78, 42, 90, 55]`}</code>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-300">greet</span>
+                <span className="text-slate-400">():</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  print(&quot;Hello!&quot;)
+                </span>
+              </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This single variable, <code className="text-emerald-300">marks</code>,
-            now holds all five values. Unlike Java arrays, a Python list
-            can even hold different types mixed together, though it&apos;s
-            usually clearer to keep one type per list.
+            To actually run it, you <strong className="text-white">call</strong>{" "}
+            it by name, followed by brackets:{" "}
+            <code className="text-emerald-300">greet()</code>
           </p>
         </section>
 
@@ -127,47 +141,62 @@ export default function PythonListsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Accessing items — indexes start at 0
+            Parameters and return values
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Each value in a list has a position, called an{" "}
-            <strong className="text-white">index</strong>. This is the
-            single most important thing to remember about lists:{" "}
-            <strong className="text-white">indexes start counting from 0, not 1.</strong>
+            Functions become genuinely useful once they can accept input
+            (<strong className="text-white">parameters</strong>) and send
+            a result back out (<strong className="text-white">return</strong>).
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              marks list
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-300">add_numbers</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-blue-300">a</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-blue-300">b</span>
+                <span className="text-slate-400">):</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">return</span>
+                <span className="text-slate-300"> a + b</span>
+              </code>
+            </pre>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-blue-300">(a, b)</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                The <strong className="text-white">parameters</strong> —
+                values the function receives from whoever calls it. Notice
+                Python doesn&apos;t need you to declare their types.
+              </p>
             </div>
 
-            <div className="flex divide-x divide-white/10">
-              {["65", "78", "42", "90", "55"].map((val, i) => (
-                <div key={i} className="flex-1 p-4 text-center">
-                  <div className="font-mono text-lg text-emerald-300">
-                    {val}
-                  </div>
-                  <div className="mt-1 font-mono text-xs text-slate-500">
-                    [{i}]
-                  </div>
-                </div>
-              ))}
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-purple-400">return a + b</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Sends the result back to the caller and immediately ends
+                the function.
+              </p>
             </div>
           </div>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
-              <code>{`print(marks[0])  # prints 65
-print(marks[2])  # prints 42`}</code>
+            <div className="text-sm font-medium text-slate-400">
+              Calling it
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`total = add_numbers(5, 3)
+print(total)  # prints 8`}</code>
             </pre>
           </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">marks[0]</code> is the{" "}
-            <strong>first</strong> item (65), not the zeroth in some other
-            sense — this trips up almost every beginner at least once.
-          </p>
         </section>
 
         {/* Section 3 */}
@@ -177,48 +206,50 @@ print(marks[2])  # prints 42`}</code>
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Looping through a list
+            A function that doesn&apos;t return anything
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Python makes looping through a list especially clean — you can
-            loop directly over the values, without needing an index at
-            all.
+            Not every function needs to send a value back. If a function
+            just <em>does</em> something (like printing a message) without
+            needing to return a result, that&apos;s completely fine — you
+            simply don&apos;t write a{" "}
+            <code className="text-emerald-300">return</code> statement.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Printing every mark
+              A function with no return
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8 text-emerald-300">
-              <code>{`for mark in marks:
-    print(mark)`}</code>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+              <code>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-300">print_result</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-blue-300">mark</span>
+                <span className="text-slate-400">):</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> mark {">"}= 50:</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  print(&quot;Pass&quot;)
+                </span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400">:</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  print(&quot;Fail&quot;)
+                </span>
+              </code>
             </pre>
           </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Here, <code className="text-emerald-300">mark</code> takes on
-            each value in the list in turn — 65, then 78, then 42, and so
-            on — without you ever writing an index yourself.
-          </p>
-
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              With an index, using range()
-            </div>
-
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`for i in range(len(marks)):
-    print(marks[i])`}</code>
-            </pre>
-          </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">len(marks)</code> tells you
-            how many items are in the list — useful when you need the
-            index itself, not just the value.
-          </p>
         </section>
 
         {/* Quiz */}
@@ -228,7 +259,7 @@ print(marks[2])  # prints 42`}</code>
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            Given marks = [65, 78, 42], what does marks[0] give you?
+            What does the return keyword do?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -241,7 +272,9 @@ print(marks[2])  # prints 42`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">A. 65</span>
+              <span className="text-sm text-slate-300">
+                A. It prints a value to the screen
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -253,7 +286,9 @@ print(marks[2])  # prints 42`}</code>
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">B. 78</span>
+              <span className="text-sm text-slate-300">
+                B. It sends a value back to wherever the function was called
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -266,7 +301,7 @@ print(marks[2])  # prints 42`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. An error, because there is no index 0
+                C. It repeats the function again
               </span>
             </label>
           </div>
@@ -301,20 +336,20 @@ print(marks[2])  # prints 42`}</code>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Python program that:
+              Write a Python function that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Creates a list called{" "}
-                <strong className="text-white">marks</strong> with the
-                values 65, 78, 42, 90, 55.
+                Is called <strong className="text-white">is_passing</strong>,
+                takes a parameter called{" "}
+                <strong className="text-white">mark</strong>.
               </li>
               <li>
-                Uses a for loop to add up all the marks into a{" "}
-                <strong className="text-white">total</strong> variable.
+                Returns <strong className="text-white">True</strong> if
+                mark is 50 or higher, and{" "}
+                <strong className="text-white">False</strong> otherwise.
               </li>
-              <li>Prints the total.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -322,8 +357,8 @@ print(marks[2])  # prints 42`}</code>
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Start <code>total</code> at 0 before the loop, then use{" "}
-                <code>for mark in marks:</code> to add each value to it.
+                You can return the result of a comparison directly:{" "}
+                <code>return mark {">"}= 50</code>
               </div>
             </details>
 
@@ -332,13 +367,8 @@ print(marks[2])  # prints 42`}</code>
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`marks = [65, 78, 42, 90, 55]
-total = 0
-
-for mark in marks:
-    total = total + mark
-
-print(total)`}</code>
+                <code>{`def is_passing(mark):
+    return mark >= 50`}</code>
               </pre>
             </details>
           </div>
@@ -357,34 +387,34 @@ print(total)`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Going out of range
+                Forgetting the colon
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`marks = [65, 78, 42]
-print(marks[3])  # IndexError`}
+                {`def greet()
+    print("Hello!")`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                A list with 3 items only has valid indexes 0, 1, and 2.
-                Trying to access index 3 crashes the program with an{" "}
-                <code>IndexError</code>.
+                Every <code>def</code> line needs a colon at the end, just
+                like <code>if</code> and <code>for</code>.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Looping with the value instead of the index, then using it
-                as an index anyway
+                Expecting print() to also return a value
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for mark in marks:
-    print(marks[mark])  # probably not what you meant`}
+                {`def add(a, b):
+    print(a + b)
+
+result = add(2, 3)
+print(result)  # prints None, not 5`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                If you loop with{" "}
-                <code>for mark in marks:</code>, <code>mark</code> is
-                already the value — not an index. Only use{" "}
-                <code>for i in range(len(marks)):</code> when you
-                genuinely need the index.
+                <code>print()</code> only displays a value — it
+                doesn&apos;t send it back to whoever called the function.
+                If you need the result usable elsewhere, use{" "}
+                <code>return</code> instead.
               </p>
             </div>
           </div>
@@ -395,12 +425,12 @@ print(marks[3])  # IndexError`}
           <div className="text-3xl">🎯</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the next topic?
+            Ready for the final topic?
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can store multiple values, the next step is
-            learning how to organize your code into reusable functions.
+            One more concept to go — a brief introduction to classes and
+            objects, the foundation of object-oriented programming.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -412,7 +442,7 @@ print(marks[3])  # IndexError`}
             </Link>
 
             <Link
-              href="/learn/python/functions"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

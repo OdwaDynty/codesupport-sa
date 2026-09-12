@@ -97,7 +97,7 @@ const topics = [
     title: "Lists",
     description: "Store and work with multiple values in a single variable.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "12",
@@ -105,7 +105,7 @@ const topics = [
     title: "Functions",
     description: "Organize your code into reusable, named blocks.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "13",
