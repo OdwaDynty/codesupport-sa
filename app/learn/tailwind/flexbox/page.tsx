@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindBordersLesson() {
+export default function TailwindFlexboxLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "A") {
+    if (quizAnswer === "C") {
       setQuizResult(
-        "Correct! rounded-full makes an element's corners fully circular."
+        "Correct! justify-between pushes the first item to the start and the last to the end, spreading the rest evenly."
       );
-      markTopicComplete("tailwind", "borders-shadows");
+      markTopicComplete("tailwind", "flexbox");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindBordersLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 5 of 9</span>
+            <span className="text-slate-400">Topic 6 of 9</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Beginner</span>
+            <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Borders, Rounded Corners & Shadows
+            Flexbox Basics
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Give your elements definition and depth — the details that
-            make a design feel polished.
+            Learn how to arrange multiple elements in a row or column —
+            the single most useful tool for building layouts.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[56%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[67%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 56%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 67%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindBordersLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Add a border using border and border- color utilities.</li>
-            <li>✓ Round corners using rounded- utilities.</li>
-            <li>✓ Add depth using shadow- utilities.</li>
-            <li>✓ Combine all three to style a card.</li>
+            <li>✓ Turn a container into a flex layout using flex.</li>
+            <li>✓ Space items apart using justify- utilities.</li>
+            <li>✓ Align items vertically using items-.</li>
+            <li>✓ Control spacing between items using gap-.</li>
           </ul>
         </section>
 
@@ -93,35 +93,48 @@ export default function TailwindBordersLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Borders</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Turning on Flexbox
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The <code className="text-emerald-300">border</code> class
-            adds a thin 1px border on all sides. You can control its color
-            with <code className="text-emerald-300">border-</code>{" "}
-            followed by a color, same pattern as{" "}
-            <code className="text-emerald-300">text-</code> and{" "}
-            <code className="text-emerald-300">bg-</code>.
+            Adding the <code className="text-emerald-300">flex</code>{" "}
+            class to a container makes its direct children line up in a
+            row automatically, instead of stacking on top of each other
+            like normal HTML elements do.
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <div className="rounded border border-white/20 p-4 text-center text-sm">
-              border
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Without flex (default)
             </div>
-            <div className="rounded border-2 border-emerald-500 p-4 text-center text-sm">
-              border-2 border-emerald-500
+            <div className="mt-3 space-y-2 rounded-lg bg-slate-950 p-4">
+              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 1
+              </div>
+              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 2
+              </div>
+              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 3
+              </div>
             </div>
-            <div className="rounded border-4 border-purple-500 p-4 text-center text-sm">
-              border-4 border-purple-500
+
+            <div className="mt-5 text-sm font-medium text-slate-400">
+              With flex
+            </div>
+            <div className="mt-3 flex gap-2 rounded-lg bg-slate-950 p-4">
+              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 1
+              </div>
+              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 2
+              </div>
+              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
+                Box 3
+              </div>
             </div>
           </div>
-
-          <p className="mt-6 leading-8 text-slate-300">
-            <code className="text-emerald-300">border-2</code> and{" "}
-            <code className="text-emerald-300">border-4</code> make the
-            border thicker — same numbering idea you&apos;ve seen
-            elsewhere.
-          </p>
         </section>
 
         {/* Section 2 */}
@@ -130,37 +143,58 @@ export default function TailwindBordersLesson() {
             02 • Understand
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Rounded corners</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            justify- and items-
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">rounded-</code> controls
-            how curved an element&apos;s corners are — from barely
-            rounded to fully circular.
+            Once a container is flex, two classes control how its
+            children are arranged: <code className="text-emerald-300">justify-</code>{" "}
+            controls spacing along the row, and{" "}
+            <code className="text-emerald-300">items-</code> controls
+            vertical alignment.
           </p>
 
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-5">
-            <div className="rounded-none bg-emerald-500 p-4 text-center text-xs text-white">
-              rounded-none
+          <div className="mt-6 space-y-4">
+            <div>
+              <div className="mb-2 text-sm text-slate-400 font-mono">
+                justify-between
+              </div>
+              <div className="flex justify-between rounded-lg bg-slate-900 p-4">
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">C</div>
+              </div>
             </div>
-            <div className="rounded-md bg-emerald-500 p-4 text-center text-xs text-white">
-              rounded-md
+
+            <div>
+              <div className="mb-2 text-sm text-slate-400 font-mono">
+                justify-center
+              </div>
+              <div className="flex justify-center gap-2 rounded-lg bg-slate-900 p-4">
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">C</div>
+              </div>
             </div>
-            <div className="rounded-xl bg-emerald-500 p-4 text-center text-xs text-white">
-              rounded-xl
-            </div>
-            <div className="rounded-2xl bg-emerald-500 p-4 text-center text-xs text-white">
-              rounded-2xl
-            </div>
-            <div className="rounded-full bg-emerald-500 p-4 text-center text-xs text-white">
-              rounded-full
+
+            <div>
+              <div className="mb-2 text-sm text-slate-400 font-mono">
+                items-center (this container is taller)
+              </div>
+              <div className="flex h-20 items-center gap-2 rounded-lg bg-slate-900 p-4">
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
+                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
+              </div>
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            <code className="text-emerald-300">rounded-full</code> on a
-            square element (equal width and height) produces a perfect
-            circle — this is how the little colored dots and avatar
-            circles you&apos;ve seen throughout CodeSupport SA are made.
+            This exact combination —{" "}
+            <code className="text-emerald-300">flex items-center justify-between</code>{" "}
+            — is used constantly throughout CodeSupport SA&apos;s own
+            navigation bars, to keep the logo on the left and links on
+            the right, all vertically centered.
           </p>
         </section>
 
@@ -170,30 +204,41 @@ export default function TailwindBordersLesson() {
             03 • Examples
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Shadows</h2>
+          <h2 className="mt-3 text-3xl font-bold">gap- for spacing</h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">shadow-</code> adds depth,
-            making an element look like it&apos;s lifted slightly above
-            the page.
+            Instead of adding margin to each individual item,{" "}
+            <code className="text-emerald-300">gap-</code> on the
+            container adds consistent space between every child at once.
           </p>
 
-          <div className="mt-6 grid gap-6 bg-slate-800 p-8 sm:grid-cols-3">
-            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-sm">
-              shadow-sm
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
+              HTML
             </div>
-            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-lg">
-              shadow-lg
-            </div>
-            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-2xl">
-              shadow-2xl
-            </div>
+
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
+              <code>
+                <span className="text-slate-400">&lt;div class=</span>
+                <span className="text-orange-300">
+                  &quot;flex items-center justify-between gap-4&quot;
+                </span>
+                <span className="text-slate-400">&gt;</span>
+                {"\n"}
+                {"  "}
+                <span className="text-slate-400">&lt;div&gt;</span>
+                <span className="text-slate-300">Logo</span>
+                <span className="text-slate-400">&lt;/div&gt;</span>
+                {"\n"}
+                {"  "}
+                <span className="text-slate-400">&lt;div&gt;</span>
+                <span className="text-slate-300">Links</span>
+                <span className="text-slate-400">&lt;/div&gt;</span>
+                {"\n"}
+                <span className="text-slate-400">&lt;/div&gt;</span>
+              </code>
+            </pre>
           </div>
-
-          <p className="mt-6 leading-8 text-slate-300">
-            Shadows are subtle on light backgrounds, so they&apos;re shown
-            here on a lighter gray strip to make the effect visible.
-          </p>
         </section>
 
         {/* Quiz */}
@@ -203,7 +248,7 @@ export default function TailwindBordersLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            Which class makes an element's corners fully circular?
+            What does justify-between do?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -217,7 +262,7 @@ export default function TailwindBordersLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. rounded-full
+                A. Stacks all items on top of each other
               </span>
             </label>
 
@@ -231,7 +276,7 @@ export default function TailwindBordersLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. rounded-none
+                B. Centers all items together in the middle
               </span>
             </label>
 
@@ -245,7 +290,8 @@ export default function TailwindBordersLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. border-full
+                C. Pushes the first item to the start and the last to the
+                end, spreading the rest evenly
               </span>
             </label>
           </div>
@@ -281,13 +327,14 @@ export default function TailwindBordersLesson() {
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
               Write the Tailwind classes for a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> that is:
+              <code className="text-emerald-300">&lt;div&gt;</code> that
+              arranges its children:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Has a 2px emerald border.</li>
-              <li>Has large rounded corners (rounded-xl).</li>
-              <li>Has a medium shadow.</li>
+              <li>In a row (not stacked).</li>
+              <li>Centered vertically.</li>
+              <li>With a gap of 4 between each child.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -295,9 +342,9 @@ export default function TailwindBordersLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You'll need <code>border-2</code> plus a color class,{" "}
-                <code>rounded-xl</code>, and{" "}
-                <code>shadow-md</code>.
+                You need three classes on the parent container:{" "}
+                <code>flex</code>, an <code>items-</code> class, and a{" "}
+                <code>gap-</code> class.
               </div>
             </details>
 
@@ -306,8 +353,9 @@ export default function TailwindBordersLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="border-2 border-emerald-500 rounded-xl shadow-md p-4">
-  Hello!
+                <code>{`<div class="flex items-center gap-4">
+  <div>Item 1</div>
+  <div>Item 2</div>
 </div>`}</code>
               </pre>
             </details>
@@ -327,29 +375,33 @@ export default function TailwindBordersLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Setting a border color without a border width
+                Adding justify-/items- without flex
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`class="border-emerald-500" // no border shows`}
+                {`<div class="justify-between"> <!-- does nothing -->`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                A color alone doesn&apos;t create a border — you still
-                need the base <code>border</code> (or{" "}
-                <code>border-2</code>, etc.) class too.
+                <code>justify-</code> and <code>items-</code> only work on
+                a container that already has <code>flex</code> applied —
+                without it, they have no effect at all.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Expecting rounded-full to work on a rectangle
+                Putting flex on the wrong element
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="w-40 h-10 rounded-full">`}
+                {`<div>
+  <div class="flex">Item 1</div>
+  <div>Item 2</div>
+</div>`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                On a non-square element, <code>rounded-full</code> creates
-                a pill shape, not a circle — that&apos;s expected, not a
-                bug, but worth knowing if you actually wanted a circle.
+                <code>flex</code> goes on the{" "}
+                <strong>parent</strong> container, not on each individual
+                child — it's the parent that arranges its children, not
+                the other way around.
               </p>
             </div>
           </div>
@@ -364,9 +416,8 @@ export default function TailwindBordersLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can style individual elements, the next step is
-            learning how to arrange several elements together using
-            Flexbox.
+            Now that you can arrange elements, the next step is making
+            your layouts work well on both phones and desktops.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -378,7 +429,7 @@ export default function TailwindBordersLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/flexbox"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
