@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindResponsiveLesson() {
+export default function TailwindCardLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "C") {
       setQuizResult(
-        "Correct! Unprefixed classes apply to all screen sizes; md: only kicks in at medium screens and up."
+        "Correct! Combining many small utility classes on one element is exactly how Tailwind is meant to be used."
       );
-      markTopicComplete("tailwind", "responsive-design");
+      markTopicComplete("tailwind", "building-a-card");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindResponsiveLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 7 of 9</span>
+            <span className="text-slate-400">Topic 9 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Responsive Design
+            Building a Simple Card
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Make your layouts adapt automatically between phones, tablets
-            and desktops.
+            Combine everything from this course into one real, complete
+            component.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[78%] rounded-full bg-emerald-400" />
+            <div className="h-full w-full rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 78%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindResponsiveLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain Tailwind's mobile-first approach.</li>
-            <li>✓ Use breakpoint prefixes like sm:, md:, lg:.</li>
-            <li>✓ Change a layout from stacked to side-by-side on larger screens.</li>
-            <li>✓ Hide or show elements at different screen sizes.</li>
+            <li>✓ Combine spacing, color, typography and borders in one element.</li>
+            <li>✓ Use flexbox to arrange a card&apos;s internal content.</li>
+            <li>✓ Add a hover effect to an entire card.</li>
+            <li>✓ Read and understand a realistic block of Tailwind classes.</li>
           </ul>
         </section>
 
@@ -94,46 +94,47 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Mobile-first: the default is for small screens
+            Building it piece by piece
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Tailwind is built{" "}
-            <strong className="text-white">mobile-first</strong>. Any
-            class you write with no prefix applies to every screen size,
-            starting from the smallest. To change something only at
-            larger sizes, you add a breakpoint prefix.
+            Real Tailwind code almost always looks like a long list of
+            classes stacked on one element — that&apos;s normal, not
+            messy. Let&apos;s build a project card, adding one idea at a
+            time.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Prefix</th>
-                  <th className="px-5 py-3 font-medium">Applies from</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">
-                    (none)
-                  </td>
-                  <td className="px-5 py-3 text-slate-400">All screens</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">sm:</td>
-                  <td className="px-5 py-3 text-slate-400">640px and up</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">md:</td>
-                  <td className="px-5 py-3 text-slate-400">768px and up</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">lg:</td>
-                  <td className="px-5 py-3 text-slate-400">1024px and up</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-6 space-y-4">
+            <div>
+              <div className="mb-2 text-sm font-mono text-slate-400">
+                Step 1 — container with padding, background and rounded
+                corners
+              </div>
+              <div className="rounded-2xl bg-slate-900 p-6">
+                <p className="text-sm text-slate-500">(empty card)</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-2 text-sm font-mono text-slate-400">
+                Step 2 — add a border and shadow
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-lg">
+                <p className="text-sm text-slate-500">(still empty, now with depth)</p>
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-2 text-sm font-mono text-slate-400">
+                Step 3 — add real content with typography
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-lg">
+                <h3 className="text-xl font-bold">Project Title</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  A short description of the project goes here.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -144,51 +145,33 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Stacked on mobile, side-by-side on desktop
+            Adding flexbox for layout
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The single most common responsive pattern: start elements
-            stacked (the mobile-friendly default), then switch to a row
-            once there&apos;s enough screen width.
+            Now let&apos;s add a footer row inside the card — an icon on
+            the left, a &quot;View →&quot; link on the right, using
+            exactly the flexbox pattern from earlier in this course.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-slate-400">&lt;div class=</span>
-                <span className="text-orange-300">
-                  &quot;flex flex-col md:flex-row gap-4&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-              </code>
-            </pre>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-lg">
+            <h3 className="text-xl font-bold">Project Title</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-400">
+              A short description of the project goes here.
+            </p>
+
+            <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+              <span className="text-2xl">🚀</span>
+              <span className="text-sm font-semibold text-emerald-400">
+                View →
+              </span>
+            </div>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">flex-col</code> stacks
-            children vertically by default (good for narrow phone
-            screens). <code className="text-emerald-300">md:flex-row</code>{" "}
-            overrides that back to a horizontal row, but only once the
-            screen is at least 768px wide.
+          <p className="mt-6 leading-8 text-slate-300">
+            <code className="text-emerald-300">flex items-center justify-between</code>{" "}
+            handles the whole layout of that footer row in one line.
           </p>
-
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Live example — try resizing your browser
-            </div>
-            <div className="flex flex-col gap-3 p-5 md:flex-row">
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 1
-              </div>
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 2
-              </div>
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 3
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Section 3 */}
@@ -198,45 +181,47 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Hiding and showing elements
+            The finished, hoverable card
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            You can combine <code className="text-emerald-300">hidden</code>{" "}
-            with a breakpoint to show something only on larger screens —
-            this is exactly how CodeSupport SA&apos;s own navigation
-            hides its full link list on mobile and shows a Menu button
-            instead.
+            Finally, let&apos;s add a hover effect so the whole card
+            responds when a visitor mouses over it — a subtle border
+            color change and a smooth transition.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              HTML
+              Try hovering this card
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-slate-400">&lt;div class=</span>
-                <span className="text-orange-300">
-                  &quot;hidden md:block&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">
-                  Only visible on medium screens and up
-                </span>
-                {"\n"}
-                <span className="text-slate-400">&lt;/div&gt;</span>
-              </code>
-            </pre>
+            <div className="p-6">
+              <a
+                href="#"
+                className="block rounded-2xl border border-white/10 bg-slate-950 p-6 shadow-lg transition hover:border-emerald-400/40"
+              >
+                <h3 className="text-xl font-bold">Project Title</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  A short description of the project goes here.
+                </p>
+
+                <div className="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+                  <span className="text-2xl">🚀</span>
+                  <span className="text-sm font-semibold text-emerald-400">
+                    View →
+                  </span>
+                </div>
+              </a>
+            </div>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">hidden</code> hides it
-            everywhere by default; <code className="text-emerald-300">md:block</code>{" "}
-            overrides that back to visible once the screen reaches medium
-            width.
+          <p className="mt-6 leading-8 text-slate-300">
+            This is genuinely the same pattern used for the project cards
+            on CodeSupport SA&apos;s own{" "}
+            <Link href="/projects" className="text-emerald-400 hover:underline">
+              Projects page
+            </Link>
+            .
           </p>
         </section>
 
@@ -247,8 +232,8 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What's the difference between a class with no prefix and one
-            with md:?
+            Is it normal for a real element to have many utility classes
+            at once?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -262,7 +247,7 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. They do exactly the same thing
+                A. No, it means you&apos;re doing something wrong
               </span>
             </label>
 
@@ -276,8 +261,7 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Unprefixed applies to all screens; md: only applies
-                from medium screens up
+                B. Only true for advanced developers
               </span>
             </label>
 
@@ -291,7 +275,8 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. md: only applies to mobile screens
+                C. Yes, combining many small classes on one element is
+                exactly how Tailwind is meant to be used
               </span>
             </label>
           </div>
@@ -326,13 +311,18 @@ export default function TailwindResponsiveLesson() {
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write the Tailwind classes for a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> that:
+              Build a complete card{" "}
+              <code className="text-emerald-300">&lt;div&gt;</code> with:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Has text size text-lg on mobile.</li>
-              <li>Becomes text-2xl on medium screens and up.</li>
+              <li>A dark background, padding, rounded corners and a shadow.</li>
+              <li>A bold heading inside.</li>
+              <li>
+                A footer row (using flexbox) with an icon on the left and
+                text on the right.
+              </li>
+              <li>A hover effect on the whole card.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -340,8 +330,9 @@ export default function TailwindResponsiveLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Write the mobile size with no prefix, then add the
-                breakpoint version right after it.
+                Build it in the same order as this lesson: container
+                first, then content, then the flex footer, then the hover
+                effect last.
               </div>
             </details>
 
@@ -350,8 +341,13 @@ export default function TailwindResponsiveLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="text-lg md:text-2xl">
-  Hello!
+                <code>{`<div class="bg-slate-900 p-6 rounded-2xl shadow-lg transition hover:border-emerald-400 border border-white/10">
+  <h3 class="text-xl font-bold">My Card</h3>
+
+  <div class="flex items-center justify-between mt-4">
+    <span>🚀</span>
+    <span class="text-emerald-400">View →</span>
+  </div>
 </div>`}</code>
               </pre>
             </details>
@@ -371,30 +367,25 @@ export default function TailwindResponsiveLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the mobile version entirely
+                Trying to remember every class instead of building things
+                up
               </div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="md:flex-row"> <!-- what happens on mobile? -->`}
-              </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Always set a sensible default first (like{" "}
-                <code>flex-col</code>), then override it at larger sizes —
-                don&apos;t leave mobile unstyled.
+                No one memorizes every Tailwind class. Build in small
+                steps — background, then spacing, then content, then
+                extras — the same way this lesson did, testing as you go.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Thinking md: means "only on medium screens"
+                Forgetting Tailwind&apos;s own documentation
               </div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`md:text-2xl // applies at md AND larger (lg, xl...) too`}
-              </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Breakpoints are &quot;from this size <strong>and up</strong>,&quot;
-                not &quot;only at this exact size.&quot;{" "}
-                <code>md:text-2xl</code> stays active on large and extra
-                large screens too, unless something later overrides it.
+                When you can&apos;t remember an exact class name,
+                Tailwind&apos;s official docs (tailwindcss.com/docs) are
+                searchable and list every utility — even experienced
+                developers look things up constantly.
               </p>
             </div>
           </div>
@@ -402,15 +393,16 @@ export default function TailwindResponsiveLesson() {
 
         {/* Completion */}
         <section className="mt-14 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-8 text-center">
-          <div className="text-3xl">🎯</div>
+          <div className="text-3xl">🏆</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the next topic?
+            You&apos;ve completed the Tailwind CSS course!
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that your layouts adapt to screen size, the next step is
-            adding interactivity with hover and focus states.
+            From your first utility class to a complete, hoverable card
+            component — you now know how to style real interfaces with
+            Tailwind. Time to put it into practice.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -422,10 +414,10 @@ export default function TailwindResponsiveLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/hover-states"
+              href="/projects"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
-              Next Topic →
+              View Projects →
             </Link>
           </div>
         </section>

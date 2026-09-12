@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindResponsiveLesson() {
+export default function TailwindHoverLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! Unprefixed classes apply to all screen sizes; md: only kicks in at medium screens and up."
+        "Correct! hover: applies a class only while the mouse is over the element."
       );
-      markTopicComplete("tailwind", "responsive-design");
+      markTopicComplete("tailwind", "hover-states");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindResponsiveLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 7 of 9</span>
+            <span className="text-slate-400">Topic 8 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Responsive Design
+            Hover, Focus & Transitions
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Make your layouts adapt automatically between phones, tablets
-            and desktops.
+            Make your interface feel alive by responding to the mouse and
+            keyboard.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[78%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[89%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 78%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 89%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindResponsiveLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain Tailwind's mobile-first approach.</li>
-            <li>✓ Use breakpoint prefixes like sm:, md:, lg:.</li>
-            <li>✓ Change a layout from stacked to side-by-side on larger screens.</li>
-            <li>✓ Hide or show elements at different screen sizes.</li>
+            <li>✓ Style an element differently when hovered using hover:.</li>
+            <li>✓ Style a focused input using focus:.</li>
+            <li>✓ Make hover changes smooth using transition.</li>
+            <li>✓ Combine state prefixes with any other utility class.</li>
           </ul>
         </section>
 
@@ -94,47 +94,31 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Mobile-first: the default is for small screens
+            The hover: prefix
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Tailwind is built{" "}
-            <strong className="text-white">mobile-first</strong>. Any
-            class you write with no prefix applies to every screen size,
-            starting from the smallest. To change something only at
-            larger sizes, you add a breakpoint prefix.
+            Put <code className="text-emerald-300">hover:</code> in front
+            of any utility class, and it only applies while the mouse is
+            over that element. This is exactly how every button on
+            CodeSupport SA changes color slightly when you hover over it.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b border-white/10 text-slate-400">
-                <tr>
-                  <th className="px-5 py-3 font-medium">Prefix</th>
-                  <th className="px-5 py-3 font-medium">Applies from</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5">
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">
-                    (none)
-                  </td>
-                  <td className="px-5 py-3 text-slate-400">All screens</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">sm:</td>
-                  <td className="px-5 py-3 text-slate-400">640px and up</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">md:</td>
-                  <td className="px-5 py-3 text-slate-400">768px and up</td>
-                </tr>
-                <tr>
-                  <td className="px-5 py-3 font-mono text-emerald-300">lg:</td>
-                  <td className="px-5 py-3 text-slate-400">1024px and up</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Try hovering this button
+            </div>
+
+            <button className="mt-4 rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-emerald-300">
+              bg-emerald-400 hover:bg-emerald-300
+            </button>
           </div>
+
+          <p className="mt-6 leading-8 text-slate-300">
+            <code className="text-emerald-300">bg-emerald-400</code> is
+            the normal state; <code className="text-emerald-300">hover:bg-emerald-300</code>{" "}
+            only takes over while your mouse is on top of it.
+          </p>
         </section>
 
         {/* Section 2 */}
@@ -144,51 +128,36 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Stacked on mobile, side-by-side on desktop
+            focus: for inputs
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The single most common responsive pattern: start elements
-            stacked (the mobile-friendly default), then switch to a row
-            once there&apos;s enough screen width.
+            <code className="text-emerald-300">focus:</code> works the
+            same way, but triggers when an element (usually an input) is
+            actively selected — clicked into, or reached with the Tab
+            key.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-slate-400">&lt;div class=</span>
-                <span className="text-orange-300">
-                  &quot;flex flex-col md:flex-row gap-4&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-              </code>
-            </pre>
+            <div className="text-sm font-medium text-slate-400">
+              Try clicking into this input
+            </div>
+
+            <input
+              placeholder="Click here..."
+              className="mt-4 w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
+            />
+
+            <p className="mt-3 text-xs text-slate-500 font-mono">
+              border border-white/10 focus:border-emerald-400
+            </p>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">flex-col</code> stacks
-            children vertically by default (good for narrow phone
-            screens). <code className="text-emerald-300">md:flex-row</code>{" "}
-            overrides that back to a horizontal row, but only once the
-            screen is at least 768px wide.
+          <p className="mt-6 leading-8 text-slate-300">
+            This exact pattern — a subtle border color change on{" "}
+            <code>focus:</code> — is used on every input across all of
+            CodeSupport SA&apos;s forms.
           </p>
-
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Live example — try resizing your browser
-            </div>
-            <div className="flex flex-col gap-3 p-5 md:flex-row">
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 1
-              </div>
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 2
-              </div>
-              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
-                Box 3
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Section 3 */}
@@ -198,45 +167,38 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Hiding and showing elements
+            Smoothing it out with transition
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            You can combine <code className="text-emerald-300">hidden</code>{" "}
-            with a breakpoint to show something only on larger screens —
-            this is exactly how CodeSupport SA&apos;s own navigation
-            hides its full link list on mobile and shows a Menu button
-            instead.
+            Without help, hover changes snap instantly. Adding the{" "}
+            <code className="text-emerald-300">transition</code> class
+            makes the change animate smoothly instead.
           </p>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              HTML
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-6 text-center">
+              <div className="text-sm font-medium text-slate-400">
+                No transition (instant)
+              </div>
+              <button className="mt-4 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white hover:bg-purple-400">
+                Hover me
+              </button>
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-slate-400">&lt;div class=</span>
-                <span className="text-orange-300">
-                  &quot;hidden md:block&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">
-                  Only visible on medium screens and up
-                </span>
-                {"\n"}
-                <span className="text-slate-400">&lt;/div&gt;</span>
-              </code>
-            </pre>
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-6 text-center">
+              <div className="text-sm font-medium text-slate-400">
+                With transition (smooth)
+              </div>
+              <button className="mt-4 rounded-xl bg-purple-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-400">
+                Hover me
+              </button>
+            </div>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">hidden</code> hides it
-            everywhere by default; <code className="text-emerald-300">md:block</code>{" "}
-            overrides that back to visible once the screen reaches medium
-            width.
+          <p className="mt-6 leading-8 text-slate-300">
+            The difference is subtle but noticeable — try hovering both
+            buttons above and compare how the color change feels.
           </p>
         </section>
 
@@ -247,8 +209,7 @@ export default function TailwindResponsiveLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What's the difference between a class with no prefix and one
-            with md:?
+            What does the hover: prefix do?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -262,7 +223,8 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. They do exactly the same thing
+                A. Applies a class only while the mouse is over the
+                element
               </span>
             </label>
 
@@ -276,8 +238,7 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Unprefixed applies to all screens; md: only applies
-                from medium screens up
+                B. Applies a class permanently
               </span>
             </label>
 
@@ -291,7 +252,7 @@ export default function TailwindResponsiveLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. md: only applies to mobile screens
+                C. Only works on buttons
               </span>
             </label>
           </div>
@@ -327,12 +288,13 @@ export default function TailwindResponsiveLesson() {
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
               Write the Tailwind classes for a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> that:
+              <code className="text-emerald-300">&lt;button&gt;</code> that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Has text size text-lg on mobile.</li>
-              <li>Becomes text-2xl on medium screens and up.</li>
+              <li>Has a blue background normally.</li>
+              <li>Becomes a darker blue on hover.</li>
+              <li>Transitions smoothly between the two.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -340,8 +302,9 @@ export default function TailwindResponsiveLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Write the mobile size with no prefix, then add the
-                breakpoint version right after it.
+                Use a lower shade number for normal, and a higher (darker)
+                one after <code>hover:</code>, plus the{" "}
+                <code>transition</code> class.
               </div>
             </details>
 
@@ -350,9 +313,9 @@ export default function TailwindResponsiveLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="text-lg md:text-2xl">
-  Hello!
-</div>`}</code>
+                <code>{`<button class="bg-blue-500 hover:bg-blue-700 transition text-white p-3">
+  Click me
+</button>`}</code>
               </pre>
             </details>
           </div>
@@ -371,30 +334,30 @@ export default function TailwindResponsiveLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the mobile version entirely
+                Forgetting the base state
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="md:flex-row"> <!-- what happens on mobile? -->`}
+                {`class="hover:bg-blue-700" // no normal background set`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Always set a sensible default first (like{" "}
-                <code>flex-col</code>), then override it at larger sizes —
-                don&apos;t leave mobile unstyled.
+                Always set the normal, non-hovered appearance too — 
+                <code>bg-blue-500 hover:bg-blue-700</code>, not just the
+                hover part on its own.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Thinking md: means "only on medium screens"
+                Expecting hover: to work well on touchscreens
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`md:text-2xl // applies at md AND larger (lg, xl...) too`}
+                {`hover:bg-blue-700 // behaves inconsistently on phones/tablets`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Breakpoints are &quot;from this size <strong>and up</strong>,&quot;
-                not &quot;only at this exact size.&quot;{" "}
-                <code>md:text-2xl</code> stays active on large and extra
-                large screens too, unless something later overrides it.
+                There&apos;s no mouse to &quot;hover&quot; on a touchscreen
+                — hover effects are a nice extra for desktop users, but
+                don&apos;t rely on them to convey anything essential to
+                mobile visitors.
               </p>
             </div>
           </div>
@@ -405,12 +368,12 @@ export default function TailwindResponsiveLesson() {
           <div className="text-3xl">🎯</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the next topic?
+            Ready for the final topic?
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that your layouts adapt to screen size, the next step is
-            adding interactivity with hover and focus states.
+            One last step — put everything together and build a real
+            card component from scratch.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -422,7 +385,7 @@ export default function TailwindResponsiveLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/hover-states"
+              href="/learn/tailwind/building-a-card"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
