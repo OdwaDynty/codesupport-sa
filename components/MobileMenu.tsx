@@ -25,7 +25,7 @@ export default function MobileMenu() {
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 top-full border-b border-white/10 bg-slate-950 px-6 py-6">
+        <div className="absolute left-0 right-0 top-full z-50 border-b border-white/10 bg-slate-950 px-6 py-6">
           <div className="flex flex-col gap-4">
             {links.map((link) => (
               <Link
