@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindIntroductionLesson() {
+export default function TailwindColorsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
     if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! Tailwind styles elements using small, single-purpose classes directly in your HTML."
+        "Correct! The number controls shade — higher numbers are darker."
       );
-      markTopicComplete("tailwind", "introduction");
+      markTopicComplete("tailwind", "colors-backgrounds");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindIntroductionLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 1 of 9</span>
+            <span className="text-slate-400">Topic 2 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Introduction to Tailwind CSS
+            Colors & Backgrounds
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Understand what makes Tailwind different from regular CSS, and
-            style your very first element.
+            Learn how Tailwind's color system works, and how to use it for
+            text and backgrounds.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[11%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[22%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 11%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 22%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindIntroductionLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what utility-first CSS means.</li>
-            <li>✓ Explain how Tailwind differs from writing regular CSS.</li>
-            <li>✓ Add the Tailwind CDN script to an HTML page.</li>
-            <li>✓ Style a simple element using utility classes.</li>
+            <li>✓ Explain how Tailwind's color naming pattern works.</li>
+            <li>✓ Set text color using text- classes.</li>
+            <li>✓ Set background color using bg- classes.</li>
+            <li>✓ Understand what the color shade number means.</li>
           </ul>
         </section>
 
@@ -94,46 +94,41 @@ export default function TailwindIntroductionLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What is Tailwind CSS?
+            Tailwind's color naming pattern
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Tailwind CSS is a{" "}
-            <strong className="text-white">utility-first</strong> CSS
-            framework. Instead of writing your own CSS rules in a separate
-            file, you style elements by adding small, pre-built classes
-            directly onto your HTML — each class does exactly one thing.
+            Every Tailwind color class follows the same predictable
+            pattern:{" "}
+            <code className="text-emerald-300">property-color-shade</code>.
           </p>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="text-sm font-medium text-slate-400">
-                Traditional CSS
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <div className="font-mono text-lg text-purple-400">bg</div>
+                <p className="mt-2 text-xs text-slate-500">
+                  What it affects (background)
+                </p>
               </div>
-              <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-950 p-4 font-mono text-xs leading-6 text-slate-300">
-                <code>{`.button {
-  background: green;
-  color: white;
-  padding: 12px;
-}`}</code>
-              </pre>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="text-sm font-medium text-slate-400">
-                Tailwind
+              <div>
+                <div className="font-mono text-lg text-blue-300">blue</div>
+                <p className="mt-2 text-xs text-slate-500">
+                  Which color family
+                </p>
               </div>
-              <pre className="mt-3 overflow-x-auto rounded-lg bg-slate-950 p-4 font-mono text-xs leading-6 text-emerald-300">
-                <code>{`<button class="bg-green-600
-  text-white p-3">`}</code>
-              </pre>
+              <div>
+                <div className="font-mono text-lg text-orange-300">500</div>
+                <p className="mt-2 text-xs text-slate-500">
+                  How light or dark
+                </p>
+              </div>
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            No separate CSS file, no inventing class names like{" "}
-            <code className="text-emerald-300">.button</code> — you just
-            combine existing utility classes right where you need them.
+            Put together: <code className="text-emerald-300">bg-blue-500</code>{" "}
+            means &quot;set the background to a medium blue.&quot;
           </p>
         </section>
 
@@ -144,42 +139,36 @@ export default function TailwindIntroductionLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Getting Tailwind onto a page
+            Shades — from 50 to 950
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The fastest way to try Tailwind, without installing anything,
-            is a single script tag in your HTML&apos;s{" "}
-            <code className="text-emerald-300">&lt;head&gt;</code>:
+            The number controls the shade. It runs in steps — 50, 100,
+            200, 300... up to 900 (some colors go to 950) — and{" "}
+            <strong className="text-white">higher numbers are darker</strong>.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              index.html
-            </div>
-
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
-              <code>
-                <span className="text-slate-400">&lt;head&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-400">&lt;script src=</span>
-                <span className="text-orange-300">
-                  &quot;https://cdn.tailwindcss.com&quot;
-                </span>
-                <span className="text-slate-400">&gt;&lt;/script&gt;</span>
-                {"\n"}
-                <span className="text-slate-400">&lt;/head&gt;</span>
-              </code>
-            </pre>
+          <div className="mt-6 grid grid-cols-5 gap-2 sm:grid-cols-9">
+            <div className="rounded-lg bg-emerald-100 p-2 text-center text-xs text-slate-900">100</div>
+            <div className="rounded-lg bg-emerald-200 p-2 text-center text-xs text-slate-900">200</div>
+            <div className="rounded-lg bg-emerald-300 p-2 text-center text-xs text-slate-900">300</div>
+            <div className="rounded-lg bg-emerald-400 p-2 text-center text-xs text-slate-950">400</div>
+            <div className="rounded-lg bg-emerald-500 p-2 text-center text-xs text-white">500</div>
+            <div className="rounded-lg bg-emerald-600 p-2 text-center text-xs text-white">600</div>
+            <div className="rounded-lg bg-emerald-700 p-2 text-center text-xs text-white">700</div>
+            <div className="rounded-lg bg-emerald-800 p-2 text-center text-xs text-white">800</div>
+            <div className="rounded-lg bg-emerald-900 p-2 text-center text-xs text-white">900</div>
           </div>
 
+          <p className="mt-5 text-sm text-slate-500">
+            All nine of these are <code className="text-emerald-300">bg-emerald-100</code> through{" "}
+            <code className="text-emerald-300">bg-emerald-900</code>.
+          </p>
+
           <p className="mt-5 leading-8 text-slate-300">
-            This is exactly how CodeSupport SA itself uses Tailwind for its
-            own design — a real, production-ready way to get started
-            quickly. Larger projects usually install Tailwind properly as
-            part of their build tools, but the ideas you learn are
-            identical either way.
+            <strong className="text-white">500</strong> is usually a good
+            starting point — it&apos;s a balanced, medium version of any
+            color.
           </p>
         </section>
 
@@ -190,13 +179,8 @@ export default function TailwindIntroductionLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Your first styled element
+            Text color and background color together
           </h2>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Let&apos;s style a simple box. Each class below controls one
-            specific thing.
-          </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
@@ -207,50 +191,33 @@ export default function TailwindIntroductionLesson() {
               <code>
                 <span className="text-slate-400">&lt;div class=</span>
                 <span className="text-orange-300">
-                  &quot;bg-emerald-500 text-white p-4&quot;
+                  &quot;bg-slate-900 text-emerald-400 p-4&quot;
                 </span>
                 <span className="text-slate-400">&gt;</span>
                 {"\n"}
                 {"  "}
-                <span className="text-slate-300">Hello, Tailwind!</span>
+                <span className="text-slate-300">
+                  Dark background, emerald text
+                </span>
                 {"\n"}
                 <span className="text-slate-400">&lt;/div&gt;</span>
               </code>
             </pre>
           </div>
 
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-4">
-              <div className="font-mono text-sm text-purple-400">
-                bg-emerald-500
-              </div>
-              <p className="mt-1 text-xs text-slate-500">
-                Sets the background color
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-4">
-              <div className="font-mono text-sm text-purple-400">
-                text-white
-              </div>
-              <p className="mt-1 text-xs text-slate-500">
-                Sets the text color
-              </p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-4">
-              <div className="font-mono text-sm text-purple-400">p-4</div>
-              <p className="mt-1 text-xs text-slate-500">
-                Adds padding on all sides
-              </p>
-            </div>
+          <p className="mt-5 text-sm text-slate-500">Result:</p>
+
+          <div className="mt-3 rounded-xl bg-slate-900 p-4 text-emerald-400">
+            Dark background, emerald text
           </div>
 
-          <p className="mt-6 text-sm text-slate-500">
-            Here&apos;s what that actually looks like:
+          <p className="mt-6 leading-8 text-slate-300">
+            Notice this is exactly the color scheme CodeSupport SA itself
+            uses throughout the whole site — a dark{" "}
+            <code className="text-emerald-300">bg-slate-950</code>{" "}
+            background with <code className="text-emerald-300">emerald</code>{" "}
+            accents everywhere.
           </p>
-
-          <div className="mt-3 rounded-xl bg-emerald-500 p-4 text-white">
-            Hello, Tailwind!
-          </div>
         </section>
 
         {/* Quiz */}
@@ -260,7 +227,7 @@ export default function TailwindIntroductionLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What does &quot;utility-first&quot; mean?
+            What does the number in bg-blue-700 control?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -274,8 +241,7 @@ export default function TailwindIntroductionLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. You write your own custom class names in a separate CSS
-                file, like normal
+                A. How wide the element is
               </span>
             </label>
 
@@ -289,8 +255,7 @@ export default function TailwindIntroductionLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. You style elements using small, single-purpose classes
-                directly in your HTML
+                B. How light or dark the color is — higher is darker
               </span>
             </label>
 
@@ -304,7 +269,7 @@ export default function TailwindIntroductionLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Tailwind writes JavaScript code for you
+                C. How transparent the color is
               </span>
             </label>
           </div>
@@ -339,14 +304,14 @@ export default function TailwindIntroductionLesson() {
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write the Tailwind classes needed to make a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> have:
+              Write the Tailwind classes for a{" "}
+              <code className="text-emerald-300">&lt;div&gt;</code> with:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>A blue background.</li>
-              <li>White text.</li>
-              <li>Padding on all sides.</li>
+              <li>A dark purple background (try shade 800).</li>
+              <li>Light gray text (try shade 100).</li>
+              <li>Some padding.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -354,10 +319,8 @@ export default function TailwindIntroductionLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Background color classes start with{" "}
-                <code>bg-</code>, text color classes start with{" "}
-                <code>text-</code>, and padding uses <code>p-</code>{" "}
-                followed by a number.
+                Tailwind's purple color family is called{" "}
+                <code>purple</code>, and gray is called <code>gray</code>.
               </div>
             </details>
 
@@ -366,7 +329,7 @@ export default function TailwindIntroductionLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="bg-blue-500 text-white p-4">
+                <code>{`<div class="bg-purple-800 text-gray-100 p-4">
   Hello!
 </div>`}</code>
               </pre>
@@ -387,30 +350,29 @@ export default function TailwindIntroductionLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting quotes around the class list
+                Forgetting the shade number
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class=bg-blue-500 text-white>`}
+                {`<div class="bg-blue">`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                All the classes need to sit inside one pair of quotes:{" "}
-                <code>class=&quot;bg-blue-500 text-white&quot;</code>
+                Most Tailwind colors need a shade number —{" "}
+                <code>bg-blue</code> on its own usually won&apos;t work.
+                Use <code>bg-blue-500</code> instead.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Guessing a class name that doesn&apos;t exist
+                Using low contrast colors together
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="background-blue">`}
+                {`<div class="bg-yellow-200 text-yellow-300">`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Tailwind class names follow specific patterns (like{" "}
-                <code>bg-blue-500</code>, not{" "}
-                <code>background-blue</code>). If a class doesn&apos;t
-                match Tailwind&apos;s naming, nothing happens — no error,
-                it just silently doesn&apos;t style anything.
+                Similar shades of the same color are hard to read against
+                each other. Pair a light background with dark text, or a
+                dark background with light text.
               </p>
             </div>
           </div>
@@ -425,9 +387,8 @@ export default function TailwindIntroductionLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you understand the basic idea, the next step is
-            learning Tailwind&apos;s color and background utilities in
-            more depth.
+            Now that you can control color, the next step is learning how
+            to control spacing and sizing.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -439,7 +400,7 @@ export default function TailwindIntroductionLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/colors-backgrounds"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

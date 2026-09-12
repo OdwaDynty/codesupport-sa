@@ -19,7 +19,7 @@ const topics = [
     title: "Colors & Backgrounds",
     description: "Style text color and background color using utility classes.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",
