@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindTypographyLesson() {
+export default function TailwindBordersLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! font-bold makes text bold, text-xl makes it larger."
+        "Correct! rounded-full makes an element's corners fully circular."
       );
-      markTopicComplete("tailwind", "typography");
+      markTopicComplete("tailwind", "borders-shadows");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,24 +50,25 @@ export default function TailwindTypographyLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 4 of 9</span>
+            <span className="text-slate-400">Topic 5 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Typography
+            Borders, Rounded Corners & Shadows
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Control the size, weight and alignment of your text.
+            Give your elements definition and depth — the details that
+            make a design feel polished.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[44%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[56%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 44%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 56%</p>
         </div>
       </header>
 
@@ -79,10 +80,10 @@ export default function TailwindTypographyLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Set font size using text- utilities.</li>
-            <li>✓ Set font weight using font- utilities.</li>
-            <li>✓ Align text using text-left/center/right.</li>
-            <li>✓ Control line height using leading- utilities.</li>
+            <li>✓ Add a border using border and border- color utilities.</li>
+            <li>✓ Round corners using rounded- utilities.</li>
+            <li>✓ Add depth using shadow- utilities.</li>
+            <li>✓ Combine all three to style a card.</li>
           </ul>
         </section>
 
@@ -92,29 +93,34 @@ export default function TailwindTypographyLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Font size</h2>
+          <h2 className="mt-3 text-3xl font-bold">Borders</h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Font size utilities use{" "}
-            <code className="text-emerald-300">text-</code> followed by a
-            named size, from tiny to huge.
+            The <code className="text-emerald-300">border</code> class
+            adds a thin 1px border on all sides. You can control its color
+            with <code className="text-emerald-300">border-</code>{" "}
+            followed by a color, same pattern as{" "}
+            <code className="text-emerald-300">text-</code> and{" "}
+            <code className="text-emerald-300">bg-</code>.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="space-y-3">
-              <p className="text-xs">text-xs — small print</p>
-              <p className="text-sm">text-sm — small text</p>
-              <p className="text-base">text-base — normal text</p>
-              <p className="text-lg">text-lg — slightly larger</p>
-              <p className="text-xl">text-xl — larger still</p>
-              <p className="text-2xl">text-2xl — heading size</p>
-              <p className="text-4xl">text-4xl — big heading</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="rounded border border-white/20 p-4 text-center text-sm">
+              border
+            </div>
+            <div className="rounded border-2 border-emerald-500 p-4 text-center text-sm">
+              border-2 border-emerald-500
+            </div>
+            <div className="rounded border-4 border-purple-500 p-4 text-center text-sm">
+              border-4 border-purple-500
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            You can see the whole scale directly above — each line is
-            actually styled with the class it names.
+            <code className="text-emerald-300">border-2</code> and{" "}
+            <code className="text-emerald-300">border-4</code> make the
+            border thicker — same numbering idea you&apos;ve seen
+            elsewhere.
           </p>
         </section>
 
@@ -124,30 +130,37 @@ export default function TailwindTypographyLesson() {
             02 • Understand
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            Font weight and alignment
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Rounded corners</h2>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <p className="font-normal">font-normal</p>
-              <p className="font-medium">font-medium</p>
-              <p className="font-semibold">font-semibold</p>
-              <p className="font-bold">font-bold</p>
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">rounded-</code> controls
+            how curved an element&apos;s corners are — from barely
+            rounded to fully circular.
+          </p>
+
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-5">
+            <div className="rounded-none bg-emerald-500 p-4 text-center text-xs text-white">
+              rounded-none
             </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <p className="text-left text-sm text-slate-400">text-left</p>
-              <p className="text-center text-sm text-slate-400">text-center</p>
-              <p className="text-right text-sm text-slate-400">text-right</p>
+            <div className="rounded-md bg-emerald-500 p-4 text-center text-xs text-white">
+              rounded-md
+            </div>
+            <div className="rounded-xl bg-emerald-500 p-4 text-center text-xs text-white">
+              rounded-xl
+            </div>
+            <div className="rounded-2xl bg-emerald-500 p-4 text-center text-xs text-white">
+              rounded-2xl
+            </div>
+            <div className="rounded-full bg-emerald-500 p-4 text-center text-xs text-white">
+              rounded-full
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            Notice the pattern is the same everywhere in Tailwind — a
-            property prefix (<code className="text-emerald-300">font-</code>,{" "}
-            <code className="text-emerald-300">text-</code>) followed by a
-            value.
+            <code className="text-emerald-300">rounded-full</code> on a
+            square element (equal width and height) produces a perfect
+            circle — this is how the little colored dots and avatar
+            circles you&apos;ve seen throughout CodeSupport SA are made.
           </p>
         </section>
 
@@ -157,36 +170,30 @@ export default function TailwindTypographyLesson() {
             03 • Examples
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            Putting it together
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Shadows</h2>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              HTML
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">shadow-</code> adds depth,
+            making an element look like it&apos;s lifted slightly above
+            the page.
+          </p>
+
+          <div className="mt-6 grid gap-6 bg-slate-800 p-8 sm:grid-cols-3">
+            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-sm">
+              shadow-sm
             </div>
-
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-slate-400">&lt;h1 class=</span>
-                <span className="text-orange-300">
-                  &quot;text-3xl font-bold text-center&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">Welcome!</span>
-                {"\n"}
-                <span className="text-slate-400">&lt;/h1&gt;</span>
-              </code>
-            </pre>
+            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-lg">
+              shadow-lg
+            </div>
+            <div className="rounded-xl bg-slate-950 p-5 text-center text-sm shadow-2xl">
+              shadow-2xl
+            </div>
           </div>
 
-          <p className="mt-5 text-sm text-slate-500">Result:</p>
-
-          <div className="mt-3 rounded-xl bg-slate-950 p-6">
-            <h3 className="text-center text-3xl font-bold">Welcome!</h3>
-          </div>
+          <p className="mt-6 leading-8 text-slate-300">
+            Shadows are subtle on light backgrounds, so they&apos;re shown
+            here on a lighter gray strip to make the effect visible.
+          </p>
         </section>
 
         {/* Quiz */}
@@ -196,7 +203,7 @@ export default function TailwindTypographyLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            Which classes would make text both bold and large?
+            Which class makes an element's corners fully circular?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -210,7 +217,7 @@ export default function TailwindTypographyLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. text-center and p-4
+                A. rounded-full
               </span>
             </label>
 
@@ -224,7 +231,7 @@ export default function TailwindTypographyLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. font-bold and text-xl
+                B. rounded-none
               </span>
             </label>
 
@@ -238,7 +245,7 @@ export default function TailwindTypographyLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. m-bold and size-xl
+                C. border-full
               </span>
             </label>
           </div>
@@ -273,14 +280,14 @@ export default function TailwindTypographyLesson() {
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write the Tailwind classes for an{" "}
-              <code className="text-emerald-300">&lt;h2&gt;</code> that is:
+              Write the Tailwind classes for a{" "}
+              <code className="text-emerald-300">&lt;div&gt;</code> that is:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>2xl in size.</li>
-              <li>Semibold weight.</li>
-              <li>Centered.</li>
+              <li>Has a 2px emerald border.</li>
+              <li>Has large rounded corners (rounded-xl).</li>
+              <li>Has a medium shadow.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -288,8 +295,9 @@ export default function TailwindTypographyLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You'll need three classes: one for size, one for weight,
-                one for alignment.
+                You'll need <code>border-2</code> plus a color class,{" "}
+                <code>rounded-xl</code>, and{" "}
+                <code>shadow-md</code>.
               </div>
             </details>
 
@@ -298,9 +306,9 @@ export default function TailwindTypographyLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<h2 class="text-2xl font-semibold text-center">
-  My Heading
-</h2>`}</code>
+                <code>{`<div class="border-2 border-emerald-500 rounded-xl shadow-md p-4">
+  Hello!
+</div>`}</code>
               </pre>
             </details>
           </div>
@@ -319,29 +327,29 @@ export default function TailwindTypographyLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Confusing text-xl (size) with text-center (alignment)
+                Setting a border color without a border width
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`class="text-center-xl" — this class doesn't exist`}
+                {`class="border-emerald-500" // no border shows`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Size and alignment are always separate classes:{" "}
-                <code>text-xl</code> and <code>text-center</code>, used
-                together, never combined into one word.
+                A color alone doesn&apos;t create a border — you still
+                need the base <code>border</code> (or{" "}
+                <code>border-2</code>, etc.) class too.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using bold instead of font-bold
+                Expecting rounded-full to work on a rectangle
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`class="bold"`}
+                {`<div class="w-40 h-10 rounded-full">`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Tailwind's class is always <code>font-bold</code>, with
-                the <code>font-</code> prefix — a bare{" "}
-                <code>bold</code> doesn&apos;t exist as a class.
+                On a non-square element, <code>rounded-full</code> creates
+                a pill shape, not a circle — that&apos;s expected, not a
+                bug, but worth knowing if you actually wanted a circle.
               </p>
             </div>
           </div>
@@ -356,8 +364,9 @@ export default function TailwindTypographyLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can style text, the next step is learning about
-            borders, rounded corners and shadows.
+            Now that you can style individual elements, the next step is
+            learning how to arrange several elements together using
+            Flexbox.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -369,7 +378,7 @@ export default function TailwindTypographyLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/borders-shadows"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

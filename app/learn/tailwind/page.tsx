@@ -43,7 +43,7 @@ const topics = [
     title: "Borders, Rounded Corners & Shadows",
     description: "Add borders, round corners and give elements depth with shadows.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "06",
