@@ -51,7 +51,7 @@ const topics = [
     title: "Flexbox Basics",
     description: "Arrange elements in a row or column using flex utilities.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "07",
@@ -59,7 +59,7 @@ const topics = [
     title: "Responsive Design",
     description: "Make layouts adapt to different screen sizes using breakpoint prefixes.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "08",
