@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AuthNavButton from "@/components/AuthNavButton";
+import MobileMenu from "@/components/MobileMenu";
 
 const languages = [
   {
@@ -119,9 +120,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <button className="rounded-lg border border-white/10 px-3 py-2 text-slate-300 md:hidden">
-            Menu
-          </button>
+          <MobileMenu />
         </div>
       </nav>
 
