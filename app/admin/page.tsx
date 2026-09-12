@@ -218,6 +218,12 @@ export default function AdminPage() {
             >
               Consultations
             </Link>
+             <Link
+              href="/admin/exercises"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Exercises
+            </Link>
 
             <button
               onClick={logout}

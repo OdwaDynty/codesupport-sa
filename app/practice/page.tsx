@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import AuthNavButton from "@/components/AuthNavButton";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 type Exercise = {
-  id: number;
-  language: "Java" | "Python";
-  level: "Beginner" | "Intermediate";
+  id: string;
+  language: string;
+  level: string;
   topic: string;
   title: string;
   question: string;
@@ -15,285 +16,31 @@ type Exercise = {
   solution: string;
 };
 
-const exercises: Exercise[] = [
-  {
-    id: 1,
-    language: "Java",
-    level: "Beginner",
-    topic: "Variables",
-    title: "Store a learner's age",
-    question:
-      "Create a Java variable called studentAge and store the value 17 in it.",
-    hint: "You need a whole-number data type.",
-    solution: `int studentAge = 17;`,
-  },
-  {
-    id: 2,
-    language: "Java",
-    level: "Beginner",
-    topic: "Output",
-    title: "Display your name",
-    question:
-      'Write a Java statement that displays your name on the screen using System.out.println().',
-    hint: 'Put your name inside double quotation marks.',
-    solution: `System.out.println("Odwa");`,
-  },
-  {
-    id: 3,
-    language: "Java",
-    level: "Beginner",
-    topic: "Calculations",
-    title: "Calculate a total",
-    question:
-      "Create two integer variables called mark1 and mark2. Store 65 and 75 in them and calculate their total.",
-    hint: "Create a third variable called total and add mark1 and mark2.",
-    solution: `int mark1 = 65;
-int mark2 = 75;
-int total = mark1 + mark2;`,
-  },
-  {
-    id: 4,
-    language: "Java",
-    level: "Beginner",
-    topic: "If Statements",
-    title: "Check a pass mark",
-    question:
-      "Write an if statement that displays \"Pass\" when a variable called mark is 50 or higher.",
-    hint: "Use >= when comparing the mark with 50.",
-    solution: `if (mark >= 50) {
-    System.out.println("Pass");
-}`,
-  },
-  {
-    id: 5,
-    language: "Java",
-    level: "Intermediate",
-    topic: "If / Else",
-    title: "Pass or fail",
-    question:
-      "Write an if/else statement that displays \"Pass\" when mark is 50 or higher and \"Fail\" otherwise.",
-    hint: "The second result belongs inside else.",
-    solution: `if (mark >= 50) {
-    System.out.println("Pass");
-} else {
-    System.out.println("Fail");
-}`,
-  },
-  {
-    id: 6,
-    language: "Java",
-    level: "Intermediate",
-    topic: "Loops",
-    title: "Count from 1 to 5",
-    question:
-      "Use a for loop to display the numbers 1, 2, 3, 4 and 5.",
-    hint: "Start the counter at 1 and continue while it is less than or equal to 5.",
-    solution: `for (int i = 1; i <= 5; i++) {
-    System.out.println(i);
-}`,
-  },
-  {
-    id: 7,
-    language: "Python",
-    level: "Beginner",
-    topic: "Variables",
-    title: "Store a learner's mark",
-    question:
-      "Create a Python variable called mark and store the value 78 in it.",
-    hint: "Python does not require you to declare the data type.",
-    solution: `mark = 78`,
-  },
-  {
-    id: 8,
-    language: "Python",
-    level: "Beginner",
-    topic: "Output",
-    title: "Display your school",
-    question:
-      'Write a Python statement that displays the name of your school.',
-    hint: "Use the print() function.",
-    solution: `print("My School")`,
-  },
-  {
-    id: 8,
-    language: "Python",
-    level: "Beginner",
-    topic: "Output",
-    title: "Display your school",
-    question:
-      'Write a Python statement that displays the name of your school.',
-    hint: "Use the print() function.",
-    solution: `print("My School")`,
-  },
-  {
-    id: 9,
-    language: "Java",
-    level: "Beginner",
-    topic: "Data Types",
-    title: "Store a class average",
-    question:
-      "Create a Java variable called classAverage and store the decimal value 68.4 in it, using the correct data type.",
-    hint: "A value with a decimal point needs a type that can store decimals.",
-    solution: `double classAverage = 68.4;`,
-  },
-  {
-    id: 10,
-    language: "Java",
-    level: "Beginner",
-    topic: "Data Types",
-    title: "Store a pass/fail result",
-    question:
-      "Create a Java variable called isPassing that stores whether a learner passed (true or false).",
-    hint: "You need a data type that can only hold true or false.",
-    solution: `boolean isPassing = true;`,
-  },
-  {
-    id: 11,
-    language: "Java",
-    level: "Intermediate",
-    topic: "Nested If",
-    title: "Grade with distinction",
-    question:
-      "Given a variable called mark, write nested if statements that print \"Distinction\" if mark is 80 or higher, \"Pass\" if mark is 50 or higher but below 80, and \"Fail\" otherwise.",
-    hint: "Start with an outer if/else for the 50 mark, then nest another if/else inside the \"50 or higher\" branch for the 80 mark.",
-    solution: `if (mark >= 50) {
-    if (mark >= 80) {
-        System.out.println("Distinction");
-    } else {
-        System.out.println("Pass");
-    }
-} else {
-    System.out.println("Fail");
-}`,
-  },
-  {
-    id: 12,
-    language: "Java",
-    level: "Intermediate",
-    topic: "Loops",
-    title: "Countdown with a while loop",
-    question:
-      "Use a while loop to print the numbers from 10 down to 1.",
-    hint: "Start a counter at 10, keep looping while it's greater than 0, and decrease it by 1 each time.",
-    solution: `int count = 10;
-
-while (count > 0) {
-    System.out.println(count);
-    count--;
-}`,
-  },
-  {
-    id: 13,
-    language: "Python",
-    level: "Beginner",
-    topic: "Data Types",
-    title: "Store a subject name",
-    question:
-      "Create a Python variable called subjectName and store the text \"Mathematics\" in it.",
-    hint: "Text values in Python need quotes around them.",
-    solution: `subject_name = "Mathematics"`,
-  },
-  {
-    id: 14,
-    language: "Python",
-    level: "Beginner",
-    topic: "Input and Output",
-    title: "Greet the user by name",
-    question:
-      "Write a Python program that asks the user for their name using input(), then prints a greeting that includes their name.",
-    hint: "Store the result of input() in a variable, then combine it into a greeting using +.",
-    solution: `name = input("What is your name? ")
-print("Hello, " + name)`,
-  },
-  {
-    id: 15,
-    language: "Python",
-    level: "Beginner",
-    topic: "Operators",
-    title: "Check if a mark passes",
-    question:
-      "Given a variable called mark, write a single expression that checks whether mark is greater than or equal to 50.",
-    hint: "Use the >= comparison operator.",
-    solution: `mark >= 50`,
-  },
-  {
-    id: 16,
-    language: "Python",
-    level: "Beginner",
-    topic: "If Statements",
-    title: "Check the weather",
-    question:
-      "Given a variable called temperature, write an if statement that prints \"It's a hot day\" when temperature is greater than 30.",
-    hint: "Don't forget the colon at the end of the if line, and indent the line that should run.",
-    solution: `if temperature > 30:
-    print("It's a hot day")`,
-  },
-  {
-    id: 17,
-    language: "Python",
-    level: "Intermediate",
-    topic: "If / Else",
-    title: "Voting age check",
-    question:
-      "Given a variable called age, write an if/else statement that prints \"You can vote\" if age is 18 or older, and \"You cannot vote yet\" otherwise.",
-    hint: "The second message belongs inside the else block.",
-    solution: `if age >= 18:
-    print("You can vote")
-else:
-    print("You cannot vote yet")`,
-  },
-  {
-    id: 18,
-    language: "Python",
-    level: "Intermediate",
-    topic: "Nested Conditions",
-    title: "Grade with distinction",
-    question:
-      "Given a variable called mark, write nested conditions that print \"Distinction\" if mark is 80 or higher, \"Pass\" if mark is 50 or higher but below 80, and \"Fail\" otherwise.",
-    hint: "Nest an if/else for the 80 mark inside the \"50 or higher\" branch of an outer if/else.",
-    solution: `if mark >= 50:
-    if mark >= 80:
-        print("Distinction")
-    else:
-        print("Pass")
-else:
-    print("Fail")`,
-  },
-  {
-    id: 19,
-    language: "Python",
-    level: "Intermediate",
-    topic: "Loops",
-    title: "Count from 1 to 10",
-    question:
-      "Use a for loop and range() to print the numbers 1 through 10, each on its own line.",
-    hint: "Remember range() excludes its end value, so you'll need to go up to 11 to include 10.",
-    solution: `for i in range(1, 11):
-    print(i)`,
-  },
-  {
-    id: 20,
-    language: "Python",
-    level: "Intermediate",
-    topic: "Loops",
-    title: "Countdown with a while loop",
-    question:
-      "Use a while loop to print the numbers from 10 down to 1.",
-    hint: "Start a counter at 10, keep looping while it's greater than 0, and decrease it by 1 each time.",
-    solution: `count = 10
-
-while count > 0:
-    print(count)
-    count = count - 1`,
-  },
-];
-
 export default function PracticePage() {
+  const [exercises, setExercises] = useState<Exercise[]>([]);
+  const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("All");
   const [level, setLevel] = useState("All");
-  const [completed, setCompleted] = useState<number[]>([]);
-  const [openHint, setOpenHint] = useState<number | null>(null);
-  const [openSolution, setOpenSolution] = useState<number | null>(null);
+  const [completed, setCompleted] = useState<string[]>([]);
+  const [openHint, setOpenHint] = useState<string | null>(null);
+  const [openSolution, setOpenSolution] = useState<string | null>(null);
+
+  useEffect(() => {
+    loadExercises();
+  }, []);
+
+  const loadExercises = async () => {
+    const { data, error } = await supabase
+      .from("practice_exercises")
+      .select("*")
+      .order("sort_order", { ascending: true });
+
+    if (!error && data) {
+      setExercises(data);
+    }
+
+    setLoading(false);
+  };
 
   const filteredExercises = useMemo(() => {
     return exercises.filter((exercise) => {
@@ -304,9 +51,9 @@ export default function PracticePage() {
 
       return languageMatch && levelMatch;
     });
-  }, [language, level]);
+  }, [exercises, language, level]);
 
-  const markCompleted = (id: number) => {
+  const markCompleted = (id: string) => {
     setCompleted((current) =>
       current.includes(id)
         ? current.filter((exerciseId) => exerciseId !== id)
@@ -392,7 +139,10 @@ export default function PracticePage() {
               <div
                 className="h-full rounded-full bg-emerald-400 transition-all"
                 style={{
-                  width: `${(completed.length / exercises.length) * 100}%`,
+                  width:
+                    exercises.length > 0
+                      ? `${(completed.length / exercises.length) * 100}%`
+                      : "0%",
                 }}
               />
             </div>
@@ -455,7 +205,11 @@ export default function PracticePage() {
 
       {/* Exercises */}
       <section className="mx-auto max-w-5xl px-6 py-12 lg:px-8">
-        {filteredExercises.length === 0 ? (
+        {loading ? (
+          <div className="rounded-2xl border border-white/10 bg-slate-900 p-10 text-center">
+            <p className="text-sm text-slate-500">Loading exercises...</p>
+          </div>
+        ) : filteredExercises.length === 0 ? (
           <div className="rounded-2xl border border-white/10 bg-slate-900 p-10 text-center">
             <div className="text-3xl">🔎</div>
 
