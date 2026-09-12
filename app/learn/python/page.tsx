@@ -113,7 +113,7 @@ const topics = [
     title: "Intro to Classes",
     description: "Learn the basics of organizing code using objects.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 

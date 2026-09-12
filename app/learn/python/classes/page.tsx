@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function PythonFunctionsLesson() {
+export default function PythonClassesLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "C") {
       setQuizResult(
-        "Correct! return sends a value back out of the function to wherever it was called."
+        "Correct! An object is a specific instance created from a class, with its own values."
       );
-      markTopicComplete("python", "functions");
+      markTopicComplete("python", "classes");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function PythonFunctionsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 12 of 13</span>
+            <span className="text-slate-400">Topic 13 of 13</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python Functions
+            Intro to Classes
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to organize your code into reusable, named blocks
-            instead of repeating the same instructions everywhere.
+            A first look at organizing code around objects — the
+            foundation of object-oriented programming.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[92%] rounded-full bg-emerald-400" />
+            <div className="h-full w-full rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 92%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function PythonFunctionsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what a function is and why they&apos;re useful.</li>
-            <li>✓ Write a function with parameters and a return value.</li>
-            <li>✓ Call a function.</li>
-            <li>✓ Understand the difference between a function that returns and one that doesn&apos;t.</li>
+            <li>✓ Explain what a class and an object are.</li>
+            <li>✓ Create a simple class with attributes.</li>
+            <li>✓ Create objects from a class.</li>
+            <li>✓ Access an object&apos;s attributes and methods.</li>
           </ul>
         </section>
 
@@ -94,43 +94,54 @@ export default function PythonFunctionsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            What is a function?
+            Classes are blueprints
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            You&apos;ve already used functions this whole time —{" "}
-            <code className="text-emerald-300">print()</code>,{" "}
-            <code className="text-emerald-300">input()</code>,{" "}
-            <code className="text-emerald-300">range()</code> are all
-            functions Python provides for you. A{" "}
-            <strong className="text-white">function</strong> is a named
-            block of code that performs a task, which you can{" "}
-            <strong className="text-white">call</strong> (run) whenever
-            you need it. You can write your own too, using{" "}
-            <code className="text-emerald-300">def</code>.
+            A <strong className="text-white">class</strong> is a{" "}
+            <strong className="text-white">blueprint</strong> for
+            creating things. Think of it like a blueprint for a house —
+            the blueprint itself isn&apos;t a house you can live in, but
+            you can build many actual houses from it.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">Example</div>
+            <div className="text-sm font-medium text-slate-400">
+              A Learner class
+            </div>
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">def</span>{" "}
-                <span className="text-blue-300">greet</span>
-                <span className="text-slate-400">():</span>
+                <span className="text-purple-400">class</span>{" "}
+                <span className="text-yellow-300">Learner</span>
+                <span className="text-slate-400">:</span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  print(&quot;Hello!&quot;)
-                </span>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-300">__init__</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-blue-300">self</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-blue-300">name</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-blue-300">mark</span>
+                <span className="text-slate-400">):</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">self.name = name</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">self.mark = mark</span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            To actually run it, you <strong className="text-white">call</strong>{" "}
-            it by name, followed by brackets:{" "}
-            <code className="text-emerald-300">greet()</code>
+            <code className="text-emerald-300">__init__</code> is a
+            special method Python calls automatically whenever a new
+            object is created — it&apos;s where you set up that
+            object&apos;s starting values. <code className="text-emerald-300">self</code>{" "}
+            refers to the specific object being created.
           </p>
         </section>
 
@@ -141,60 +152,52 @@ export default function PythonFunctionsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Parameters and return values
+            Objects — actual instances of a class
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Functions become genuinely useful once they can accept input
-            (<strong className="text-white">parameters</strong>) and send
-            a result back out (<strong className="text-white">return</strong>).
+            Once you have a class, you can create as many{" "}
+            <strong className="text-white">objects</strong> from it as you
+            like — each one with its own separate values.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <pre className="overflow-x-auto font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">def</span>{" "}
-                <span className="text-blue-300">add_numbers</span>
+                <span className="text-blue-300">learner1</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-yellow-300">Learner</span>
                 <span className="text-slate-400">(</span>
-                <span className="text-blue-300">a</span>
+                <span className="text-orange-300">&quot;Nampho&quot;</span>
                 <span className="text-slate-400">, </span>
-                <span className="text-blue-300">b</span>
-                <span className="text-slate-400">):</span>
+                <span className="text-orange-300">85</span>
+                <span className="text-slate-400">)</span>
                 {"\n"}
-                {"    "}
-                <span className="text-purple-400">return</span>
-                <span className="text-slate-300"> a + b</span>
+                <span className="text-blue-300">learner2</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-yellow-300">Learner</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-orange-300">&quot;Thando&quot;</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">62</span>
+                <span className="text-slate-400">)</span>
               </code>
             </pre>
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-blue-300">(a, b)</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                The <strong className="text-white">parameters</strong> —
-                values the function receives from whoever calls it. Notice
-                Python doesn&apos;t need you to declare their types.
-              </p>
-            </div>
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">learner1</code> and{" "}
+            <code className="text-emerald-300">learner2</code> are both
+            separate <code className="text-emerald-300">Learner</code>{" "}
+            objects, each with their own independent{" "}
+            <code>name</code> and <code>mark</code>. You can access their
+            values with a dot:
+          </p>
 
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">return a + b</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Sends the result back to the caller and immediately ends
-                the function.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              Calling it
-            </div>
-
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-              <code>{`total = add_numbers(5, 3)
-print(total)  # prints 8`}</code>
+          <div className="mt-5 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
+              <code>{`print(learner1.name)  # Nampho
+print(learner2.mark)  # 62`}</code>
             </pre>
           </div>
         </section>
@@ -206,50 +209,63 @@ print(total)  # prints 8`}</code>
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            A function that doesn&apos;t return anything
+            Adding a method to a class
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Not every function needs to send a value back. If a function
-            just <em>does</em> something (like printing a message) without
-            needing to return a result, that&apos;s completely fine — you
-            simply don&apos;t write a{" "}
-            <code className="text-emerald-300">return</code> statement.
+            Classes can also contain methods that work with their own
+            attributes. Every method needs{" "}
+            <code className="text-emerald-300">self</code> as its first
+            parameter, so it can access that specific object&apos;s data.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              A function with no return
+              learner.py
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
+                <span className="text-purple-400">class</span>{" "}
+                <span className="text-yellow-300">Learner</span>
+                <span className="text-slate-400">:</span>
+                {"\n"}
+                {"    "}
                 <span className="text-purple-400">def</span>{" "}
-                <span className="text-blue-300">print_result</span>
+                <span className="text-blue-300">__init__</span>
                 <span className="text-slate-400">(</span>
+                <span className="text-blue-300">self</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-blue-300">name</span>
+                <span className="text-slate-400">, </span>
                 <span className="text-blue-300">mark</span>
                 <span className="text-slate-400">):</span>
                 {"\n"}
-                {"    "}
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> mark {">"}= 50:</span>
+                {"        "}
+                <span className="text-slate-300">self.name = name</span>
                 {"\n"}
                 {"        "}
-                <span className="text-slate-300">
-                  print(&quot;Pass&quot;)
-                </span>
-                {"\n"}
+                <span className="text-slate-300">self.mark = mark</span>
+                {"\n\n"}
                 {"    "}
-                <span className="text-purple-400">else</span>
-                <span className="text-slate-400">:</span>
+                <span className="text-purple-400">def</span>{" "}
+                <span className="text-blue-300">is_passing</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-blue-300">self</span>
+                <span className="text-slate-400">):</span>
                 {"\n"}
                 {"        "}
-                <span className="text-slate-300">
-                  print(&quot;Fail&quot;)
-                </span>
+                <span className="text-purple-400">return</span>
+                <span className="text-slate-300"> self.mark {">"}= 50</span>
               </code>
             </pre>
           </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Now every <code className="text-emerald-300">Learner</code>{" "}
+            object can check its own pass status:{" "}
+            <code className="text-emerald-300">learner1.is_passing()</code>
+          </p>
         </section>
 
         {/* Quiz */}
@@ -258,9 +274,7 @@ print(total)  # prints 8`}</code>
             Quick Check
           </p>
 
-          <h2 className="mt-3 text-2xl font-bold">
-            What does the return keyword do?
-          </h2>
+          <h2 className="mt-3 text-2xl font-bold">What is an object?</h2>
 
           <div className="mt-6 space-y-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -273,7 +287,7 @@ print(total)  # prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. It prints a value to the screen
+                A. Another name for a variable
               </span>
             </label>
 
@@ -287,7 +301,7 @@ print(total)  # prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. It sends a value back to wherever the function was called
+                B. The blueprint that defines what attributes a class has
               </span>
             </label>
 
@@ -301,7 +315,8 @@ print(total)  # prints 8`}</code>
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. It repeats the function again
+                C. A specific instance created from a class, with its own
+                values
               </span>
             </label>
           </div>
@@ -336,19 +351,20 @@ print(total)  # prints 8`}</code>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Python function that:
+              Write a Python class that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Is called <strong className="text-white">is_passing</strong>,
-                takes a parameter called{" "}
+                Is called <strong className="text-white">Subject</strong>{" "}
+                with a <code>__init__</code> that takes{" "}
+                <strong className="text-white">name</strong> and{" "}
                 <strong className="text-white">mark</strong>.
               </li>
               <li>
-                Returns <strong className="text-white">True</strong> if
-                mark is 50 or higher, and{" "}
-                <strong className="text-white">False</strong> otherwise.
+                Has a method <strong className="text-white">get_grade</strong>{" "}
+                that returns &quot;A&quot; if mark is 80 or higher,
+                otherwise &quot;B&quot;.
               </li>
             </ol>
 
@@ -357,8 +373,9 @@ print(total)  # prints 8`}</code>
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You can return the result of a comparison directly:{" "}
-                <code>return mark {">"}= 50</code>
+                <code>get_grade</code> only needs{" "}
+                <code>self</code> as a parameter — it uses{" "}
+                <code>self.mark</code> directly, no other input needed.
               </div>
             </details>
 
@@ -367,8 +384,15 @@ print(total)  # prints 8`}</code>
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`def is_passing(mark):
-    return mark >= 50`}</code>
+                <code>{`class Subject:
+    def __init__(self, name, mark):
+        self.name = name
+        self.mark = mark
+
+    def get_grade(self):
+        if self.mark >= 80:
+            return "A"
+        return "B"`}</code>
               </pre>
             </details>
           </div>
@@ -387,34 +411,32 @@ print(total)  # prints 8`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the colon
+                Forgetting self
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`def greet()
-    print("Hello!")`}
+                {`def is_passing():
+    return mark >= 50  # NameError: mark isn't defined`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Every <code>def</code> line needs a colon at the end, just
-                like <code>if</code> and <code>for</code>.
+                Every method inside a class needs{" "}
+                <code>self</code> as its first parameter, and you access
+                the object&apos;s own data through it:{" "}
+                <code>self.mark</code>, not just <code>mark</code>.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Expecting print() to also return a value
+                Forgetting to pass self when calling a method
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`def add(a, b):
-    print(a + b)
-
-result = add(2, 3)
-print(result)  # prints None, not 5`}
+                {`learner1.is_passing(learner1)  # wrong - self is automatic`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>print()</code> only displays a value — it
-                doesn&apos;t send it back to whoever called the function.
-                If you need the result usable elsewhere, use{" "}
-                <code>return</code> instead.
+                Python automatically passes the object itself as{" "}
+                <code>self</code> when you call{" "}
+                <code>learner1.is_passing()</code> — you never pass it
+                manually.
               </p>
             </div>
           </div>
@@ -422,15 +444,16 @@ print(result)  # prints None, not 5`}
 
         {/* Completion */}
         <section className="mt-14 rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-8 text-center">
-          <div className="text-3xl">🎯</div>
+          <div className="text-3xl">🏆</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the final topic?
+            You&apos;ve completed the Python curriculum!
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            One more concept to go — a brief introduction to classes and
-            objects, the foundation of object-oriented programming.
+            From your first &quot;Hello, World!&quot; to classes and
+            objects — you now know the fundamentals every Python developer
+            builds on. Time to put it into practice.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -442,10 +465,10 @@ print(result)  # prints None, not 5`}
             </Link>
 
             <Link
-              href="/learn/python/classes"
+              href="/projects"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
-              Next Topic →
+              View Projects →
             </Link>
           </div>
         </section>
