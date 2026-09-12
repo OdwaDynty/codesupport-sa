@@ -5,8 +5,8 @@ const languages = [
     name: "Java",
     level: "Beginner → Intermediate",
     description:
-      "Learn programming fundamentals using Java, from variables and input to conditions, loops and methods.",
-    topics: 10,
+      "Learn programming fundamentals using Java, from variables and input to conditions, loops, methods and classes.",
+    topics: 13,
     icon: "☕",
     href: "/learn/java",
   },
@@ -15,9 +15,18 @@ const languages = [
     level: "Beginner → Intermediate",
     description:
       "Build your programming skills with Python through simple examples, exercises and practical challenges.",
-    topics: 10,
+    topics: 13,
     icon: "🐍",
     href: "/learn/python",
+  },
+  {
+    name: "Tailwind CSS",
+    level: "Beginner → Intermediate",
+    description:
+      "Learn to style real web pages fast using Tailwind's utility-first approach.",
+    topics: 9,
+    icon: "🎨",
+    href: "/learn/tailwind",
   },
 ];
 
@@ -53,7 +62,7 @@ export default function LearnPage() {
 
       {/* Languages */}
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {languages.map((language) => (
             <Link
               key={language.name}

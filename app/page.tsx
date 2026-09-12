@@ -18,6 +18,13 @@ const languages = [
     status: "Available",
   },
   {
+    name: "Tailwind CSS",
+    description: "Learn to style real web pages fast using Tailwind's utility-first approach.",
+    icon: "🎨",
+    href: "/learn/tailwind",
+    status: "Available",
+  },
+  {
     name: "C++",
     description: "Strengthen your programming logic and learn the fundamentals of C++.",
     icon: "C++",
