@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function JavaArraysLesson() {
+export default function JavaMethodsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "A") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! Array indexes start at 0, so the first element is marks[0]."
+        "Correct! return sends a value back out of the method to wherever it was called."
       );
-      markTopicComplete("java", "arrays");
+      markTopicComplete("java", "methods");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function JavaArraysLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 11 of 13</span>
+            <span className="text-slate-400">Topic 12 of 13</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java Arrays
+            Java Methods
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to store many values of the same type in a single
-            variable, instead of creating a new variable for each one.
+            Learn how to organize your code into reusable, named blocks
+            instead of repeating the same instructions everywhere.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[85%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[92%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 85%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 92%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function JavaArraysLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain why arrays are useful.</li>
-            <li>✓ Create an array and access its elements.</li>
-            <li>✓ Understand that array indexes start at 0.</li>
-            <li>✓ Loop through an array using a for loop.</li>
+            <li>✓ Explain what a method is and why they&apos;re useful.</li>
+            <li>✓ Write a method with parameters and a return value.</li>
+            <li>✓ Call a method from inside main.</li>
+            <li>✓ Understand the difference between void and returning methods.</li>
           </ul>
         </section>
 
@@ -93,15 +93,19 @@ export default function JavaArraysLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">Why do we need arrays?</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            What is a method?
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Imagine storing five test marks. Without arrays, you&apos;d need
-            five separate variables — <code className="text-emerald-300">mark1</code>,{" "}
-            <code className="text-emerald-300">mark2</code>, and so on. That
-            gets unmanageable fast, especially with loops. An{" "}
-            <strong className="text-white">array</strong> lets you store
-            all of them in one variable instead.
+            You&apos;ve been using one method this whole time without
+            necessarily calling it that:{" "}
+            <code className="text-emerald-300">main</code>. A{" "}
+            <strong className="text-white">method</strong> is a named
+            block of code that performs a task, which you can{" "}
+            <strong className="text-white">call</strong> (run) whenever
+            you need it — instead of retyping the same instructions
+            every time.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -109,31 +113,24 @@ export default function JavaArraysLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">int</span>
-                <span className="text-slate-400">[] </span>
-                <span className="text-blue-300">marks</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-slate-400">{"{"}</span>
-                <span className="text-orange-300">65</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">78</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">42</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">90</span>
-                <span className="text-slate-400">, </span>
-                <span className="text-orange-300">55</span>
+                <span className="text-purple-400">public static void</span>{" "}
+                <span className="text-blue-300">greet</span>
+                <span className="text-slate-400">() {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Hello!&quot;);
+                </span>
+                {"\n"}
                 <span className="text-slate-400">{"}"}</span>
-                <span className="text-slate-400">;</span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This single variable, <code className="text-emerald-300">marks</code>,
-            now holds all five values. The square brackets{" "}
-            <code className="text-emerald-300">[]</code> after the type tell
-            Java this is an array, not a single value.
+            To actually run it, you <strong className="text-white">call</strong>{" "}
+            it by name, followed by brackets:{" "}
+            <code className="text-emerald-300">greet();</code>
           </p>
         </section>
 
@@ -144,56 +141,89 @@ export default function JavaArraysLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Accessing elements — indexes start at 0
+            Parameters and return values
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Each value in an array has a position, called an{" "}
-            <strong className="text-white">index</strong>. This is the
-            single most important thing to remember about arrays:{" "}
-            <strong className="text-white">indexes start counting from 0, not 1.</strong>
+            Methods become genuinely useful once they can accept input
+            (<strong className="text-white">parameters</strong>) and send
+            a result back out (<strong className="text-white">return</strong>).
           </p>
-
-          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              marks array
-            </div>
-
-            <div className="flex divide-x divide-white/10">
-              {["65", "78", "42", "90", "55"].map((val, i) => (
-                <div key={i} className="flex-1 p-4 text-center">
-                  <div className="font-mono text-lg text-emerald-300">
-                    {val}
-                  </div>
-                  <div className="mt-1 font-mono text-xs text-slate-500">
-                    [{i}]
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <pre className="overflow-x-auto font-mono text-sm leading-7">
               <code>
-                <span className="text-slate-300">
-                  System.out.println(marks[0]);
-                </span>
-                <span className="text-slate-500"> // prints 65</span>
+                <span className="text-purple-400">public static</span>{" "}
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">addNumbers</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">a</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">b</span>
+                <span className="text-slate-400">) {"{"}</span>
                 {"\n"}
-                <span className="text-slate-300">
-                  System.out.println(marks[2]);
-                </span>
-                <span className="text-slate-500"> // prints 42</span>
+                {"    "}
+                <span className="text-purple-400">return</span>
+                <span className="text-slate-300"> a + b;</span>
+                {"\n"}
+                <span className="text-slate-400">{"}"}</span>
               </code>
             </pre>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            <code className="text-emerald-300">marks[0]</code> is the{" "}
-            <strong>first</strong> element (65), not the zeroth in some other
-            sense — this trips up almost every beginner at least once.
-          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-purple-400">int</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                The <strong className="text-white">return type</strong> —
+                the kind of value this method sends back. Use{" "}
+                <code>void</code> if it doesn&apos;t return anything.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-blue-300">(int a, int b)</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                The <strong className="text-white">parameters</strong> —
+                values the method receives from whoever calls it.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
+              <div className="font-mono text-purple-400">return a + b;</div>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Sends the result back to the caller and immediately ends
+                the method.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              Calling it
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
+              <code>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">total</span>{" "}
+                <span className="text-slate-400">=</span>{" "}
+                <span className="text-blue-300">addNumbers</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-orange-300">5</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">3</span>
+                <span className="text-slate-400">);</span>
+                {"\n"}
+                <span className="text-slate-300">
+                  System.out.println(total);
+                </span>
+                <span className="text-slate-500"> // prints 8</span>
+              </code>
+            </pre>
+          </div>
         </section>
 
         {/* Section 3 */}
@@ -203,45 +233,57 @@ export default function JavaArraysLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Looping through an array
+            A method that doesn&apos;t return anything
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Arrays and for loops work together naturally — you can use{" "}
-            <code className="text-emerald-300">.length</code> to find out
-            how many elements an array has, without counting manually.
+            Not every method needs to send a value back. If a method just{" "}
+            <em>does</em> something (like printing a message) without
+            needing to return a result, use{" "}
+            <code className="text-emerald-300">void</code> as its return
+            type.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Printing every mark
+              A void method
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (int i = 0; i {"<"} marks.length; i++) {"{"}
+                <span className="text-purple-400">public static void</span>{" "}
+                <span className="text-blue-300">printResult</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">mark</span>
+                <span className="text-slate-400">) {"{"}</span>
+                {"\n"}
+                {"    "}
+                <span className="text-purple-400">if</span>
+                <span className="text-slate-400"> (mark {">"}= 50) {"{"}</span>
+                {"\n"}
+                {"        "}
+                <span className="text-slate-300">
+                  System.out.println(&quot;Pass&quot;);
                 </span>
                 {"\n"}
                 {"    "}
+                <span className="text-slate-400">{"} "}</span>
+                <span className="text-purple-400">else</span>
+                <span className="text-slate-400"> {"{"}</span>
+                {"\n"}
+                {"        "}
                 <span className="text-slate-300">
-                  System.out.println(marks[i]);
+                  System.out.println(&quot;Fail&quot;);
                 </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-400">{"}"}</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
             </pre>
           </div>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            Notice the loop starts at <code className="text-emerald-300">i = 0</code>{" "}
-            and runs while <code className="text-emerald-300">i {"<"} marks.length</code> —
-            for an array of 5 elements, this correctly visits indexes 0
-            through 4, never trying to access a 5th index that doesn&apos;t
-            exist.
-          </p>
         </section>
 
         {/* Quiz */}
@@ -251,8 +293,7 @@ export default function JavaArraysLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            Given int[] marks = {"{"}65, 78, 42{"}"}, what does marks[0] give
-            you?
+            What does the return keyword do?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -265,7 +306,9 @@ export default function JavaArraysLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">A. 65</span>
+              <span className="text-sm text-slate-300">
+                A. It prints a value to the screen
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -277,7 +320,9 @@ export default function JavaArraysLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">B. 78</span>
+              <span className="text-sm text-slate-300">
+                B. It sends a value back to wherever the method was called
+              </span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -290,7 +335,7 @@ export default function JavaArraysLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. An error, because there is no index 0
+                C. It repeats the method again
               </span>
             </label>
           </div>
@@ -325,20 +370,21 @@ export default function JavaArraysLesson() {
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Java program that:
+              Write a Java method that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Creates an array called{" "}
-                <strong className="text-white">marks</strong> with the
-                values 65, 78, 42, 90, 55.
+                Is called <strong className="text-white">isPassing</strong>,
+                takes an int parameter called{" "}
+                <strong className="text-white">mark</strong>, and returns a
+                boolean.
               </li>
               <li>
-                Uses a for loop to add up all the marks into a{" "}
-                <strong className="text-white">total</strong> variable.
+                Returns <strong className="text-white">true</strong> if
+                mark is 50 or higher, and{" "}
+                <strong className="text-white">false</strong> otherwise.
               </li>
-              <li>Prints the total.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -346,8 +392,9 @@ export default function JavaArraysLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Start <code>total</code> at 0 before the loop, then add{" "}
-                <code>marks[i]</code> to it on every pass through the loop.
+                The return type goes where <code>void</code> would
+                normally go. You can return the result of a comparison
+                directly: <code>return mark {">"}= 50;</code>
               </div>
             </details>
 
@@ -356,14 +403,9 @@ export default function JavaArraysLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int[] marks = {65, 78, 42, 90, 55};
-int total = 0;
-
-for (int i = 0; i < marks.length; i++) {
-    total = total + marks[i];
-}
-
-System.out.println(total);`}</code>
+                <code>{`public static boolean isPassing(int mark) {
+    return mark >= 50;
+}`}</code>
               </pre>
             </details>
           </div>
@@ -382,31 +424,33 @@ System.out.println(total);`}</code>
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Going out of bounds
+                Forgetting to return a value
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`int[] marks = {65, 78, 42};
-System.out.println(marks[3]); // ArrayIndexOutOfBoundsException`}
+                {`public static int square(int n) {
+    n * n; // missing "return"
+}`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                An array with 3 elements only has valid indexes 0, 1, and 2.
-                Trying to access index 3 crashes the program.
+                If a method&apos;s return type isn&apos;t{" "}
+                <code>void</code>, it must actually{" "}
+                <code>return</code> a value — this line won&apos;t even
+                compile without it.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using i {"<"}= marks.length instead of i {"<"}
+                Mismatched return type
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`for (int i = 0; i <= marks.length; i++) {
-    System.out.println(marks[i]); // crashes on the last loop
+                {`public static int getName() {
+    return "Nampho"; // error: expected int, got String
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Since indexes start at 0, an array of length 5 has valid
-                indexes 0–4. Using <code>{"<"}=</code> here tries to access
-                index 5, which doesn&apos;t exist.
+                Whatever you <code>return</code> must match the
+                method&apos;s declared return type exactly.
               </p>
             </div>
           </div>
@@ -417,12 +461,12 @@ System.out.println(marks[3]); // ArrayIndexOutOfBoundsException`}
           <div className="text-3xl">🎯</div>
 
           <h2 className="mt-4 text-2xl font-bold">
-            Ready for the next topic?
+            Ready for the final topic?
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can store multiple values, the next step is
-            learning how to organize your code into reusable methods.
+            One more concept to go — a brief introduction to classes and
+            objects, the foundation of object-oriented programming.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -434,7 +478,7 @@ System.out.println(marks[3]); // ArrayIndexOutOfBoundsException`}
             </Link>
 
             <Link
-              href="/learn/java/methods"
+              href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
