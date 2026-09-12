@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function PythonWhileLoopsLesson() {
+export default function PythonListsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
+        "Correct! List indexes start at 0, so the first item is marks[0]."
       );
-      markTopicComplete("python", "while-loops");
+      markTopicComplete("python", "lists");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,26 +50,25 @@ export default function PythonWhileLoopsLesson() {
               Python
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 10 of 10</span>
+            <span className="text-slate-400">Topic 11 of 13</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Python While Loops
+            Python Lists
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to repeat instructions while a condition stays true —
-            even when you don&apos;t know exactly how many times in
-            advance.
+            Learn how to store many values of any type in a single
+            variable, instead of creating a new variable for each one.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-full rounded-full bg-emerald-400" />
+            <div className="h-full w-[85%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 85%</p>
         </div>
       </header>
 
@@ -81,10 +80,10 @@ export default function PythonWhileLoopsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what a while loop does.</li>
-            <li>✓ Write a while loop with a condition.</li>
-            <li>✓ Understand the difference between for and while loops.</li>
-            <li>✓ Avoid writing an infinite loop.</li>
+            <li>✓ Explain why lists are useful.</li>
+            <li>✓ Create a list and access its items.</li>
+            <li>✓ Understand that list indexes start at 0.</li>
+            <li>✓ Loop through a list using a for loop.</li>
           </ul>
         </section>
 
@@ -94,42 +93,30 @@ export default function PythonWhileLoopsLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            What is a while loop?
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Why do we need lists?</h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            A <strong className="text-white">while loop</strong> keeps
-            repeating a block of code for as long as its condition stays
-            true. Unlike a for loop with range(), it doesn&apos;t have a
-            built-in counter — you&apos;re responsible for creating and
-            updating the variable the condition depends on.
+            Imagine storing five test marks. Without a list, you&apos;d
+            need five separate variables — <code className="text-emerald-300">mark1</code>,{" "}
+            <code className="text-emerald-300">mark2</code>, and so on.
+            That gets unmanageable fast. A{" "}
+            <strong className="text-white">list</strong> lets you store
+            all of them in one variable instead.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <div className="text-sm font-medium text-slate-400">Example</div>
 
-            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
-              <code>
-                <span className="text-blue-300">count</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">1</span>
-                {"\n\n"}
-                <span className="text-purple-400">while</span>
-                <span className="text-slate-400"> count {"<"}= 5:</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">print(count)</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">count = count + 1</span>
-              </code>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`marks = [65, 78, 42, 90, 55]`}</code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This prints 1 through 5, the same result as a for loop — but
-            written a different way.
+            This single variable, <code className="text-emerald-300">marks</code>,
+            now holds all five values. Unlike Java arrays, a Python list
+            can even hold different types mixed together, though it&apos;s
+            usually clearer to keep one type per list.
           </p>
         </section>
 
@@ -140,44 +127,97 @@ export default function PythonWhileLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            When to use while instead of for
+            Accessing items — indexes start at 0
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            A for loop is the natural choice when you know exactly how many
-            times you want to repeat something. A while loop is better
-            when you <strong className="text-white">don&apos;t</strong>{" "}
-            know in advance — for example, repeating until the user enters
-            valid input.
+            Each value in a list has a position, called an{" "}
+            <strong className="text-white">index</strong>. This is the
+            single most important thing to remember about lists:{" "}
+            <strong className="text-white">indexes start counting from 0, not 1.</strong>
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Repeating until valid input
+              marks list
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-blue-300">age</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">-1</span>
-                {"\n\n"}
-                <span className="text-purple-400">while</span>
-                <span className="text-slate-400"> age {"<"} 0:</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  age = int(input(&quot;Enter your age: &quot;))
-                </span>
-              </code>
+            <div className="flex divide-x divide-white/10">
+              {["65", "78", "42", "90", "55"].map((val, i) => (
+                <div key={i} className="flex-1 p-4 text-center">
+                  <div className="font-mono text-lg text-emerald-300">
+                    {val}
+                  </div>
+                  <div className="mt-1 font-mono text-xs text-slate-500">
+                    [{i}]
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
+              <code>{`print(marks[0])  # prints 65
+print(marks[2])  # prints 42`}</code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            There&apos;s no way to know in advance how many times the user
-            will enter an invalid age before getting it right — a while
-            loop handles that naturally, where a for loop wouldn&apos;t
-            fit well.
+            <code className="text-emerald-300">marks[0]</code> is the{" "}
+            <strong>first</strong> item (65), not the zeroth in some other
+            sense — this trips up almost every beginner at least once.
+          </p>
+        </section>
+
+        {/* Section 3 */}
+        <section className="mt-14">
+          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            03 • Examples
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold">
+            Looping through a list
+          </h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Python makes looping through a list especially clean — you can
+            loop directly over the values, without needing an index at
+            all.
+          </p>
+
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
+              Printing every mark
+            </div>
+
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8 text-emerald-300">
+              <code>{`for mark in marks:
+    print(mark)`}</code>
+            </pre>
+          </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Here, <code className="text-emerald-300">mark</code> takes on
+            each value in the list in turn — 65, then 78, then 42, and so
+            on — without you ever writing an index yourself.
+          </p>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">
+              With an index, using range()
+            </div>
+
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`for i in range(len(marks)):
+    print(marks[i])`}</code>
+            </pre>
+          </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">len(marks)</code> tells you
+            how many items are in the list — useful when you need the
+            index itself, not just the value.
           </p>
         </section>
 
@@ -188,7 +228,7 @@ export default function PythonWhileLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            How many times does a while loop repeat?
+            Given marks = [65, 78, 42], what does marks[0] give you?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -201,9 +241,7 @@ export default function PythonWhileLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                A. Always exactly 10 times
-              </span>
+              <span className="text-sm text-slate-300">A. 65</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -215,9 +253,7 @@ export default function PythonWhileLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                B. A fixed number of times decided before the loop starts
-              </span>
+              <span className="text-sm text-slate-300">B. 78</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -230,8 +266,7 @@ export default function PythonWhileLoopsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. As long as its condition stays true, however many times
-                that takes
+                C. An error, because there is no index 0
               </span>
             </label>
           </div>
@@ -259,22 +294,27 @@ export default function PythonWhileLoopsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Exercise
+            04 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Python while loop that:
+              Write a Python program that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Starts a counter variable at 10.</li>
               <li>
-                Prints the counter, then decreases it by 1, while it is
-                greater than 0 (a countdown).
+                Creates a list called{" "}
+                <strong className="text-white">marks</strong> with the
+                values 65, 78, 42, 90, 55.
               </li>
+              <li>
+                Uses a for loop to add up all the marks into a{" "}
+                <strong className="text-white">total</strong> variable.
+              </li>
+              <li>Prints the total.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -282,8 +322,8 @@ export default function PythonWhileLoopsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use <code>count = count - 1</code> inside the loop to
-                decrease the counter each time.
+                Start <code>total</code> at 0 before the loop, then use{" "}
+                <code>for mark in marks:</code> to add each value to it.
               </div>
             </details>
 
@@ -292,11 +332,13 @@ export default function PythonWhileLoopsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`count = 10
+                <code>{`marks = [65, 78, 42, 90, 55]
+total = 0
 
-while count > 0:
-    print(count)
-    count = count - 1`}</code>
+for mark in marks:
+    total = total + mark
+
+print(total)`}</code>
               </pre>
             </details>
           </div>
@@ -315,35 +357,34 @@ while count > 0:
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting to update the condition variable
+                Going out of range
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`count = 1
-
-while count <= 5:
-    print(count)
-    # forgot to update count`}
+                {`marks = [65, 78, 42]
+print(marks[3])  # IndexError`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Without updating <code>count</code> inside the loop, the
-                condition never becomes false — this is the most common
-                cause of infinite loops.
+                A list with 3 items only has valid indexes 0, 1, and 2.
+                Trying to access index 3 crashes the program with an{" "}
+                <code>IndexError</code>.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Initializing the variable inside the loop
+                Looping with the value instead of the index, then using it
+                as an index anyway
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`while count <= 5:
-    count = 1  # resets every time!
-    count = count + 1`}
+                {`for mark in marks:
+    print(marks[mark])  # probably not what you meant`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                The counter needs to be created{" "}
-                <strong>before</strong> the while loop starts, not inside
-                it — otherwise it resets on every repeat.
+                If you loop with{" "}
+                <code>for mark in marks:</code>, <code>mark</code> is
+                already the value — not an index. Only use{" "}
+                <code>for i in range(len(marks)):</code> when you
+                genuinely need the index.
               </p>
             </div>
           </div>
@@ -358,8 +399,8 @@ while count <= 5:
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can repeat instructions with loops, the next step
-            is learning how to store many values at once using lists.
+            Now that you can store multiple values, the next step is
+            learning how to organize your code into reusable functions.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -371,7 +412,7 @@ while count <= 5:
             </Link>
 
             <Link
-              href="/learn/python/lists"
+              href="/learn/python"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

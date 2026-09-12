@@ -91,6 +91,30 @@ const topics = [
     level: "Intermediate",
     available: true,
   },
+  {
+    number: "11",
+    slug: "lists",
+    title: "Lists",
+    description: "Store and work with multiple values in a single variable.",
+    level: "Intermediate",
+    available: false,
+  },
+  {
+    number: "12",
+    slug: "functions",
+    title: "Functions",
+    description: "Organize your code into reusable, named blocks.",
+    level: "Intermediate",
+    available: false,
+  },
+  {
+    number: "13",
+    slug: "classes",
+    title: "Intro to Classes",
+    description: "Learn the basics of organizing code using objects.",
+    level: "Intermediate",
+    available: false,
+  },
 ];
 
 export default function PythonPage() {
