@@ -27,7 +27,7 @@ const topics = [
     title: "Spacing & Sizing",
     description: "Control padding, margin, width and height with simple utilities.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "04",

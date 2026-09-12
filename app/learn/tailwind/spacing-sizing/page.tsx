@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindColorsLesson() {
+export default function TailwindSpacingLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
+    if (quizAnswer === "C") {
       setQuizResult(
-        "Correct! The number controls shade — higher numbers are darker."
+        "Correct! m- controls margin (outside spacing), p- controls padding (inside spacing)."
       );
-      markTopicComplete("tailwind", "colors-backgrounds");
+      markTopicComplete("tailwind", "spacing-sizing");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindColorsLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 2 of 9</span>
+            <span className="text-slate-400">Topic 3 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Beginner</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Colors & Backgrounds
+            Spacing & Sizing
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how Tailwind's color system works, and how to use it for
-            text and backgrounds.
+            Control the space inside and around elements, and how big
+            they are.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[22%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[33%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 22%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 33%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindColorsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain how Tailwind's color naming pattern works.</li>
-            <li>✓ Set text color using text- classes.</li>
-            <li>✓ Set background color using bg- classes.</li>
-            <li>✓ Understand what the color shade number means.</li>
+            <li>✓ Explain the difference between padding and margin.</li>
+            <li>✓ Use p- and m- utilities.</li>
+            <li>✓ Target a single side using pt-, pb-, pl-, pr-.</li>
+            <li>✓ Set width and height using w- and h-.</li>
           </ul>
         </section>
 
@@ -94,41 +94,37 @@ export default function TailwindColorsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Tailwind's color naming pattern
+            Padding vs. margin
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Every Tailwind color class follows the same predictable
-            pattern:{" "}
-            <code className="text-emerald-300">property-color-shade</code>.
+            <strong className="text-white">Padding</strong> is the space{" "}
+            <em>inside</em> an element, between its content and its edge.{" "}
+            <strong className="text-white">Margin</strong> is the space{" "}
+            <em>outside</em> an element, pushing other elements away from
+            it.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="font-mono text-lg text-purple-400">bg</div>
-                <p className="mt-2 text-xs text-slate-500">
-                  What it affects (background)
-                </p>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-8">
+            <div className="mx-auto max-w-sm bg-purple-900/30 p-6">
+              <div className="text-center text-xs text-purple-300">
+                margin (space outside)
               </div>
-              <div>
-                <div className="font-mono text-lg text-blue-300">blue</div>
-                <p className="mt-2 text-xs text-slate-500">
-                  Which color family
-                </p>
-              </div>
-              <div>
-                <div className="font-mono text-lg text-orange-300">500</div>
-                <p className="mt-2 text-xs text-slate-500">
-                  How light or dark
-                </p>
+              <div className="mt-3 bg-emerald-500 p-6 text-center text-white">
+                <div className="text-xs text-emerald-100">
+                  padding (space inside)
+                </div>
+                <div className="mt-2 rounded bg-slate-950 px-3 py-2 text-sm">
+                  Content
+                </div>
               </div>
             </div>
           </div>
 
           <p className="mt-6 leading-8 text-slate-300">
-            Put together: <code className="text-emerald-300">bg-blue-500</code>{" "}
-            means &quot;set the background to a medium blue.&quot;
+            In Tailwind: <code className="text-emerald-300">p-</code> is
+            padding, <code className="text-emerald-300">m-</code> is
+            margin.
           </p>
         </section>
 
@@ -139,36 +135,55 @@ export default function TailwindColorsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Shades — from 50 to 950
+            The spacing scale
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            The number controls the shade. It runs in steps — 50, 100,
-            200, 300... up to 900 (some colors go to 950) — and{" "}
-            <strong className="text-white">higher numbers are darker</strong>.
+            The number after <code className="text-emerald-300">p-</code>{" "}
+            or <code className="text-emerald-300">m-</code> is a step on
+            Tailwind&apos;s spacing scale — it&apos;s not pixels directly,
+            but each step is consistent (roughly 0.25rem, or 4px, per
+            step).
           </p>
 
-          <div className="mt-6 grid grid-cols-5 gap-2 sm:grid-cols-9">
-            <div className="rounded-lg bg-emerald-100 p-2 text-center text-xs text-slate-900">100</div>
-            <div className="rounded-lg bg-emerald-200 p-2 text-center text-xs text-slate-900">200</div>
-            <div className="rounded-lg bg-emerald-300 p-2 text-center text-xs text-slate-900">300</div>
-            <div className="rounded-lg bg-emerald-400 p-2 text-center text-xs text-slate-950">400</div>
-            <div className="rounded-lg bg-emerald-500 p-2 text-center text-xs text-white">500</div>
-            <div className="rounded-lg bg-emerald-600 p-2 text-center text-xs text-white">600</div>
-            <div className="rounded-lg bg-emerald-700 p-2 text-center text-xs text-white">700</div>
-            <div className="rounded-lg bg-emerald-800 p-2 text-center text-xs text-white">800</div>
-            <div className="rounded-lg bg-emerald-900 p-2 text-center text-xs text-white">900</div>
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-white/10 text-slate-400">
+                <tr>
+                  <th className="px-5 py-3 font-medium">Class</th>
+                  <th className="px-5 py-3 font-medium">Approx. size</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">p-1</td>
+                  <td className="px-5 py-3 text-slate-400">4px</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">p-2</td>
+                  <td className="px-5 py-3 text-slate-400">8px</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">p-4</td>
+                  <td className="px-5 py-3 text-slate-400">16px</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">p-8</td>
+                  <td className="px-5 py-3 text-slate-400">32px</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <p className="mt-5 text-sm text-slate-500">
-            All nine of these are <code className="text-emerald-300">bg-emerald-100</code> through{" "}
-            <code className="text-emerald-300">bg-emerald-900</code>.
-          </p>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            <strong className="text-white">500</strong> is usually a good
-            starting point — it&apos;s a balanced, medium version of any
-            color.
+          <p className="mt-6 leading-8 text-slate-300">
+            You can also target a single side:{" "}
+            <code className="text-emerald-300">pt-4</code> (top),{" "}
+            <code className="text-emerald-300">pb-4</code> (bottom),{" "}
+            <code className="text-emerald-300">pl-4</code> (left),{" "}
+            <code className="text-emerald-300">pr-4</code> (right) — the
+            same letters work for margin too:{" "}
+            <code className="text-emerald-300">mt-4</code>,{" "}
+            <code className="text-emerald-300">mb-4</code>, and so on.
           </p>
         </section>
 
@@ -179,45 +194,35 @@ export default function TailwindColorsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Text color and background color together
+            Width and height
           </h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">w-</code> and{" "}
+            <code className="text-emerald-300">h-</code> control an
+            element&apos;s width and height the same way — using the
+            spacing scale, or special keywords like{" "}
+            <code className="text-emerald-300">w-full</code> (100% of the
+            parent).
+          </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              HTML
+              Different widths
             </div>
 
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-slate-400">&lt;div class=</span>
-                <span className="text-orange-300">
-                  &quot;bg-slate-900 text-emerald-400 p-4&quot;
-                </span>
-                <span className="text-slate-400">&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">
-                  Dark background, emerald text
-                </span>
-                {"\n"}
-                <span className="text-slate-400">&lt;/div&gt;</span>
-              </code>
-            </pre>
+            <div className="space-y-3 p-6">
+              <div className="w-16 rounded bg-emerald-500 p-2 text-center text-xs text-white">
+                w-16
+              </div>
+              <div className="w-32 rounded bg-emerald-500 p-2 text-center text-xs text-white">
+                w-32
+              </div>
+              <div className="w-full rounded bg-emerald-500 p-2 text-center text-xs text-white">
+                w-full
+              </div>
+            </div>
           </div>
-
-          <p className="mt-5 text-sm text-slate-500">Result:</p>
-
-          <div className="mt-3 rounded-xl bg-slate-900 p-4 text-emerald-400">
-            Dark background, emerald text
-          </div>
-
-          <p className="mt-6 leading-8 text-slate-300">
-            Notice this is exactly the color scheme CodeSupport SA itself
-            uses throughout the whole site — a dark{" "}
-            <code className="text-emerald-300">bg-slate-950</code>{" "}
-            background with <code className="text-emerald-300">emerald</code>{" "}
-            accents everywhere.
-          </p>
         </section>
 
         {/* Quiz */}
@@ -227,7 +232,7 @@ export default function TailwindColorsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What does the number in bg-blue-700 control?
+            What is the difference between p- and m-?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -241,7 +246,7 @@ export default function TailwindColorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. How wide the element is
+                A. They do the same thing
               </span>
             </label>
 
@@ -255,7 +260,7 @@ export default function TailwindColorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. How light or dark the color is — higher is darker
+                B. m- controls padding, p- controls margin
               </span>
             </label>
 
@@ -269,7 +274,7 @@ export default function TailwindColorsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. How transparent the color is
+                C. m- controls margin, p- controls padding
               </span>
             </label>
           </div>
@@ -309,9 +314,9 @@ export default function TailwindColorsLesson() {
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>A dark purple background (try shade 800).</li>
-              <li>Light gray text (try shade 100).</li>
-              <li>Some padding.</li>
+              <li>Padding of 6 on all sides.</li>
+              <li>A top margin of 4.</li>
+              <li>A width that fills its full parent.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -319,8 +324,8 @@ export default function TailwindColorsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Tailwind's purple color family is called{" "}
-                <code>purple</code>, and gray is called <code>gray</code>.
+                Top margin uses <code>mt-</code>, and "full width" has its
+                own keyword class rather than a number.
               </div>
             </details>
 
@@ -329,7 +334,7 @@ export default function TailwindColorsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="bg-purple-800 text-gray-100 p-4">
+                <code>{`<div class="p-6 mt-4 w-full">
   Hello!
 </div>`}</code>
               </pre>
@@ -350,29 +355,28 @@ export default function TailwindColorsLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting the shade number
+                Mixing up p- and m-
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="bg-blue">`}
+                {`<div class="m-4"> <!-- pushes other elements away, doesn't add inner space -->`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Most Tailwind colors need a shade number —{" "}
-                <code>bg-blue</code> on its own usually won&apos;t work.
-                Use <code>bg-blue-500</code> instead.
+                If your content still looks squished against the edges,
+                you probably need <code>p-</code>, not <code>m-</code>.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Using low contrast colors together
+                Expecting the number to mean pixels exactly
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="bg-yellow-200 text-yellow-300">`}
+                {`p-10 is not "10 pixels"`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Similar shades of the same color are hard to read against
-                each other. Pair a light background with dark text, or a
-                dark background with light text.
+                The numbers are steps on Tailwind&apos;s own scale, not raw
+                pixel counts — <code>p-10</code> is actually 40px, since
+                each step is 4px.
               </p>
             </div>
           </div>
@@ -387,8 +391,8 @@ export default function TailwindColorsLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can control color, the next step is learning how
-            to control spacing and sizing.
+            Now that you can control spacing, the next step is styling
+            text itself.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -400,7 +404,7 @@ export default function TailwindColorsLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/spacing-sizing"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
