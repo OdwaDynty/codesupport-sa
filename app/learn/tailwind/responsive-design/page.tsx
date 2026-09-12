@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function TailwindFlexboxLesson() {
+export default function TailwindResponsiveLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "B") {
       setQuizResult(
-        "Correct! justify-between pushes the first item to the start and the last to the end, spreading the rest evenly."
+        "Correct! Unprefixed classes apply to all screen sizes; md: only kicks in at medium screens and up."
       );
-      markTopicComplete("tailwind", "flexbox");
+      markTopicComplete("tailwind", "responsive-design");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function TailwindFlexboxLesson() {
               Tailwind CSS
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 6 of 9</span>
+            <span className="text-slate-400">Topic 7 of 9</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Flexbox Basics
+            Responsive Design
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to arrange multiple elements in a row or column —
-            the single most useful tool for building layouts.
+            Make your layouts adapt automatically between phones, tablets
+            and desktops.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[67%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[78%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 67%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 78%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function TailwindFlexboxLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Turn a container into a flex layout using flex.</li>
-            <li>✓ Space items apart using justify- utilities.</li>
-            <li>✓ Align items vertically using items-.</li>
-            <li>✓ Control spacing between items using gap-.</li>
+            <li>✓ Explain Tailwind's mobile-first approach.</li>
+            <li>✓ Use breakpoint prefixes like sm:, md:, lg:.</li>
+            <li>✓ Change a layout from stacked to side-by-side on larger screens.</li>
+            <li>✓ Hide or show elements at different screen sizes.</li>
           </ul>
         </section>
 
@@ -94,46 +94,46 @@ export default function TailwindFlexboxLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            Turning on Flexbox
+            Mobile-first: the default is for small screens
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Adding the <code className="text-emerald-300">flex</code>{" "}
-            class to a container makes its direct children line up in a
-            row automatically, instead of stacking on top of each other
-            like normal HTML elements do.
+            Tailwind is built{" "}
+            <strong className="text-white">mobile-first</strong>. Any
+            class you write with no prefix applies to every screen size,
+            starting from the smallest. To change something only at
+            larger sizes, you add a breakpoint prefix.
           </p>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <div className="text-sm font-medium text-slate-400">
-              Without flex (default)
-            </div>
-            <div className="mt-3 space-y-2 rounded-lg bg-slate-950 p-4">
-              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 1
-              </div>
-              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 2
-              </div>
-              <div className="w-fit rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 3
-              </div>
-            </div>
-
-            <div className="mt-5 text-sm font-medium text-slate-400">
-              With flex
-            </div>
-            <div className="mt-3 flex gap-2 rounded-lg bg-slate-950 p-4">
-              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 1
-              </div>
-              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 2
-              </div>
-              <div className="rounded bg-emerald-500 px-4 py-2 text-sm text-white">
-                Box 3
-              </div>
-            </div>
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-white/10 text-slate-400">
+                <tr>
+                  <th className="px-5 py-3 font-medium">Prefix</th>
+                  <th className="px-5 py-3 font-medium">Applies from</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">
+                    (none)
+                  </td>
+                  <td className="px-5 py-3 text-slate-400">All screens</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">sm:</td>
+                  <td className="px-5 py-3 text-slate-400">640px and up</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">md:</td>
+                  <td className="px-5 py-3 text-slate-400">768px and up</td>
+                </tr>
+                <tr>
+                  <td className="px-5 py-3 font-mono text-emerald-300">lg:</td>
+                  <td className="px-5 py-3 text-slate-400">1024px and up</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -144,58 +144,51 @@ export default function TailwindFlexboxLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            justify- and items-
+            Stacked on mobile, side-by-side on desktop
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Once a container is flex, two classes control how its
-            children are arranged: <code className="text-emerald-300">justify-</code>{" "}
-            controls spacing along the row, and{" "}
-            <code className="text-emerald-300">items-</code> controls
-            vertical alignment.
+            The single most common responsive pattern: start elements
+            stacked (the mobile-friendly default), then switch to a row
+            once there&apos;s enough screen width.
           </p>
 
-          <div className="mt-6 space-y-4">
-            <div>
-              <div className="mb-2 text-sm text-slate-400 font-mono">
-                justify-between
-              </div>
-              <div className="flex justify-between rounded-lg bg-slate-900 p-4">
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">C</div>
-              </div>
-            </div>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-slate-400">&lt;div class=</span>
+                <span className="text-orange-300">
+                  &quot;flex flex-col md:flex-row gap-4&quot;
+                </span>
+                <span className="text-slate-400">&gt;</span>
+              </code>
+            </pre>
+          </div>
 
-            <div>
-              <div className="mb-2 text-sm text-slate-400 font-mono">
-                justify-center
-              </div>
-              <div className="flex justify-center gap-2 rounded-lg bg-slate-900 p-4">
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">C</div>
-              </div>
-            </div>
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">flex-col</code> stacks
+            children vertically by default (good for narrow phone
+            screens). <code className="text-emerald-300">md:flex-row</code>{" "}
+            overrides that back to a horizontal row, but only once the
+            screen is at least 768px wide.
+          </p>
 
-            <div>
-              <div className="mb-2 text-sm text-slate-400 font-mono">
-                items-center (this container is taller)
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
+              Live example — try resizing your browser
+            </div>
+            <div className="flex flex-col gap-3 p-5 md:flex-row">
+              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
+                Box 1
               </div>
-              <div className="flex h-20 items-center gap-2 rounded-lg bg-slate-900 p-4">
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">A</div>
-                <div className="rounded bg-emerald-500 px-3 py-1.5 text-xs text-white">B</div>
+              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
+                Box 2
+              </div>
+              <div className="rounded-lg bg-emerald-500 p-4 text-center text-sm text-white">
+                Box 3
               </div>
             </div>
           </div>
-
-          <p className="mt-6 leading-8 text-slate-300">
-            This exact combination —{" "}
-            <code className="text-emerald-300">flex items-center justify-between</code>{" "}
-            — is used constantly throughout CodeSupport SA&apos;s own
-            navigation bars, to keep the logo on the left and links on
-            the right, all vertically centered.
-          </p>
         </section>
 
         {/* Section 3 */}
@@ -204,12 +197,16 @@ export default function TailwindFlexboxLesson() {
             03 • Examples
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">gap- for spacing</h2>
+          <h2 className="mt-3 text-3xl font-bold">
+            Hiding and showing elements
+          </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            Instead of adding margin to each individual item,{" "}
-            <code className="text-emerald-300">gap-</code> on the
-            container adds consistent space between every child at once.
+            You can combine <code className="text-emerald-300">hidden</code>{" "}
+            with a breakpoint to show something only on larger screens —
+            this is exactly how CodeSupport SA&apos;s own navigation
+            hides its full link list on mobile and shows a Menu button
+            instead.
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
@@ -221,24 +218,26 @@ export default function TailwindFlexboxLesson() {
               <code>
                 <span className="text-slate-400">&lt;div class=</span>
                 <span className="text-orange-300">
-                  &quot;flex items-center justify-between gap-4&quot;
+                  &quot;hidden md:block&quot;
                 </span>
                 <span className="text-slate-400">&gt;</span>
                 {"\n"}
                 {"  "}
-                <span className="text-slate-400">&lt;div&gt;</span>
-                <span className="text-slate-300">Logo</span>
-                <span className="text-slate-400">&lt;/div&gt;</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-400">&lt;div&gt;</span>
-                <span className="text-slate-300">Links</span>
-                <span className="text-slate-400">&lt;/div&gt;</span>
+                <span className="text-slate-300">
+                  Only visible on medium screens and up
+                </span>
                 {"\n"}
                 <span className="text-slate-400">&lt;/div&gt;</span>
               </code>
             </pre>
           </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">hidden</code> hides it
+            everywhere by default; <code className="text-emerald-300">md:block</code>{" "}
+            overrides that back to visible once the screen reaches medium
+            width.
+          </p>
         </section>
 
         {/* Quiz */}
@@ -248,7 +247,8 @@ export default function TailwindFlexboxLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            What does justify-between do?
+            What's the difference between a class with no prefix and one
+            with md:?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -262,7 +262,7 @@ export default function TailwindFlexboxLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                A. Stacks all items on top of each other
+                A. They do exactly the same thing
               </span>
             </label>
 
@@ -276,7 +276,8 @@ export default function TailwindFlexboxLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                B. Centers all items together in the middle
+                B. Unprefixed applies to all screens; md: only applies
+                from medium screens up
               </span>
             </label>
 
@@ -290,8 +291,7 @@ export default function TailwindFlexboxLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. Pushes the first item to the start and the last to the
-                end, spreading the rest evenly
+                C. md: only applies to mobile screens
               </span>
             </label>
           </div>
@@ -327,14 +327,12 @@ export default function TailwindFlexboxLesson() {
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
               Write the Tailwind classes for a{" "}
-              <code className="text-emerald-300">&lt;div&gt;</code> that
-              arranges its children:
+              <code className="text-emerald-300">&lt;div&gt;</code> that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>In a row (not stacked).</li>
-              <li>Centered vertically.</li>
-              <li>With a gap of 4 between each child.</li>
+              <li>Has text size text-lg on mobile.</li>
+              <li>Becomes text-2xl on medium screens and up.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -342,9 +340,8 @@ export default function TailwindFlexboxLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                You need three classes on the parent container:{" "}
-                <code>flex</code>, an <code>items-</code> class, and a{" "}
-                <code>gap-</code> class.
+                Write the mobile size with no prefix, then add the
+                breakpoint version right after it.
               </div>
             </details>
 
@@ -353,9 +350,8 @@ export default function TailwindFlexboxLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`<div class="flex items-center gap-4">
-  <div>Item 1</div>
-  <div>Item 2</div>
+                <code>{`<div class="text-lg md:text-2xl">
+  Hello!
 </div>`}</code>
               </pre>
             </details>
@@ -375,33 +371,30 @@ export default function TailwindFlexboxLesson() {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Adding justify-/items- without flex
+                Forgetting the mobile version entirely
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div class="justify-between"> <!-- does nothing -->`}
+                {`<div class="md:flex-row"> <!-- what happens on mobile? -->`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>justify-</code> and <code>items-</code> only work on
-                a container that already has <code>flex</code> applied —
-                without it, they have no effect at all.
+                Always set a sensible default first (like{" "}
+                <code>flex-col</code>), then override it at larger sizes —
+                don&apos;t leave mobile unstyled.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Putting flex on the wrong element
+                Thinking md: means "only on medium screens"
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`<div>
-  <div class="flex">Item 1</div>
-  <div>Item 2</div>
-</div>`}
+                {`md:text-2xl // applies at md AND larger (lg, xl...) too`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                <code>flex</code> goes on the{" "}
-                <strong>parent</strong> container, not on each individual
-                child — it's the parent that arranges its children, not
-                the other way around.
+                Breakpoints are &quot;from this size <strong>and up</strong>,&quot;
+                not &quot;only at this exact size.&quot;{" "}
+                <code>md:text-2xl</code> stays active on large and extra
+                large screens too, unless something later overrides it.
               </p>
             </div>
           </div>
@@ -416,8 +409,8 @@ export default function TailwindFlexboxLesson() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can arrange elements, the next step is making
-            your layouts work well on both phones and desktops.
+            Now that your layouts adapt to screen size, the next step is
+            adding interactivity with hover and focus states.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -429,7 +422,7 @@ export default function TailwindFlexboxLesson() {
             </Link>
 
             <Link
-              href="/learn/tailwind/responsive-design"
+              href="/learn/tailwind"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

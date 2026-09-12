@@ -67,7 +67,7 @@ const topics = [
     title: "Hover, Focus & Transitions",
     description: "Style elements differently on hover and focus, with smooth transitions.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "09",
@@ -75,7 +75,7 @@ const topics = [
     title: "Building a Simple Card",
     description: "Combine everything you've learned to build a real card component.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 
