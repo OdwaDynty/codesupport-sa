@@ -4,16 +4,16 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function WhileLoopsLesson() {
+export default function JavaArraysLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "C") {
+    if (quizAnswer === "A") {
       setQuizResult(
-        "Correct! A while loop keeps repeating as long as its condition stays true, however many times that takes."
+        "Correct! Array indexes start at 0, so the first element is marks[0]."
       );
-      markTopicComplete("java", "while-loops");
+      markTopicComplete("java", "arrays");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -50,25 +50,25 @@ export default function WhileLoopsLesson() {
               Java
             </span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 10 of 10</span>
+            <span className="text-slate-400">Topic 11 of 13</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Java While Loops
+            Java Arrays
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Learn how to repeat instructions while a condition stays true —
-            even when you don&apos;t know exactly how many times in advance.
+            Learn how to store many values of the same type in a single
+            variable, instead of creating a new variable for each one.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-full rounded-full bg-emerald-400" />
+            <div className="h-full w-[85%] rounded-full bg-emerald-400" />
           </div>
 
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 100%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 85%</p>
         </div>
       </header>
 
@@ -80,10 +80,10 @@ export default function WhileLoopsLesson() {
           </h2>
 
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Explain what a while loop does.</li>
-            <li>✓ Write a while loop with a condition.</li>
-            <li>✓ Understand the difference between for and while loops.</li>
-            <li>✓ Avoid writing an infinite loop.</li>
+            <li>✓ Explain why arrays are useful.</li>
+            <li>✓ Create an array and access its elements.</li>
+            <li>✓ Understand that array indexes start at 0.</li>
+            <li>✓ Loop through an array using a for loop.</li>
           </ul>
         </section>
 
@@ -93,16 +93,15 @@ export default function WhileLoopsLesson() {
             01 • Learn
           </p>
 
-          <h2 className="mt-3 text-3xl font-bold">
-            What is a while loop?
-          </h2>
+          <h2 className="mt-3 text-3xl font-bold">Why do we need arrays?</h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            A <strong className="text-white">while loop</strong> keeps
-            repeating a block of code for as long as its condition stays
-            true. Unlike a for loop, it doesn&apos;t have a built-in
-            counter — you&apos;re responsible for creating and updating the
-            variable the condition depends on.
+            Imagine storing five test marks. Without arrays, you&apos;d need
+            five separate variables — <code className="text-emerald-300">mark1</code>,{" "}
+            <code className="text-emerald-300">mark2</code>, and so on. That
+            gets unmanageable fast, especially with loops. An{" "}
+            <strong className="text-white">array</strong> lets you store
+            all of them in one variable instead.
           </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
@@ -110,31 +109,31 @@ export default function WhileLoopsLesson() {
 
             <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7">
               <code>
-                <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">count</span>{" "}
+                <span className="text-purple-400">int</span>
+                <span className="text-slate-400">[] </span>
+                <span className="text-blue-300">marks</span>{" "}
                 <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">1</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
-                <span className="text-purple-400">while</span>
-                <span className="text-slate-400"> (count {"<"}= 5) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(count);
-                </span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">count++;</span>
-                {"\n"}
+                <span className="text-slate-400">{"{"}</span>
+                <span className="text-orange-300">65</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">78</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">42</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">90</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-orange-300">55</span>
                 <span className="text-slate-400">{"}"}</span>
+                <span className="text-slate-400">;</span>
               </code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This prints 1 through 5, the same result as the for loop from
-            the last lesson — but written a different way.
+            This single variable, <code className="text-emerald-300">marks</code>,
+            now holds all five values. The square brackets{" "}
+            <code className="text-emerald-300">[]</code> after the type tell
+            Java this is an array, not a single value.
           </p>
         </section>
 
@@ -145,44 +144,91 @@ export default function WhileLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">
-            When to use while instead of for
+            Accessing elements — indexes start at 0
           </h2>
 
           <p className="mt-5 leading-8 text-slate-300">
-            A for loop is the natural choice when you know exactly how many
-            times you want to repeat something. A while loop is better
-            when you <strong className="text-white">don&apos;t</strong>{" "}
-            know in advance — for example, repeating until the user enters
-            valid input.
+            Each value in an array has a position, called an{" "}
+            <strong className="text-white">index</strong>. This is the
+            single most important thing to remember about arrays:{" "}
+            <strong className="text-white">indexes start counting from 0, not 1.</strong>
           </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
             <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
-              Repeating until valid input
+              marks array
+            </div>
+
+            <div className="flex divide-x divide-white/10">
+              {["65", "78", "42", "90", "55"].map((val, i) => (
+                <div key={i} className="flex-1 p-4 text-center">
+                  <div className="font-mono text-lg text-emerald-300">
+                    {val}
+                  </div>
+                  <div className="mt-1 font-mono text-xs text-slate-500">
+                    [{i}]
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <pre className="overflow-x-auto font-mono text-sm leading-7">
+              <code>
+                <span className="text-slate-300">
+                  System.out.println(marks[0]);
+                </span>
+                <span className="text-slate-500"> // prints 65</span>
+                {"\n"}
+                <span className="text-slate-300">
+                  System.out.println(marks[2]);
+                </span>
+                <span className="text-slate-500"> // prints 42</span>
+              </code>
+            </pre>
+          </div>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            <code className="text-emerald-300">marks[0]</code> is the{" "}
+            <strong>first</strong> element (65), not the zeroth in some other
+            sense — this trips up almost every beginner at least once.
+          </p>
+        </section>
+
+        {/* Section 3 */}
+        <section className="mt-14">
+          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            03 • Examples
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold">
+            Looping through an array
+          </h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            Arrays and for loops work together naturally — you can use{" "}
+            <code className="text-emerald-300">.length</code> to find out
+            how many elements an array has, without counting manually.
+          </p>
+
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">
+              Printing every mark
             </div>
 
             <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
-                <span className="text-slate-300">Scanner input = </span>
-                <span className="text-purple-400">new</span>
-                <span className="text-slate-300"> Scanner(System.in);</span>
-                {"\n"}
-                <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">age</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">-1</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
-                <span className="text-purple-400">while</span>
-                <span className="text-slate-400"> (age {"<"} 0) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  System.out.println(&quot;Enter your age:&quot;);
+                <span className="text-purple-400">for</span>
+                <span className="text-slate-400">
+                  {" "}
+                  (int i = 0; i {"<"} marks.length; i++) {"{"}
                 </span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">age = input.nextInt();</span>
+                <span className="text-slate-300">
+                  System.out.println(marks[i]);
+                </span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -190,10 +236,11 @@ export default function WhileLoopsLesson() {
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            There&apos;s no way to know in advance how many times the user
-            will enter an invalid age before getting it right — a while
-            loop handles that naturally, where a for loop wouldn&apos;t fit
-            well.
+            Notice the loop starts at <code className="text-emerald-300">i = 0</code>{" "}
+            and runs while <code className="text-emerald-300">i {"<"} marks.length</code> —
+            for an array of 5 elements, this correctly visits indexes 0
+            through 4, never trying to access a 5th index that doesn&apos;t
+            exist.
           </p>
         </section>
 
@@ -204,7 +251,8 @@ export default function WhileLoopsLesson() {
           </p>
 
           <h2 className="mt-3 text-2xl font-bold">
-            How many times does a while loop repeat?
+            Given int[] marks = {"{"}65, 78, 42{"}"}, what does marks[0] give
+            you?
           </h2>
 
           <div className="mt-6 space-y-3">
@@ -217,9 +265,7 @@ export default function WhileLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                A. Always exactly 10 times
-              </span>
+              <span className="text-sm text-slate-300">A. 65</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -231,9 +277,7 @@ export default function WhileLoopsLesson() {
                 onChange={(e) => setQuizAnswer(e.target.value)}
                 className="mt-1"
               />
-              <span className="text-sm text-slate-300">
-                B. A fixed number of times decided before the loop starts
-              </span>
+              <span className="text-sm text-slate-300">B. 78</span>
             </label>
 
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
@@ -246,8 +290,7 @@ export default function WhileLoopsLesson() {
                 className="mt-1"
               />
               <span className="text-sm text-slate-300">
-                C. As long as its condition stays true, however many times
-                that takes
+                C. An error, because there is no index 0
               </span>
             </label>
           </div>
@@ -275,24 +318,27 @@ export default function WhileLoopsLesson() {
         {/* Exercise */}
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
-            03 • Exercise
+            04 • Exercise
           </p>
 
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
             <p className="leading-7 text-slate-300">
-              Write a Java while loop that:
+              Write a Java program that:
             </p>
 
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
               <li>
-                Starts a counter variable at 10.
+                Creates an array called{" "}
+                <strong className="text-white">marks</strong> with the
+                values 65, 78, 42, 90, 55.
               </li>
               <li>
-                Prints the counter, then decreases it by 1, while it is
-                greater than 0 (a countdown).
+                Uses a for loop to add up all the marks into a{" "}
+                <strong className="text-white">total</strong> variable.
               </li>
+              <li>Prints the total.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
@@ -300,8 +346,8 @@ export default function WhileLoopsLesson() {
                 Show Hint
               </summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use <code>count--</code> instead of <code>count++</code> to
-                decrease the counter each time through the loop.
+                Start <code>total</code> at 0 before the loop, then add{" "}
+                <code>marks[i]</code> to it on every pass through the loop.
               </div>
             </details>
 
@@ -310,12 +356,14 @@ export default function WhileLoopsLesson() {
                 Show Solution
               </summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int count = 10;
+                <code>{`int[] marks = {65, 78, 42, 90, 55};
+int total = 0;
 
-while (count > 0) {
-    System.out.println(count);
-    count--;
-}`}</code>
+for (int i = 0; i < marks.length; i++) {
+    total = total + marks[i];
+}
+
+System.out.println(total);`}</code>
               </pre>
             </details>
           </div>
@@ -334,38 +382,31 @@ while (count > 0) {
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Forgetting to update the condition variable
+                Going out of bounds
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`int count = 1;
-
-while (count <= 5) {
-    System.out.println(count);
-    // forgot count++;
-}`}
+                {`int[] marks = {65, 78, 42};
+System.out.println(marks[3]); // ArrayIndexOutOfBoundsException`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                Without updating <code>count</code> inside the loop, the
-                condition never becomes false — this is the most common
-                cause of infinite loops.
+                An array with 3 elements only has valid indexes 0, 1, and 2.
+                Trying to access index 3 crashes the program.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
               <div className="font-semibold text-red-300">
-                Initializing the variable inside the loop
+                Using i {"<"}= marks.length instead of i {"<"}
               </div>
               <pre className="mt-3 font-mono text-sm text-slate-400">
-                {`while (count <= 5) {
-    int count = 1; // resets every time!
-    count++;
+                {`for (int i = 0; i <= marks.length; i++) {
+    System.out.println(marks[i]); // crashes on the last loop
 }`}
               </pre>
               <p className="mt-2 text-sm text-slate-500">
-                The counter needs to be created{" "}
-                <strong>before</strong> the while loop starts, not inside
-                it — otherwise it resets on every repeat and never
-                actually changes from the loop&apos;s point of view.
+                Since indexes start at 0, an array of length 5 has valid
+                indexes 0–4. Using <code>{"<"}=</code> here tries to access
+                index 5, which doesn&apos;t exist.
               </p>
             </div>
           </div>
@@ -380,8 +421,8 @@ while (count <= 5) {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can repeat instructions with loops, the next step
-            is learning how to store many values at once using arrays.
+            Now that you can store multiple values, the next step is
+            learning how to organize your code into reusable methods.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -393,7 +434,7 @@ while (count <= 5) {
             </Link>
 
             <Link
-              href="/learn/java/arrays"
+              href="/learn/java"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
