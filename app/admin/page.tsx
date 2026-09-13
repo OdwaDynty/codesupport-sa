@@ -230,6 +230,12 @@ export default function AdminPage() {
             >
               Projects
             </Link>
+            <Link
+              href="/admin/slots"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Slots
+            </Link>
 
             <button
               onClick={logout}
