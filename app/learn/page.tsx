@@ -28,6 +28,15 @@ const languages = [
     icon: "🎨",
     href: "/learn/tailwind",
   },
+    {
+    name: "TypeScript",
+    level: "Beginner → Intermediate",
+    description:
+      "Learn how adding types to JavaScript helps you write safer, more reliable code.",
+    topics: 10,
+    icon: "🔷",
+    href: "/learn/typescript",
+  },
 ];
 
 export default function LearnPage() {
@@ -62,7 +71,7 @@ export default function LearnPage() {
 
       {/* Languages */}
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {languages.map((language) => (
             <Link
               key={language.name}

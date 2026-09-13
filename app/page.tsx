@@ -24,6 +24,13 @@ const languages = [
     href: "/learn/tailwind",
     status: "Available",
   },
+    {
+    name: "TypeScript",
+    description: "Learn how adding types to JavaScript helps you write safer code.",
+    icon: "🔷",
+    href: "/learn/typescript",
+    status: "Available",
+  },
   {
     name: "C++",
     description: "Strengthen your programming logic and learn the fundamentals of C++.",
