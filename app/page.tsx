@@ -34,7 +34,7 @@ const languages = [
   {
     name: "C++",
     description: "Strengthen your programming logic and learn the fundamentals of C++.",
-    icon: "C++",
+    icon: "⚙️",
     href: "/learn/cpp",
     status: "Coming Soon",
   },
