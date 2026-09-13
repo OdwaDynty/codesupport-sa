@@ -171,6 +171,9 @@ export default function PracticePage() {
                 <option value="All">All languages</option>
                 <option value="Java">Java</option>
                 <option value="Python">Python</option>
+                <option value="Tailwind">Tailwind CSS</option>
+                <option value="TypeScript">TypeScript</option>
+                <option value="JavaScript">JavaScript</option>
               </select>
             </div>
 
