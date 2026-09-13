@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import AuthNavButton from "@/components/AuthNavButton";
+import MobileMenu from "@/components/MobileMenu";
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
@@ -119,7 +120,7 @@ export default function PracticePage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       {/* Navigation */}
-      <nav className="border-b border-white/10 bg-slate-950">
+      <nav className="relative border-b border-white/10 bg-slate-950">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link
             href="/"
@@ -143,7 +144,11 @@ export default function PracticePage() {
               Projects
             </Link>
 
-            <AuthNavButton />
+            <div className="hidden sm:block">
+              <AuthNavButton />
+            </div>
+
+            <MobileMenu />
 
             <Link
               href="/support"

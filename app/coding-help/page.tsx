@@ -5,6 +5,8 @@ import { FormEvent, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import AuthNavButton from "@/components/AuthNavButton";
 
+import MobileMenu from "@/components/MobileMenu";
+
 
 export default function CodingHelpPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -190,7 +192,7 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       {/* Navigation */}
-      <nav className="border-b border-white/10">
+      <nav className="relative border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link
             href="/"
@@ -222,7 +224,11 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
               Projects
             </Link>
 
-            <AuthNavButton />
+            <div className="hidden sm:block">
+              <AuthNavButton />
+            </div>
+
+            <MobileMenu />
           </div>
         </div>
       </nav>

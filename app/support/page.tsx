@@ -5,6 +5,8 @@ import AuthNavButton from "@/components/AuthNavButton";
 import { FormEvent, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
+import MobileMenu from "@/components/MobileMenu";
+
 export default function SupportPage() {
   const [submitted, setSubmitted] = useState(false);
   const [availableSlots, setAvailableSlots] = useState<
@@ -173,7 +175,7 @@ export default function SupportPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       {/* Navigation */}
-      <nav className="border-b border-white/10">
+      <nav className="relative border-b border-white/10">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link href="/" className="font-bold hover:text-emerald-400">
             CodeSupport <span className="text-emerald-400">SA</span>
@@ -193,7 +195,11 @@ export default function SupportPage() {
               Practice
             </Link>
 
-            <AuthNavButton />
+            <div className="hidden sm:block">
+              <AuthNavButton />
+            </div>
+
+            <MobileMenu />
           </div>
         </div>
       </nav>

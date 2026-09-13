@@ -5,6 +5,8 @@ import AuthNavButton from "@/components/AuthNavButton";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
+import MobileMenu from "@/components/MobileMenu";
+
 type Project = {
   id: string;
   level: "Beginner" | "Intermediate" | "Challenge";
@@ -93,7 +95,7 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen bg-slate-950 text-white">
       {/* Navigation */}
-      <nav className="border-b border-white/10 bg-slate-950">
+      <nav className="relative border-b border-white/10 bg-slate-950">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
           <Link
             href="/"
@@ -117,7 +119,11 @@ export default function ProjectsPage() {
               Practice
             </Link>
 
-             <AuthNavButton />
+            <div className="hidden sm:block">
+              <AuthNavButton />
+            </div>
+
+            <MobileMenu />
 
             <Link
               href="/support"
