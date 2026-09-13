@@ -21,13 +21,44 @@ export default function PracticePage() {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState("All");
   const [level, setLevel] = useState("All");
-  const [completed, setCompleted] = useState<string[]>([]);
+    const [completed, setCompleted] = useState<string[]>([]);
+
+  const COMPLETED_STORAGE_KEY = "codesupport_completed_exercises";
   const [openHint, setOpenHint] = useState<string | null>(null);
   const [openSolution, setOpenSolution] = useState<string | null>(null);
 
   useEffect(() => {
     loadExercises();
+    loadCompleted();
   }, []);
+
+  const loadCompleted = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      // Not logged in — fall back to this browser's localStorage
+      const stored = localStorage.getItem(COMPLETED_STORAGE_KEY);
+      if (stored) {
+        try {
+          setCompleted(JSON.parse(stored));
+        } catch {
+          setCompleted([]);
+        }
+      }
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("exercise_progress")
+      .select("exercise_id")
+      .eq("user_id", user.id);
+
+    if (!error && data) {
+      setCompleted(data.map((row) => row.exercise_id));
+    }
+  };
 
   const loadExercises = async () => {
     const { data, error } = await supabase
@@ -53,12 +84,36 @@ export default function PracticePage() {
     });
   }, [exercises, language, level]);
 
-  const markCompleted = (id: string) => {
-    setCompleted((current) =>
-      current.includes(id)
-        ? current.filter((exerciseId) => exerciseId !== id)
-        : [...current, id]
-    );
+  const markCompleted = async (id: string) => {
+    const isCurrentlyCompleted = completed.includes(id);
+
+    const updated = isCurrentlyCompleted
+      ? completed.filter((exerciseId) => exerciseId !== id)
+      : [...completed, id];
+
+    setCompleted(updated);
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      // Not logged in — save to this browser's localStorage only
+      localStorage.setItem(COMPLETED_STORAGE_KEY, JSON.stringify(updated));
+      return;
+    }
+
+    if (isCurrentlyCompleted) {
+      await supabase
+        .from("exercise_progress")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("exercise_id", id);
+    } else {
+      await supabase
+        .from("exercise_progress")
+        .insert({ user_id: user.id, exercise_id: id });
+    }
   };
 
   return (
