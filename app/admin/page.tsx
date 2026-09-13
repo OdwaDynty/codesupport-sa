@@ -224,6 +224,12 @@ export default function AdminPage() {
             >
               Exercises
             </Link>
+            <Link
+              href="/admin/projects"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Projects
+            </Link>
 
             <button
               onClick={logout}
