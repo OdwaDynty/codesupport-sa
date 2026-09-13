@@ -19,7 +19,7 @@ const topics = [
     title: "Variables & Basic Types",
     description: "Declare variables with explicit types like string, number and boolean.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",

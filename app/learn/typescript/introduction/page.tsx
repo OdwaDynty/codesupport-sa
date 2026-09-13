@@ -431,7 +431,7 @@ let isLearner: boolean = true;`}</code>
             </Link>
 
             <Link
-              href="/learn/typescript"
+               href="/learn/typescript/variables-types"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
