@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import AuthNavButton from "@/components/AuthNavButton";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function SupportPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [availableSlots, setAvailableSlots] = useState<
+    { id: string; slot_time: string; duration_minutes: number }[]
+  >([]);
+  const [selectedSlotId, setSelectedSlotId] = useState("");
 
   const [form, setForm] = useState({
     name: "",
@@ -15,6 +20,27 @@ export default function SupportPage() {
     topic: "",
     message: "",
   });
+
+    useEffect(() => {
+    loadSlots();
+  }, []);
+
+  const loadSlots = async () => {
+    const { data, error } = await supabase
+      .from("available_slots")
+      .select("id, slot_time, duration_minutes")
+      .eq("is_booked", false)
+      .gte("slot_time", new Date().toISOString())
+      .order("slot_time", { ascending: true });
+
+    if (!error && data) {
+      setAvailableSlots(data);
+    }
+  };
+
+  const slotsForSelectedDuration = availableSlots.filter(
+    (slot) => String(slot.duration_minutes) === form.duration
+  );
 
   const updateField = (field: keyof typeof form, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -35,11 +61,17 @@ export default function SupportPage() {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!selectedSlotId) {
+      alert("Please pick a time slot before continuing.");
+      return;
+    }
+
     try {
       const response = await fetch("/api/support/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        
+        body: JSON.stringify({ ...form, slotId: selectedSlotId }),
       });
 
       const data = await response.json();
@@ -183,8 +215,8 @@ export default function SupportPage() {
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-400">
             Sometimes you need someone to sit with you and work through a
-            problem directly. Tell us what you need help with and pick a
-            session length — we&apos;ll email you to confirm a time.
+            problem directly. Pick a session length, choose an open time
+            slot, and complete payment to confirm your booking.
           </p>
         </div>
       </header>
@@ -304,6 +336,50 @@ export default function SupportPage() {
                 </label>
               </div>
             </div>
+
+            {form.duration && (
+              <div className="mt-7">
+                <label className="mb-3 block text-sm font-medium text-slate-300">
+                  Pick a time
+                </label>
+
+                {slotsForSelectedDuration.length === 0 ? (
+                  <div className="rounded-xl border border-yellow-400/20 bg-yellow-400/5 p-4 text-sm text-yellow-200">
+                    No open {form.duration}-minute slots right now. Try the
+                    other duration, or check back soon.
+                  </div>
+                ) : (
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {slotsForSelectedDuration.map((slot) => (
+                      <label
+                        key={slot.id}
+                        className={`cursor-pointer rounded-xl border p-4 text-sm transition ${
+                          selectedSlotId === slot.id
+                            ? "border-emerald-400 bg-emerald-400/5"
+                            : "border-white/10 bg-slate-950 hover:border-white/20"
+                        }`}
+                      >
+                        <input
+                          type="radio"
+                          name="slot"
+                          value={slot.id}
+                          checked={selectedSlotId === slot.id}
+                          onChange={(e) => setSelectedSlotId(e.target.value)}
+                          className="sr-only"
+                        />
+                        {new Date(slot.slot_time).toLocaleString("en-ZA", {
+                          weekday: "short",
+                          day: "numeric",
+                          month: "short",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="mt-6">
               <label htmlFor="topic" className="mb-2 block text-sm font-medium text-slate-300">
