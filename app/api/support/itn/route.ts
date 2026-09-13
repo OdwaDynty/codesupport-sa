@@ -57,17 +57,27 @@ export async function POST(request: NextRequest) {
 
     const newStatus = paymentStatus === "COMPLETE" ? "Paid" : "Failed";
 
-    const { error } = await supabase
+    const { data: consultation, error } = await supabase
       .from("consultation_requests")
       .update({
         payment_status: newStatus,
         pf_payment_id: pfPaymentId,
       })
-      .eq("id", consultationId);
+      .eq("id", consultationId)
+      .select("slot_id")
+      .single();
 
     if (error) {
       console.error("Failed to update consultation payment status:", error);
       return new NextResponse("Database error", { status: 500 });
+    }
+
+    // If payment failed, release the reserved slot so someone else can book it
+    if (newStatus === "Failed" && consultation?.slot_id) {
+      await supabase
+        .from("available_slots")
+        .update({ is_booked: false })
+        .eq("id", consultation.slot_id);
     }
 
     // PayFast requires a 200 OK response to know the notification was received

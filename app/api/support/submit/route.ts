@@ -4,11 +4,11 @@ import { createClient } from "@supabase/supabase-js";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, grade, duration, topic, message } = body;
+    const { name, email, grade, duration, topic, message, slotId } = body;
 
-    if (!name || !email || !grade || !duration || !topic || !message) {
+    if (!name || !email || !grade || !duration || !topic || !message || !slotId) {
       return NextResponse.json(
-        { error: "Please fill in all required fields." },
+        { error: "Please fill in all required fields and pick a time slot." },
         { status: 400 }
       );
     }
@@ -18,8 +18,28 @@ export async function POST(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    // Safe to select here — this route runs server-side with the
-    // service role, so RLS never applies to it in the first place.
+    // Confirm the slot is still actually open before booking it —
+    // protects against two students racing for the same slot.
+    const { data: slot, error: slotError } = await supabase
+      .from("available_slots")
+      .select("id, is_booked")
+      .eq("id", slotId)
+      .single();
+
+    if (slotError || !slot) {
+      return NextResponse.json(
+        { error: "That time slot could not be found. Please pick another." },
+        { status: 400 }
+      );
+    }
+
+    if (slot.is_booked) {
+      return NextResponse.json(
+        { error: "That time slot was just booked by someone else. Please pick another." },
+        { status: 409 }
+      );
+    }
+
     const { data, error } = await supabase
       .from("consultation_requests")
       .insert({
@@ -29,6 +49,7 @@ export async function POST(request: NextRequest) {
         duration_minutes: duration,
         topic,
         message,
+        slot_id: slotId,
       })
       .select("id")
       .single();
@@ -40,6 +61,13 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Reserve the slot now, before payment — released automatically
+    // later if the payment ends up failing or being cancelled.
+    await supabase
+      .from("available_slots")
+      .update({ is_booked: true })
+      .eq("id", slotId);
 
     return NextResponse.json({ id: data.id });
   } catch (error) {
