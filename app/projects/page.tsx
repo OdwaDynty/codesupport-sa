@@ -7,7 +7,7 @@ import { useState } from "react";
 type Project = {
   id: number;
   level: "Beginner" | "Intermediate" | "Challenge";
-  language: "Java" | "Python";
+  language: "Java" | "Python" | "Tailwind" | "TypeScript" | "JavaScript";
   title: string;
   description: string;
   skills: string[];
@@ -733,6 +733,210 @@ print("Class average:", average)`,
     ],
   },
 
+  {
+    id: 9,
+    level: "Beginner",
+    language: "Tailwind",
+    title: "Profile Card",
+    description:
+      "Build a styled profile card using only Tailwind utility classes — no custom CSS.",
+    skills: [
+      "Backgrounds",
+      "Spacing",
+      "Typography",
+      "Borders & Shadows",
+      "Flexbox",
+    ],
+    goal:
+      "Create an HTML page with a single profile card, styled entirely with Tailwind.",
+    requirements: [
+      "A card with a dark background, padding and rounded corners.",
+      "A name styled as a bold heading.",
+      "A short bio styled as smaller, muted text.",
+      "A row at the bottom (using flexbox) with a badge and a button, spaced apart.",
+      "A subtle shadow and hover effect on the whole card.",
+    ],
+    steps: [
+      "Create the outer card div with a background, padding and rounded corners.",
+      "Add the name as a bold heading inside.",
+      "Add a paragraph for the bio, styled with a muted text color.",
+      "Add a flex row at the bottom with a badge (a small pill) and a button.",
+      "Add a shadow and a hover effect to the card.",
+    ],
+    hint:
+      "Build it in layers, the same way the Tailwind course did: container first, then content, then the flex row, then the hover effect last.",
+    starterCode: `<div class="">
+  <!-- name -->
+
+  <!-- bio -->
+
+  <!-- badge and button row -->
+</div>`,
+    solution: `<div class="bg-slate-900 rounded-2xl p-6 shadow-lg border border-white/10 transition hover:border-emerald-400/40 max-w-sm">
+  <h2 class="text-xl font-bold text-white">Nampho Dlamini</h2>
+  <p class="mt-2 text-sm text-slate-400">
+    High school learner, learning to code with CodeSupport SA.
+  </p>
+
+  <div class="mt-5 flex items-center justify-between border-t border-white/10 pt-4">
+    <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
+      Learner
+    </span>
+    <button class="rounded-lg bg-emerald-400 px-4 py-2 text-sm font-semibold text-slate-950">
+      Message
+    </button>
+  </div>
+</div>`,
+    extensions: [
+      "Add a profile picture placeholder circle using rounded-full.",
+      "Make the card responsive: full width on mobile, fixed width on larger screens.",
+      "Add a second badge, like &quot;Verified&quot;.",
+    ],
+  },
+  {
+    id: 10,
+    level: "Beginner",
+    language: "TypeScript",
+    title: "Typed Student Record",
+    description:
+      "Build a small typed system for storing and checking a student's results.",
+    skills: [
+      "Interfaces",
+      "Functions",
+      "Union Types",
+      "Arrays",
+    ],
+    goal:
+      "Create a TypeScript program that stores a student's subjects and reports their overall result.",
+    requirements: [
+      "An interface called Subject with name (string) and mark (number).",
+      "A typed array of at least three Subject objects.",
+      "A function that calculates the average mark across all subjects.",
+      "A function that returns \"Pass\" or \"Fail\" based on that average.",
+    ],
+    steps: [
+      "Define the Subject interface.",
+      "Create an array typed as Subject[] with three subjects.",
+      "Write a function getAverage(subjects: Subject[]): number that adds up all marks and divides by the count.",
+      "Write a function getResult(average: number): string that returns \"Pass\" if average >= 50, otherwise \"Fail\".",
+      "Call both functions and print the result.",
+    ],
+    hint:
+      "Loop through the array with a for...of loop to add up the marks before dividing.",
+    starterCode: `interface Subject {
+  // define this
+}
+
+const subjects: Subject[] = [
+  // add three subjects here
+];
+
+function getAverage(subjects: Subject[]): number {
+  // your code here
+}
+
+function getResult(average: number): string {
+  // your code here
+}`,
+    solution: `interface Subject {
+  name: string;
+  mark: number;
+}
+
+const subjects: Subject[] = [
+  { name: "Mathematics", mark: 72 },
+  { name: "English", mark: 65 },
+  { name: "Life Sciences", mark: 40 }
+];
+
+function getAverage(subjects: Subject[]): number {
+  let total = 0;
+
+  for (const subject of subjects) {
+    total = total + subject.mark;
+  }
+
+  return total / subjects.length;
+}
+
+function getResult(average: number): string {
+  if (average >= 50) {
+    return "Pass";
+  }
+  return "Fail";
+}
+
+const average = getAverage(subjects);
+console.log("Average:", average);
+console.log("Result:", getResult(average));`,
+    extensions: [
+      "Add an optional teacherComment property to Subject.",
+      "Use a type alias for the result instead of a plain string: type Result = \"Pass\" | \"Fail\".",
+      "Add a function that returns the subject with the highest mark.",
+    ],
+  },
+  {
+    id: 11,
+    level: "Beginner",
+    language: "JavaScript",
+    title: "Interactive Mark Checker",
+    description:
+      "Build a real webpage where a user can click a button to check if a mark is a pass.",
+    skills: [
+      "Functions",
+      "DOM Selection",
+      "Event Listeners",
+      "If / Else",
+    ],
+    goal:
+      "Create an HTML page with an input and a button — clicking the button displays whether the entered mark passes.",
+    requirements: [
+      "An input where the user types a mark.",
+      "A button labelled \"Check Result\".",
+      "A paragraph that starts empty.",
+      "Clicking the button displays \"Pass\" or \"Fail\" in the paragraph, based on the mark.",
+    ],
+    steps: [
+      "Create the HTML: an input with an id, a button with an id, and an empty paragraph with an id.",
+      "In JavaScript, select all three elements using getElementById.",
+      "Add a click event listener to the button.",
+      "Inside the listener, read the input's value and convert it to a number.",
+      "Use an if/else to decide Pass or Fail, and set the paragraph's textContent.",
+    ],
+    hint:
+      "Input values are always text, even for numbers — wrap the input's value in Number(...) before comparing it.",
+    starterCode: `<input id="markInput" type="text" />
+<button id="checkButton">Check Result</button>
+<p id="result"></p>
+
+<script>
+  // your code here
+</script>`,
+    solution: `<input id="markInput" type="text" />
+<button id="checkButton">Check Result</button>
+<p id="result"></p>
+
+<script>
+  const input = document.getElementById("markInput");
+  const button = document.getElementById("checkButton");
+  const result = document.getElementById("result");
+
+  button.addEventListener("click", function () {
+    const mark = Number(input.value);
+
+    if (mark >= 50) {
+      result.textContent = "Pass";
+    } else {
+      result.textContent = "Fail";
+    }
+  });
+</script>`,
+    extensions: [
+      "Show a message like \"Please enter a valid number\" if the input is empty.",
+      "Add a distinction check: 80 or higher shows \"Distinction\" instead of \"Pass\".",
+      "Style the result text green for Pass and red for Fail.",
+    ],
+  },
 ];
 
 const levels = ["All", "Beginner", "Intermediate", "Challenge"];
@@ -899,6 +1103,9 @@ export default function ProjectsPage() {
                 <option value="All">All languages</option>
                 <option value="Java">Java</option>
                 <option value="Python">Python</option>
+                <option value="Tailwind">Tailwind CSS</option>
+                <option value="TypeScript">TypeScript</option>
+                <option value="JavaScript">JavaScript</option>
               </select>
             </div>
 
