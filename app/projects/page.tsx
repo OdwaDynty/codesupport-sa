@@ -937,6 +937,451 @@ console.log("Result:", getResult(average));`,
       "Style the result text green for Pass and red for Fail.",
     ],
   },
+  {
+    id: 12,
+    level: "Intermediate",
+    language: "Tailwind",
+    title: "Responsive Pricing Cards",
+    description:
+      "Build a set of pricing cards that stack on mobile and sit side-by-side on larger screens.",
+    skills: [
+      "Flexbox",
+      "Responsive Design",
+      "Hover & Transitions",
+      "Borders & Shadows",
+    ],
+    goal:
+      "Create three pricing cards (Basic, Standard, Premium) that respond correctly to screen size.",
+    requirements: [
+      "Three cards, stacked vertically on mobile.",
+      "The same three cards arranged in a row on medium screens and up.",
+      "One card (Standard) visually highlighted as the recommended option.",
+      "Each card has a hover effect.",
+      "Consistent spacing between all three cards, at every screen size.",
+    ],
+    steps: [
+      "Create an outer flex container: flex-col by default, md:flex-row at medium screens.",
+      "Build one card, styled with padding, rounded corners and a border.",
+      "Duplicate it two more times for the three tiers.",
+      "Give the Standard card a different border color or a small badge to highlight it.",
+      "Add a hover effect to all three cards.",
+    ],
+    hint:
+      "Build and style one card completely first, then copy it twice and change only the price/name/highlight per copy.",
+    starterCode: `<div class="">
+  <!-- Basic card -->
+  <!-- Standard card (highlighted) -->
+  <!-- Premium card -->
+</div>`,
+    solution: `<div class="flex flex-col md:flex-row gap-6">
+  <div class="flex-1 rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-lg transition hover:border-emerald-400/30">
+    <h3 class="text-lg font-bold">Basic</h3>
+    <p class="mt-2 text-3xl font-bold">R0</p>
+  </div>
+
+  <div class="flex-1 rounded-2xl border-2 border-emerald-400 bg-slate-900 p-6 shadow-lg transition hover:border-emerald-300">
+    <span class="rounded-full bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">Most popular</span>
+    <h3 class="mt-3 text-lg font-bold">Standard</h3>
+    <p class="mt-2 text-3xl font-bold">R100</p>
+  </div>
+
+  <div class="flex-1 rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-lg transition hover:border-emerald-400/30">
+    <h3 class="text-lg font-bold">Premium</h3>
+    <p class="mt-2 text-3xl font-bold">R180</p>
+  </div>
+</div>`,
+    extensions: [
+      "Add a list of 3-4 features under each price using a ul.",
+      "Add a call-to-action button at the bottom of each card.",
+      "Make the Standard card slightly taller or scaled up to stand out further.",
+    ],
+  },
+  {
+    id: 13,
+    level: "Challenge",
+    language: "Tailwind",
+    title: "Landing Page Hero Section",
+    description:
+      "Build a complete, responsive hero section combining everything from the Tailwind course.",
+    skills: [
+      "Typography",
+      "Colors & Backgrounds",
+      "Flexbox",
+      "Responsive Design",
+      "Hover & Transitions",
+    ],
+    goal:
+      "Create a polished hero section: a heading, supporting text, a call-to-action button, and a side visual — responsive from mobile to desktop.",
+    requirements: [
+      "A large, bold heading and supporting paragraph.",
+      "A call-to-action button with a hover effect.",
+      "Content stacked on mobile, side-by-side (text + visual) on larger screens.",
+      "A small badge or label above the heading.",
+      "Consistent spacing and a cohesive color scheme throughout.",
+    ],
+    steps: [
+      "Build the text column first: badge, heading, paragraph, button — mobile-first, no side-by-side yet.",
+      "Add a second column for a visual (a colored box or card stands in fine).",
+      "Wrap both columns in a flex container: flex-col by default, md:flex-row at medium screens.",
+      "Add responsive text sizing so the heading is smaller on mobile, larger on desktop.",
+      "Add a hover effect to the button, with a smooth transition.",
+    ],
+    hint:
+      "This mirrors the homepage hero you've seen throughout CodeSupport SA itself — look at how that's built for inspiration on structure.",
+    starterCode: `<section class="">
+  <div class=""> <!-- text column -->
+  </div>
+  <div class=""> <!-- visual column -->
+  </div>
+</section>`,
+    solution: `<section class="bg-slate-950 px-6 py-16">
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row">
+    <div class="flex-1 text-center md:text-left">
+      <span class="rounded-full bg-emerald-400/10 px-4 py-2 text-sm text-emerald-300">
+        New
+      </span>
+
+      <h1 class="mt-5 text-4xl font-bold md:text-5xl">
+        Build something great.
+      </h1>
+
+      <p class="mt-4 text-lg text-slate-400">
+        A short, confident sentence about what this product does.
+      </p>
+
+      <button class="mt-6 rounded-xl bg-emerald-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300">
+        Get Started →
+      </button>
+    </div>
+
+    <div class="flex-1">
+      <div class="h-64 rounded-2xl bg-slate-900 border border-white/10"></div>
+    </div>
+  </div>
+</section>`,
+    extensions: [
+      "Add a second, secondary button next to the main call-to-action.",
+      "Add a subtle background glow effect behind the visual column.",
+      "Add a small row of trust logos or stats below the button.",
+    ],
+  },
+  {
+    id: 14,
+    level: "Intermediate",
+    language: "TypeScript",
+    title: "Class-Based Grade Book",
+    description:
+      "Build a small grade book system using classes, with safely typed data throughout.",
+    skills: [
+      "Classes",
+      "Optional & Readonly Properties",
+      "Arrays",
+      "Functions",
+    ],
+    goal:
+      "Create a Student class that stores marks and reports on a student's performance.",
+    requirements: [
+      "A Student class with a readonly id, a name, and an array of marks.",
+      "A method to add a new mark to a student.",
+      "A method to calculate the student's average.",
+      "A method that returns whether the student is passing overall.",
+    ],
+    steps: [
+      "Define the Student class with readonly id: number, name: string, and marks: number[].",
+      "Write a constructor that sets id and name, and starts marks as an empty array.",
+      "Add an addMark(mark: number) method that pushes to the array.",
+      "Add a getAverage(): number method.",
+      "Add an isPassing(): boolean method using the average.",
+    ],
+    hint:
+      "getAverage() can loop through this.marks the same way you looped through arrays earlier in the TypeScript course.",
+    starterCode: `class Student {
+  // properties here
+
+  constructor(id: number, name: string) {
+    // set up properties
+  }
+
+  addMark(mark: number) {
+    // your code
+  }
+
+  getAverage(): number {
+    // your code
+  }
+
+  isPassing(): boolean {
+    // your code
+  }
+}`,
+    solution: `class Student {
+  readonly id: number;
+  name: string;
+  marks: number[];
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+    this.marks = [];
+  }
+
+  addMark(mark: number) {
+    this.marks.push(mark);
+  }
+
+  getAverage(): number {
+    let total = 0;
+
+    for (const mark of this.marks) {
+      total = total + mark;
+    }
+
+    return total / this.marks.length;
+  }
+
+  isPassing(): boolean {
+    return this.getAverage() >= 50;
+  }
+}
+
+const learner1 = new Student(1, "Nampho");
+learner1.addMark(72);
+learner1.addMark(65);
+
+console.log(learner1.getAverage());
+console.log(learner1.isPassing());`,
+    extensions: [
+      "Add an optional nickname?: string property.",
+      "Add a getHighestMark(): number method.",
+      "Prevent addMark from accepting a value below 0 or above 100.",
+    ],
+  },
+  {
+    id: 15,
+    level: "Challenge",
+    language: "TypeScript",
+    title: "Generic Data Store",
+    description:
+      "Build a small, reusable generic class that can safely store and manage a list of any type.",
+    skills: [
+      "Generics",
+      "Enums",
+      "Union Types",
+      "Classes",
+    ],
+    goal:
+      "Create a generic Store<T> class that can hold a list of items of any single type, with basic operations.",
+    requirements: [
+      "A generic class called Store<T> with a private array of items.",
+      "An add(item: T) method.",
+      "A getAll(): T[] method.",
+      "A count(): number method.",
+      "Used with at least two different types (e.g. a Store<string> and a Store<number>).",
+    ],
+    steps: [
+      "Define class Store<T> with a private items: T[] = [].",
+      "Add add(item: T): void that pushes to items.",
+      "Add getAll(): T[] that returns the array.",
+      "Add count(): number that returns the array's length.",
+      "Create two separate Store instances with different types and test both.",
+    ],
+    hint:
+      "The <T> works exactly like the generic functions from the course — just declared on the class instead of a single function.",
+    starterCode: `class Store<T> {
+  // your code here
+}
+
+// try it with two different types
+`,
+    solution: `class Store<T> {
+  private items: T[] = [];
+
+  add(item: T): void {
+    this.items.push(item);
+  }
+
+  getAll(): T[] {
+    return this.items;
+  }
+
+  count(): number {
+    return this.items.length;
+  }
+}
+
+const names = new Store<string>();
+names.add("Nampho");
+names.add("Thando");
+console.log(names.getAll(), names.count());
+
+const marks = new Store<number>();
+marks.add(72);
+marks.add(65);
+console.log(marks.getAll(), marks.count());`,
+    extensions: [
+      "Add a remove(item: T) method.",
+      "Add a Category enum and a second generic store constrained to storing objects with a category property.",
+      "Add a type union so the store can only hold string | number, not any type.",
+    ],
+  },
+  {
+    id: 16,
+    level: "Intermediate",
+    language: "JavaScript",
+    title: "To-Do List",
+    description:
+      "Build a fully working to-do list — add tasks, mark them done, and see them appear instantly.",
+    skills: [
+      "Arrays",
+      "Objects",
+      "DOM Selection",
+      "Event Listeners",
+    ],
+    goal:
+      "Create a webpage where a user can type a task, add it to a list, and mark tasks as complete.",
+    requirements: [
+      "An input for typing a new task, and an \"Add\" button.",
+      "Clicking Add displays the task in a list on the page.",
+      "Each task can be clicked to toggle it as complete (e.g. strikethrough).",
+      "The input clears after adding a task.",
+    ],
+    steps: [
+      "Create the HTML: an input, an Add button, and an empty container (like a ul) for tasks.",
+      "In JavaScript, keep an array of task objects, each with text and done properties.",
+      "When Add is clicked, push a new task object into the array and clear the input.",
+      "Write a function that re-renders the whole list from the array into the container.",
+      "Add a click listener on each rendered task that toggles its done property and re-renders.",
+    ],
+    hint:
+      "Re-rendering the whole list from the array every time (clear the container, then loop and rebuild it) is simpler to get right than trying to update individual list items directly.",
+    starterCode: `<input id="taskInput" type="text" />
+<button id="addButton">Add</button>
+<ul id="taskList"></ul>
+
+<script>
+  const tasks = [];
+  // your code here
+</script>`,
+    solution: `<input id="taskInput" type="text" />
+<button id="addButton">Add</button>
+<ul id="taskList"></ul>
+
+<script>
+  const tasks = [];
+
+  const input = document.getElementById("taskInput");
+  const addButton = document.getElementById("addButton");
+  const taskList = document.getElementById("taskList");
+
+  function render() {
+    taskList.textContent = "";
+
+    for (const task of tasks) {
+      const li = document.createElement("li");
+      li.textContent = task.text;
+
+      if (task.done) {
+        li.style.textDecoration = "line-through";
+      }
+
+      li.addEventListener("click", function () {
+        task.done = !task.done;
+        render();
+      });
+
+      taskList.appendChild(li);
+    }
+  }
+
+  addButton.addEventListener("click", function () {
+    if (input.value === "") return;
+
+    tasks.push({ text: input.value, done: false });
+    input.value = "";
+    render();
+  });
+</script>`,
+    extensions: [
+      "Add a delete button next to each task.",
+      "Show a count of remaining (not done) tasks.",
+      "Save the tasks so they're still there after refreshing the page.",
+    ],
+  },
+  {
+    id: 17,
+    level: "Challenge",
+    language: "JavaScript",
+    title: "Live Search Filter",
+    description:
+      "Build a list of items that filters instantly as the user types, no button needed.",
+    skills: [
+      "Arrays",
+      "Functions",
+      "DOM Selection",
+      "Event Listeners",
+    ],
+    goal:
+      "Create a searchable list of subjects that narrows down live as the user types in a search box.",
+    requirements: [
+      "A fixed array of at least 8 subject names.",
+      "A search input above the list.",
+      "The list displays all subjects by default.",
+      "Typing in the search box instantly filters the list to matching subjects only.",
+      "The search should not be case-sensitive.",
+    ],
+    steps: [
+      "Create the HTML: a search input and an empty container for results.",
+      "Store the full list of subjects in a JavaScript array.",
+      "Write a render(list) function that displays a given array of subjects.",
+      "Call render(subjects) once on page load to show everything.",
+      "Add an input event listener on the search box that filters the array and calls render() with the filtered results.",
+    ],
+    hint:
+      "Array.prototype.filter() combined with .toLowerCase() on both the subject and the search text handles the case-insensitive matching cleanly.",
+    starterCode: `<input id="searchBox" type="text" placeholder="Search subjects..." />
+<ul id="results"></ul>
+
+<script>
+  const subjects = ["Mathematics", "Physical Sciences", "Life Sciences", "English", "Life Orientation", "History", "Geography", "Computer Applications Technology"];
+  // your code here
+</script>`,
+    solution: `<input id="searchBox" type="text" placeholder="Search subjects..." />
+<ul id="results"></ul>
+
+<script>
+  const subjects = ["Mathematics", "Physical Sciences", "Life Sciences", "English", "Life Orientation", "History", "Geography", "Computer Applications Technology"];
+
+  const searchBox = document.getElementById("searchBox");
+  const results = document.getElementById("results");
+
+  function render(list) {
+    results.textContent = "";
+
+    for (const subject of list) {
+      const li = document.createElement("li");
+      li.textContent = subject;
+      results.appendChild(li);
+    }
+  }
+
+  searchBox.addEventListener("input", function () {
+    const searchText = searchBox.value.toLowerCase();
+
+    const filtered = subjects.filter(function (subject) {
+      return subject.toLowerCase().includes(searchText);
+    });
+
+    render(filtered);
+  });
+
+  render(subjects);
+</script>`,
+    extensions: [
+      "Show \"No subjects found\" when the filtered list is empty.",
+      "Highlight the matching part of the text in each result.",
+      "Add a count showing how many results are currently displayed.",
+    ],
+  },
 ];
 
 const levels = ["All", "Beginner", "Intermediate", "Challenge"];
