@@ -1,0 +1,238 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { getCompletedTopics } from "@/lib/progress";
+
+const topics = [
+  {
+    number: "01",
+    slug: "introduction",
+    title: "Introduction to JavaScript",
+    description: "What JavaScript is, and why it's the language of the web.",
+    level: "Beginner",
+    available: true,
+  },
+  {
+    number: "02",
+    slug: "variables-data-types",
+    title: "Variables & Data Types",
+    description: "Store information using let and const, and the main JavaScript data types.",
+    level: "Beginner",
+    available: true,
+  },
+  {
+    number: "03",
+    slug: "operators",
+    title: "Operators",
+    description: "Use arithmetic, comparison and logical operators.",
+    level: "Beginner",
+    available: true,
+  },
+  {
+    number: "04",
+    slug: "if-statements",
+    title: "If Statements & If/Else",
+    description: "Make your program respond differently to different conditions.",
+    level: "Beginner",
+    available: true,
+  },
+  {
+    number: "05",
+    slug: "loops",
+    title: "Loops",
+    description: "Repeat instructions using for and while loops.",
+    level: "Intermediate",
+    available: true,
+  },
+  {
+    number: "06",
+    slug: "arrays",
+    title: "Arrays",
+    description: "Store and work with multiple values in a single variable.",
+    level: "Intermediate",
+    available: true,
+  },
+  {
+    number: "07",
+    slug: "functions",
+    title: "Functions",
+    description: "Organize your code into reusable, named blocks.",
+    level: "Intermediate",
+    available: true,
+  },
+  {
+    number: "08",
+    slug: "objects",
+    title: "Objects",
+    description: "Group related data and behaviour together.",
+    level: "Intermediate",
+    available: true,
+  },
+  {
+    number: "09",
+    slug: "dom-selecting",
+    title: "DOM Basics: Selecting Elements",
+    description: "Use JavaScript to find and change elements on a real webpage.",
+    level: "Intermediate",
+    available: true,
+  },
+  {
+    number: "10",
+    slug: "dom-events",
+    title: "DOM Basics: Responding to Clicks",
+    description: "Make your webpage respond when a user clicks a button.",
+    level: "Intermediate",
+    available: true,
+  },
+];
+
+export default function JavaScriptPage() {
+  const [completedSlugs, setCompletedSlugs] = useState<string[]>([]);
+
+  useEffect(() => {
+    getCompletedTopics("javascript").then(setCompletedSlugs);
+  }, []);
+
+  const completedCount = topics.filter((t) =>
+    completedSlugs.includes(t.slug)
+  ).length;
+
+  return (
+    <main className="min-h-screen bg-slate-950 text-white">
+      <header className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+          <Link
+            href="/learn"
+            className="text-sm text-slate-400 transition hover:text-emerald-400"
+          >
+            ← Back to Learn
+          </Link>
+
+          <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/5 text-2xl">
+                  JS
+                </div>
+
+                <div>
+                  <p className="text-sm font-semibold text-emerald-400">
+                    Programming Language
+                  </p>
+
+                  <h1 className="text-4xl font-bold sm:text-5xl">
+                    JavaScript
+                  </h1>
+                </div>
+              </div>
+
+              <p className="mt-6 text-lg leading-8 text-slate-400">
+                Learn the language that powers interactive websites,
+                finishing with real DOM manipulation on a live page.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-white/10 bg-slate-900 px-5 py-4">
+              <div className="text-sm text-slate-500">Course progress</div>
+              <div className="mt-1 text-2xl font-bold">
+                {completedCount} / {topics.length}
+              </div>
+              <div className="mt-2 text-xs text-slate-500">
+                {completedCount === topics.length
+                  ? "All topics complete! 🎉"
+                  : "Complete each quiz to track progress"}
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-5xl px-6 py-16 lg:px-8">
+        <div className="mb-8">
+          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">
+            JavaScript Fundamentals
+          </p>
+
+          <h2 className="mt-2 text-2xl font-bold">
+            Work through the topics
+          </h2>
+
+          <p className="mt-2 text-slate-400">
+            Start at the beginning if JavaScript is new to you.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {topics.map((topic) => (
+            <Link
+              key={topic.number}
+              href={topic.available ? `/learn/javascript/${topic.slug}` : "#"}
+              className={`group flex flex-col gap-5 rounded-2xl border p-6 transition sm:flex-row sm:items-center ${
+                topic.available
+                  ? "border-white/10 bg-slate-900 hover:border-emerald-400/40"
+                  : "cursor-default border-white/5 bg-slate-900/50"
+              }`}
+            >
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white/5 font-mono text-sm text-emerald-400">
+                {topic.number}
+              </div>
+
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-3">
+                  <h3 className="font-bold">{topic.title}</h3>
+
+                  <span className="rounded-full bg-white/5 px-2.5 py-1 text-xs text-slate-500">
+                    {topic.level}
+                  </span>
+                </div>
+
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  {topic.description}
+                </p>
+              </div>
+
+              <div className="text-sm font-medium text-slate-500">
+                {completedSlugs.includes(topic.slug) ? (
+                  <span className="text-emerald-400">✓ Completed</span>
+                ) : topic.available ? (
+                  <span className="text-emerald-400 group-hover:text-emerald-300">
+                    Start →
+                  </span>
+                ) : (
+                  "Coming soon"
+                )}
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-slate-900/40">
+        <div className="mx-auto max-w-5xl px-6 py-14 lg:px-8">
+          <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-8">
+            <p className="text-sm font-semibold text-emerald-400">
+              Coming next
+            </p>
+
+            <h2 className="mt-2 text-2xl font-bold">
+              Practice and projects
+            </h2>
+
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-400">
+              Practise what you learn with coding challenges and
+              practical JavaScript projects.
+            </p>
+
+            <Link
+              href="/practice"
+              className="mt-6 inline-block rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+            >
+              View Practice →
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

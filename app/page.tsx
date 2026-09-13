@@ -43,7 +43,7 @@ const languages = [
     description: "Learn the language that powers interactive websites and modern web applications.",
     icon: "JS",
     href: "/learn/javascript",
-    status: "Coming Soon",
+    status: "Available",
   },
 ];
 
