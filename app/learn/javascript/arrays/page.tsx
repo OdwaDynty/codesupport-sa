@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function JavaScriptLoopsLesson() {
+export default function JavaScriptArraysLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
-    if (quizAnswer === "B") {
-      setQuizResult("Correct! This loop prints the numbers 5 times (1 to 5).");
-      markTopicComplete("javascript", "loops");
+    if (quizAnswer === "A") {
+      setQuizResult("Correct! Array indexes start at 0, so the first item is marks[0].");
+      markTopicComplete("javascript", "arrays");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -37,166 +37,127 @@ export default function JavaScriptLoopsLesson() {
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-emerald-300">JavaScript</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 5 of 10</span>
+            <span className="text-slate-400">Topic 6 of 10</span>
             <span className="text-slate-600">•</span>
             <span className="text-slate-400">Intermediate</span>
           </div>
-
-          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Loops
-          </h1>
-
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">Arrays</h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Repeat instructions using for and while loops, without
-            writing the same code over and over.
+            Store many values in a single variable, and loop through
+            them easily.
           </p>
-
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[50%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[60%] rounded-full bg-emerald-400" />
           </div>
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 50%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 60%</p>
         </div>
       </header>
 
       <div className="mx-auto max-w-4xl px-6 py-12">
         <section className="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-6">
-          <h2 className="text-lg font-bold text-emerald-300">
-            What you should know after this lesson
-          </h2>
+          <h2 className="text-lg font-bold text-emerald-300">What you should know after this lesson</h2>
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Write a for loop that repeats a set number of times.</li>
-            <li>✓ Write a while loop that repeats based on a condition.</li>
-            <li>✓ Know which loop to reach for.</li>
-            <li>✓ Avoid writing an infinite loop.</li>
+            <li>✓ Create an array and access its items.</li>
+            <li>✓ Understand that array indexes start at 0.</li>
+            <li>✓ Loop through an array with for and for...of.</li>
+            <li>✓ Add an item using push().</li>
           </ul>
         </section>
 
         <section className="mt-12">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">01 • Learn</p>
-          <h2 className="mt-3 text-3xl font-bold">The for loop</h2>
+          <h2 className="mt-3 text-3xl font-bold">Creating an array</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">for</span>
-                <span className="text-slate-400">
-                  {" "}
-                  (let i = 1; i {"<"}= 5; i++) {"{"}
-                </span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">console.log(i);</span>
-                {"\n"}
-                <span className="text-slate-400">{"}"}</span>
-              </code>
+            <pre className="overflow-x-auto font-mono text-sm leading-7 text-emerald-300">
+              <code>{`const marks = [65, 78, 42, 90, 55];`}</code>
             </pre>
           </div>
 
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">marks array</div>
+            <div className="flex divide-x divide-white/10">
+              {["65", "78", "42", "90", "55"].map((val, i) => (
+                <div key={i} className="flex-1 p-4 text-center">
+                  <div className="font-mono text-lg text-emerald-300">{val}</div>
+                  <div className="mt-1 font-mono text-xs text-slate-500">[{i}]</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <p className="mt-5 leading-8 text-slate-300">
-            Same three-part structure you may have seen in other
-            languages: a starting value (
-            <code className="text-emerald-300">let i = 1</code>), a
-            condition to keep checking (
-            <code className="text-emerald-300">i {"<"}= 5</code>), and an
-            update that runs after each pass (
-            <code className="text-emerald-300">i++</code>).
+            <code className="text-emerald-300">marks[0]</code> is the
+            first item (65) — indexes start counting from 0, not 1.
           </p>
         </section>
 
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">02 • Understand</p>
-          <h2 className="mt-3 text-3xl font-bold">The while loop</h2>
-
-          <p className="mt-5 leading-8 text-slate-300">
-            A <code className="text-emerald-300">while</code> loop is
-            better when you don&apos;t know in advance how many times
-            you&apos;ll need to repeat.
-          </p>
+          <h2 className="mt-3 text-3xl font-bold">Looping through an array</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
-              <code>
-                <span className="text-purple-400">let</span>{" "}
-                <span className="text-blue-300">count</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">10</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
-                <span className="text-purple-400">while</span>
-                <span className="text-slate-400"> (count {">"} 0) {"{"}</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">console.log(count);</span>
-                {"\n"}
-                {"  "}
-                <span className="text-slate-300">count--;</span>
-                {"\n"}
-                <span className="text-slate-400">{"}"}</span>
-              </code>
+            <div className="text-sm font-medium text-slate-400">Using for...of (recommended)</div>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`for (const mark of marks) {
+  console.log(mark);
+}`}</code>
             </pre>
           </div>
 
           <p className="mt-5 leading-8 text-slate-300">
-            This counts down from 10 to 1, stopping once{" "}
-            <code>count</code> reaches 0.
+            <code className="text-emerald-300">for...of</code> loops
+            directly over each value — no index needed at all, which
+            makes it the cleanest way to loop through an array in
+            JavaScript.
           </p>
+
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">Using a regular for loop</div>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`for (let i = 0; i < marks.length; i++) {
+  console.log(marks[i]);
+}`}</code>
+            </pre>
+          </div>
         </section>
 
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">03 • Examples</p>
-          <h2 className="mt-3 text-3xl font-bold">Which loop to choose</h2>
+          <h2 className="mt-3 text-3xl font-bold">Adding an item with push()</h2>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">for</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Use when you know exactly how many times to repeat —
-                &quot;print numbers 1 to 10&quot;, &quot;go through
-                every item in a list&quot;.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-white/10 bg-slate-900 p-5">
-              <div className="font-mono text-purple-400">while</div>
-              <p className="mt-2 text-sm leading-6 text-slate-400">
-                Use when you don&apos;t know in advance — &quot;keep
-                asking until the user enters a valid number&quot;.
-              </p>
-            </div>
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">Adding to an array</div>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8 text-emerald-300">
+              <code>{`const subjects = ["Maths", "Science"];
+subjects.push("English");
+console.log(subjects); // ["Maths", "Science", "English"]`}</code>
+            </pre>
           </div>
         </section>
 
         <section className="mt-14 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">Quick Check</p>
           <h2 className="mt-3 text-2xl font-bold">
-            How many times does this loop run?
+            Given const marks = [65, 78, 42], what does marks[0] give you?
           </h2>
-
-          <pre className="mt-4 overflow-x-auto rounded-xl border border-white/10 bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
-            <code>{`for (let i = 1; i <= 5; i++) {
-  console.log(i);
-}`}</code>
-          </pre>
-
           <div className="mt-6 space-y-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="A" checked={quizAnswer === "A"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">A. 4 times</span>
+              <span className="text-sm text-slate-300">A. 65</span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="B" checked={quizAnswer === "B"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">B. 5 times</span>
+              <span className="text-sm text-slate-300">B. 78</span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="C" checked={quizAnswer === "C"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">C. 6 times</span>
+              <span className="text-sm text-slate-300">C. An error</span>
             </label>
           </div>
-
           <button onClick={checkQuiz} className="mt-6 rounded-xl bg-emerald-400 px-5 py-3 font-semibold text-slate-950 transition hover:bg-emerald-300">
             Check Answer
           </button>
-
           {quizResult && (
             <div className={`mt-5 rounded-xl p-4 text-sm ${quizResult.startsWith("Correct") ? "bg-emerald-400/10 text-emerald-300" : "bg-yellow-400/10 text-yellow-300"}`}>
               {quizResult}
@@ -207,27 +168,31 @@ export default function JavaScriptLoopsLesson() {
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">04 • Exercise</p>
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
-
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
-            <p className="leading-7 text-slate-300">
-              Write a JavaScript for loop that prints the numbers 1
-              through 10, each on its own line.
-            </p>
-
+            <p className="leading-7 text-slate-300">Write JavaScript code that:</p>
+            <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
+              <li>Creates an array called <strong className="text-white">marks</strong> with the values 65, 78, 42, 90, 55.</li>
+              <li>Uses a loop to add them all up into a <strong className="text-white">total</strong> variable.</li>
+              <li>Prints the total.</li>
+            </ol>
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">Show Hint</summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Start the counter at 1, keep going while it&apos;s{" "}
-                <code>{"<"}= 10</code>, increase it by 1 each time.
+                Start <code>total</code> at 0, then use{" "}
+                <code>for (const mark of marks)</code> to add each one.
               </div>
             </details>
-
             <details className="mt-3 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">Show Solution</summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`for (let i = 1; i <= 10; i++) {
-  console.log(i);
-}`}</code>
+                <code>{`const marks = [65, 78, 42, 90, 55];
+let total = 0;
+
+for (const mark of marks) {
+  total = total + mark;
+}
+
+console.log(total);`}</code>
               </pre>
             </details>
           </div>
@@ -236,29 +201,26 @@ export default function JavaScriptLoopsLesson() {
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">Watch out</p>
           <h2 className="mt-3 text-3xl font-bold">Common beginner mistakes</h2>
-
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
-              <div className="font-semibold text-red-300">Forgetting to update the counter (infinite loop)</div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">{`let count = 1;
-while (count <= 5) {
-  console.log(count);
-  // forgot count++;
-}`}</pre>
+              <div className="font-semibold text-red-300">Going out of bounds</div>
+              <pre className="mt-3 font-mono text-sm text-slate-400">{`const marks = [65, 78, 42];
+console.log(marks[3]); // undefined, not an error`}</pre>
               <p className="mt-2 text-sm text-slate-500">
-                Without updating <code>count</code>, the condition never
-                becomes false and your browser tab will freeze.
+                Unlike some languages, JavaScript doesn&apos;t crash on
+                an invalid index — it just returns{" "}
+                <code>undefined</code>, which can hide bugs if
+                you&apos;re not careful.
               </p>
             </div>
-
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
-              <div className="font-semibold text-red-300">Off-by-one errors</div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">{`for (let i = 1; i < 5; i++) {
-  // only runs 4 times: 1, 2, 3, 4
-}`}</pre>
+              <div className="font-semibold text-red-300">Confusing array.length with the last valid index</div>
+              <pre className="mt-3 font-mono text-sm text-slate-400">{`const marks = [65, 78, 42];
+console.log(marks[marks.length]); // undefined - one past the end`}</pre>
               <p className="mt-2 text-sm text-slate-500">
-                Double-check whether you meant <code>{"<"}</code> or{" "}
-                <code>{"<"}=</code>.
+                The last valid index is always{" "}
+                <code>length - 1</code>, not{" "}
+                <code>length</code>.
               </p>
             </div>
           </div>
@@ -268,25 +230,18 @@ while (count <= 5) {
           <div className="text-3xl">🎯</div>
           <h2 className="mt-4 text-2xl font-bold">Ready for the next topic?</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that you can repeat instructions, the next step is
-            learning how to store many values at once using arrays.
+            Now that you can store multiple values, the next step is
+            organizing your code into reusable functions.
           </p>
-
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <Link href="/learn/javascript" className="rounded-xl border border-white/10 bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
-              Back to JavaScript
-            </Link>
-            <Link href="/learn/javascript/arrays" className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300">
-              Next Topic →
-            </Link>
+            <Link href="/learn/javascript" className="rounded-xl border border-white/10 bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Back to JavaScript</Link>
+            <Link href="/learn/javascript/functions" className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300">Next Topic →</Link>
           </div>
         </section>
       </div>
 
       <footer className="border-t border-white/10">
-        <div className="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-slate-500">
-          CodeSupport SA • Learn. Practise. Build. Get Help.
-        </div>
+        <div className="mx-auto max-w-4xl px-6 py-8 text-center text-sm text-slate-500">CodeSupport SA • Learn. Practise. Build. Get Help.</div>
       </footer>
     </main>
   );
