@@ -395,7 +395,7 @@ console.log("I am learning JavaScript!");`}</code>
             </Link>
 
             <Link
-              href="/learn/javascript"
+              href="/learn/javascript/variables-data-types"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
