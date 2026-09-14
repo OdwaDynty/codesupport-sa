@@ -4,14 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { markTopicComplete } from "@/lib/progress";
 
-export default function CppIfStatementsLesson() {
+export default function CppFunctionsLesson() {
   const [quizAnswer, setQuizAnswer] = useState("");
   const [quizResult, setQuizResult] = useState("");
 
   const checkQuiz = () => {
     if (quizAnswer === "B") {
-      setQuizResult("Correct! else runs only when the if condition was false.");
-      markTopicComplete("cpp", "if-statements");
+      setQuizResult("Correct! return sends a value back to wherever the function was called.");
+      markTopicComplete("cpp", "functions");
     } else if (quizAnswer === "") {
       setQuizResult("Choose an answer first.");
     } else {
@@ -37,21 +37,20 @@ export default function CppIfStatementsLesson() {
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-emerald-300">C++</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Topic 5 of 10</span>
+            <span className="text-slate-400">Topic 8 of 10</span>
             <span className="text-slate-600">•</span>
-            <span className="text-slate-400">Beginner</span>
+            <span className="text-slate-400">Intermediate</span>
           </div>
 
-          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">If Statements & If/Else</h1>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">Functions</h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-400">
-            Teach your program to make decisions, and handle more than
-            one possible outcome.
+            Organize your code into reusable, named blocks.
           </p>
 
           <div className="mt-8 h-2 overflow-hidden rounded-full bg-white/10">
-            <div className="h-full w-[50%] rounded-full bg-emerald-400" />
+            <div className="h-full w-[80%] rounded-full bg-emerald-400" />
           </div>
-          <p className="mt-2 text-xs text-slate-500">Lesson progress: 50%</p>
+          <p className="mt-2 text-xs text-slate-500">Lesson progress: 80%</p>
         </div>
       </header>
 
@@ -59,83 +58,96 @@ export default function CppIfStatementsLesson() {
         <section className="rounded-2xl border border-emerald-400/20 bg-emerald-400/5 p-6">
           <h2 className="text-lg font-bold text-emerald-300">What you should know after this lesson</h2>
           <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-300">
-            <li>✓ Write an if statement.</li>
-            <li>✓ Add an else block.</li>
-            <li>✓ Chain conditions with else if.</li>
-            <li>✓ Combine conditions using logical operators.</li>
+            <li>✓ Write a function with parameters and a return type.</li>
+            <li>✓ Call a function.</li>
+            <li>✓ Understand void functions that don't return anything.</li>
+            <li>✓ Explain why main is itself a function.</li>
           </ul>
         </section>
 
         <section className="mt-12">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">01 • Learn</p>
-          <h2 className="mt-3 text-3xl font-bold">A basic if statement</h2>
+          <h2 className="mt-3 text-3xl font-bold">A typed function</h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            You&apos;ve actually already written one function — main
+            itself! A function is a named block of code you can call
+            whenever needed.
+          </p>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
             <pre className="overflow-x-auto font-mono text-sm leading-7">
               <code>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">age</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">16</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (age &gt;= 13) {"{"}</span>
+                <span className="text-blue-300">addNumbers</span>
+                <span className="text-slate-400">(</span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">a</span>
+                <span className="text-slate-400">, </span>
+                <span className="text-purple-400">int</span>{" "}
+                <span className="text-blue-300">b</span>
+                <span className="text-slate-400">) {"{"}</span>
                 {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  cout &lt;&lt; &quot;You are a teenager.&quot;;
-                </span>
+                <span className="text-purple-400">return</span>
+                <span className="text-slate-300"> a + b;</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
             </pre>
           </div>
 
-          <p className="mt-5 leading-8 text-slate-300">
-            Same familiar pattern from other languages — the code inside
-            the curly braces only runs if the condition is true.
-          </p>
+          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
+            <div className="text-sm font-medium text-slate-400">Calling it</div>
+            <pre className="mt-4 overflow-x-auto rounded-xl bg-slate-950 p-5 font-mono text-sm leading-7 text-emerald-300">
+              <code>{`int total = addNumbers(5, 3);
+cout << total; // prints 8`}</code>
+            </pre>
+          </div>
         </section>
 
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">02 • Understand</p>
-          <h2 className="mt-3 text-3xl font-bold">else and else if</h2>
+          <h2 className="mt-3 text-3xl font-bold">void functions</h2>
 
-          <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
-            <pre className="overflow-x-auto font-mono text-sm leading-7">
+          <p className="mt-5 leading-8 text-slate-300">
+            If a function doesn&apos;t need to send a value back, use{" "}
+            <code className="text-emerald-300">void</code> as its return
+            type.
+          </p>
+
+          <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">A void function</div>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
               <code>
+                <span className="text-emerald-300">void</span>{" "}
+                <span className="text-blue-300">printResult</span>
+                <span className="text-slate-400">(</span>
                 <span className="text-purple-400">int</span>{" "}
-                <span className="text-blue-300">mark</span>{" "}
-                <span className="text-slate-400">=</span>{" "}
-                <span className="text-orange-300">72</span>
-                <span className="text-slate-400">;</span>
-                {"\n\n"}
+                <span className="text-blue-300">mark</span>
+                <span className="text-slate-400">) {"{"}</span>
+                {"\n"}
+                {"    "}
                 <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (mark &gt;= 80) {"{"}</span>
+                <span className="text-slate-400"> (mark &gt;= 50) {"{"}</span>
                 {"\n"}
-                {"    "}
+                {"        "}
                 <span className="text-slate-300">
-                  cout &lt;&lt; &quot;Grade: A&quot;;
+                  cout &lt;&lt; &quot;Pass&quot;;
                 </span>
                 {"\n"}
-                <span className="text-slate-400">{"} "}</span>
-                <span className="text-purple-400">else if</span>
-                <span className="text-slate-400"> (mark &gt;= 60) {"{"}</span>
-                {"\n"}
                 {"    "}
-                <span className="text-slate-300">
-                  cout &lt;&lt; &quot;Grade: B&quot;;
-                </span>
-                {"\n"}
                 <span className="text-slate-400">{"} "}</span>
                 <span className="text-purple-400">else</span>
                 <span className="text-slate-400"> {"{"}</span>
                 {"\n"}
-                {"    "}
+                {"        "}
                 <span className="text-slate-300">
-                  cout &lt;&lt; &quot;Grade: C&quot;;
+                  cout &lt;&lt; &quot;Fail&quot;;
                 </span>
+                {"\n"}
+                {"    "}
+                <span className="text-slate-400">{"}"}</span>
                 {"\n"}
                 <span className="text-slate-400">{"}"}</span>
               </code>
@@ -145,42 +157,50 @@ export default function CppIfStatementsLesson() {
 
         <section className="mt-14">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">03 • Examples</p>
-          <h2 className="mt-3 text-3xl font-bold">Combining conditions</h2>
+          <h2 className="mt-3 text-3xl font-bold">Functions before main</h2>
+
+          <p className="mt-5 leading-8 text-slate-300">
+            In C++, a function needs to be declared{" "}
+            <strong className="text-white">before</strong> the code that
+            calls it — usually meaning your own functions go above{" "}
+            <code className="text-emerald-300">int main()</code> in the
+            file.
+          </p>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
-            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">Multiple conditions</div>
-            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8">
-              <code>
-                <span className="text-purple-400">if</span>
-                <span className="text-slate-400"> (mark &gt;= 50 {"&&"} mark {"<"} 100) {"{"}</span>
-                {"\n"}
-                {"    "}
-                <span className="text-slate-300">
-                  cout &lt;&lt; &quot;Valid pass mark.&quot;;
-                </span>
-                {"\n"}
-                <span className="text-slate-400">{"}"}</span>
-              </code>
+            <div className="border-b border-white/10 px-5 py-4 text-sm font-medium text-slate-400">Full file order</div>
+            <pre className="overflow-x-auto p-6 font-mono text-sm leading-8 text-emerald-300">
+              <code>{`#include <iostream>
+using namespace std;
+
+bool isPassing(int mark) {
+    return mark >= 50;
+}
+
+int main() {
+    cout << isPassing(72);
+    return 0;
+}`}</code>
             </pre>
           </div>
         </section>
 
         <section className="mt-14 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-400">Quick Check</p>
-          <h2 className="mt-3 text-2xl font-bold">When does the code inside an else block run?</h2>
+          <h2 className="mt-3 text-2xl font-bold">What does return do?</h2>
 
           <div className="mt-6 space-y-3">
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="A" checked={quizAnswer === "A"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">A. Every time the program runs</span>
+              <span className="text-sm text-slate-300">A. Prints a value to the screen</span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="B" checked={quizAnswer === "B"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">B. Only when the if condition was false</span>
+              <span className="text-sm text-slate-300">B. Sends a value back to wherever the function was called</span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-white/10 p-4 transition hover:bg-white/5">
               <input type="radio" name="quiz" value="C" checked={quizAnswer === "C"} onChange={(e) => setQuizAnswer(e.target.value)} className="mt-1" />
-              <span className="text-sm text-slate-300">C. Only when the if condition was true</span>
+              <span className="text-sm text-slate-300">C. Repeats the function again</span>
             </label>
           </div>
 
@@ -198,29 +218,25 @@ export default function CppIfStatementsLesson() {
           <h2 className="mt-3 text-3xl font-bold">Your turn</h2>
 
           <div className="mt-6 rounded-2xl border border-white/10 bg-slate-900 p-6 sm:p-8">
-            <p className="leading-7 text-slate-300">Write a C++ program that:</p>
+            <p className="leading-7 text-slate-300">Write a C++ function that:</p>
             <ol className="mt-5 list-decimal space-y-3 pl-6 text-sm leading-7 text-slate-400">
-              <li>Creates an int variable called age.</li>
-              <li>Prints &quot;You can vote&quot; if age is 18 or older, otherwise prints &quot;You cannot vote yet&quot;.</li>
+              <li>Is called isPassing, takes an int parameter called mark, and returns a bool.</li>
+              <li>Returns true if mark is 50 or higher, false otherwise.</li>
             </ol>
 
             <details className="mt-8 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">Show Hint</summary>
               <div className="border-t border-white/10 p-5 text-sm leading-7 text-slate-400">
-                Use an if block for the voting-age condition and an else
-                block for everyone else.
+                You can return the comparison result directly:{" "}
+                <code>return mark &gt;= 50;</code>
               </div>
             </details>
 
             <details className="mt-3 rounded-xl border border-white/10 bg-slate-950">
               <summary className="cursor-pointer p-4 text-sm font-semibold text-emerald-400">Show Solution</summary>
               <pre className="overflow-x-auto border-t border-white/10 p-5 font-mono text-sm leading-7 text-emerald-300">
-                <code>{`int age = 16;
-
-if (age >= 18) {
-    cout << "You can vote";
-} else {
-    cout << "You cannot vote yet";
+                <code>{`bool isPassing(int mark) {
+    return mark >= 50;
 }`}</code>
               </pre>
             </details>
@@ -233,22 +249,26 @@ if (age >= 18) {
 
           <div className="mt-6 space-y-4">
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
-              <div className="font-semibold text-red-300">Adding a semicolon after the condition</div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">{`if (age > 18); {
-    cout << "Adult";
-}`}</pre>
+              <div className="font-semibold text-red-300">Calling a function before it's declared</div>
+              <pre className="mt-3 font-mono text-sm text-slate-400">{`int main() {
+    cout << isPassing(72); // Error if isPassing is below main
+}
+
+bool isPassing(int mark) { ... }`}</pre>
               <p className="mt-2 text-sm text-slate-500">
-                That semicolon ends the if statement early — the block
-                below runs no matter what the condition is.
+                Move the function above <code>main</code>, or C++
+                won&apos;t recognize it yet at that point in the file.
               </p>
             </div>
 
             <div className="rounded-xl border border-red-400/20 bg-red-400/5 p-5">
-              <div className="font-semibold text-red-300">Using = instead of ==</div>
-              <pre className="mt-3 font-mono text-sm text-slate-400">{`if (isPassing = true) { }`}</pre>
+              <div className="font-semibold text-red-300">Forgetting to return a value</div>
+              <pre className="mt-3 font-mono text-sm text-slate-400">{`int square(int n) {
+    n * n; // missing "return"
+}`}</pre>
               <p className="mt-2 text-sm text-slate-500">
-                Same trap as the Operators lesson — this assigns instead
-                of comparing, and compiles without warning.
+                If the return type isn&apos;t <code>void</code>, the
+                function must actually <code>return</code> something.
               </p>
             </div>
           </div>
@@ -258,13 +278,13 @@ if (age >= 18) {
           <div className="text-3xl">🎯</div>
           <h2 className="mt-4 text-2xl font-bold">Ready for the next topic?</h2>
           <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-slate-400">
-            Now that your program can make decisions, the next step is
-            learning how to repeat instructions using loops.
+            Now for the concept that makes C++ genuinely different —
+            pointers and references.
           </p>
 
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link href="/learn/cpp" className="rounded-xl border border-white/10 bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Back to C++</Link>
-            <Link href="/learn/cpp/loops" className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300">Next Topic →</Link>
+            <Link href="/learn/cpp/pointers-references" className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300">Next Topic →</Link>
           </div>
         </section>
       </div>
