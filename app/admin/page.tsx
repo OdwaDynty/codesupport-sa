@@ -237,6 +237,20 @@ export default function AdminPage() {
               Slots
             </Link>
 
+                        <Link
+              href="/admin/slots"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Slots
+            </Link>
+
+            <Link
+              href="/admin/stats"
+              className="text-sm text-slate-400 hover:text-white"
+            >
+              Stats
+            </Link>
+
             <button
               onClick={logout}
               className="rounded-lg border border-white/10 px-4 py-2 text-sm text-slate-400 transition hover:bg-white/5 hover:text-white"
