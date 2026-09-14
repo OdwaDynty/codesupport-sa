@@ -13,6 +13,7 @@ export default function MobileMenu() {
     { href: "/projects", label: "Projects" },
     { href: "/coding-help", label: "Coding Help" },
     { href: "/support", label: "1-on-1 Support" },
+    { href: "/feedback", label: "Feedback" },
   ];
 
   return (

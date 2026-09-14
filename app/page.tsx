@@ -124,7 +124,14 @@ export default function Home() {
               Coding Help
             </Link>
 
-             <AuthNavButton />
+              <Link
+              href="/feedback"
+              className="hidden text-sm text-slate-300 transition hover:text-emerald-400 md:block"
+            >
+              Feedback
+            </Link>
+
+            <AuthNavButton />
 
             <Link
               href="/support"
