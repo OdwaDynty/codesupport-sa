@@ -17,6 +17,7 @@ type Request = {
   status: string;
   created_at: string;
   admin_response: string | null;
+  ai_draft_response: string | null;
   responded_at: string | null;
 };
 
@@ -60,7 +61,7 @@ export default function RequestDetailPage() {
     }
 
     setRequest(data);
-    setResponse(data.admin_response || "");
+    setResponse(data.admin_response || data.ai_draft_response || "");
     setLoading(false);
   };
 
@@ -318,6 +319,12 @@ const saveResponse = async () => {
     <p className="mt-1 text-sm text-slate-400">
       Write a response to the student about their coding problem.
     </p>
+
+    {request?.ai_draft_response && !request?.admin_response && (
+      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
+        ✨ AI-drafted below — review and edit before sending
+      </div>
+    )}
 
     <textarea
       value={response}
