@@ -19,7 +19,7 @@ const topics = [
     title: "Variables & Data Types",
     description: "Declare variables and use C++'s core built-in types.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",
@@ -27,7 +27,7 @@ const topics = [
     title: "Operators",
     description: "Use arithmetic, comparison and logical operators.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "04",
@@ -35,7 +35,7 @@ const topics = [
     title: "Input & Output",
     description: "Display messages and read input using cout and cin.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
@@ -43,7 +43,7 @@ const topics = [
     title: "If Statements & If/Else",
     description: "Make your program respond differently to different conditions.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "06",
@@ -51,7 +51,7 @@ const topics = [
     title: "Loops",
     description: "Repeat instructions using for and while loops.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "07",
@@ -59,7 +59,7 @@ const topics = [
     title: "Arrays",
     description: "Store and work with multiple values in a single variable.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "08",
@@ -67,7 +67,7 @@ const topics = [
     title: "Functions",
     description: "Organize your code into reusable, named blocks.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "09",
@@ -75,7 +75,7 @@ const topics = [
     title: "Pointers & References",
     description: "Understand memory addresses — one of C++'s defining concepts.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "10",
@@ -83,7 +83,7 @@ const topics = [
     title: "Intro to Classes",
     description: "Learn the basics of organizing code using objects.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 

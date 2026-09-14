@@ -417,7 +417,7 @@ int main() {
             </Link>
 
             <Link
-              href="/learn/cpp"
+              href="/learn/cpp/variables-data-types"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →
