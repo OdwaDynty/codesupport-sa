@@ -234,6 +234,7 @@ export default function PracticePage() {
                 <option value="Tailwind">Tailwind CSS</option>
                 <option value="TypeScript">TypeScript</option>
                 <option value="JavaScript">JavaScript</option>
+                <option value="C++">C++</option>
               </select>
             </div>
 

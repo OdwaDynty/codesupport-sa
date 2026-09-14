@@ -247,8 +247,10 @@ export default function AdminExercisesPage() {
                   onChange={(e) => updateField("language", e.target.value)}
                   className="w-full rounded-xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-white outline-none focus:border-emerald-400"
                 >
+
                   <option value="Java">Java</option>
                   <option value="Python">Python</option>
+                  <option value="C++">C++</option>
                 </select>
               </div>
 
