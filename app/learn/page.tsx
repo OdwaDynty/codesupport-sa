@@ -46,6 +46,15 @@ const languages = [
     icon: "JS",
     href: "/learn/javascript",
   },
+    {
+    name: "C++",
+    level: "Beginner → Intermediate",
+    description:
+      "Strengthen your programming logic and learn the fundamentals of C++, including memory and pointers.",
+    topics: 10,
+    icon: "⚙️",
+    href: "/learn/cpp",
+  },
 ];
 
 export default function LearnPage() {
@@ -80,7 +89,7 @@ export default function LearnPage() {
 
       {/* Languages */}
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
           {languages.map((language) => (
             <Link
               key={language.name}
