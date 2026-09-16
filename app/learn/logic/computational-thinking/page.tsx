@@ -434,7 +434,7 @@ export default function ComputationalThinkingLesson() {
             </Link>
 
             <Link
-              href="/learn/logic"
+              href="/learn/logic/decomposition"
               className="rounded-xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
             >
               Next Topic →

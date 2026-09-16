@@ -19,7 +19,7 @@ const topics = [
     title: "Breaking Down Problems",
     description: "Split a big, overwhelming problem into small, manageable pieces.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",
@@ -27,7 +27,7 @@ const topics = [
     title: "Pattern Recognition",
     description: "Spot similarities between problems, so you don't solve everything from scratch.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "04",
@@ -35,7 +35,7 @@ const topics = [
     title: "Writing Pseudocode",
     description: "Plan your logic in plain language before writing any real code.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
@@ -43,7 +43,7 @@ const topics = [
     title: "Flowcharts",
     description: "Visualize the steps and decisions in a process.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "06",
@@ -51,7 +51,7 @@ const topics = [
     title: "Algorithms & Efficiency",
     description: "What an algorithm actually is, and why some solutions are better than others.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "07",
@@ -59,7 +59,7 @@ const topics = [
     title: "Debugging as a Skill",
     description: "A systematic way to find and fix what's going wrong.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "08",
@@ -67,7 +67,7 @@ const topics = [
     title: "Putting It All Together",
     description: "Solve a real problem from scratch, using everything from this course.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 
