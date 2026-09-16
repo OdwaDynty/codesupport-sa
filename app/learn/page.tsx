@@ -1,6 +1,15 @@
 import Link from "next/link";
 
 const languages = [
+    {
+    name: "Problem Solving & Logic",
+    level: "Beginner → Intermediate",
+    description:
+      "Learn to think like a programmer — no syntax, just the reasoning skills every developer relies on.",
+    topics: 8,
+    icon: "🧩",
+    href: "/learn/logic",
+  },
   {
     name: "Java",
     level: "Beginner → Intermediate",
@@ -89,7 +98,7 @@ export default function LearnPage() {
 
       {/* Languages */}
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
           {languages.map((language) => (
             <Link
               key={language.name}

@@ -3,6 +3,13 @@ import AuthNavButton from "@/components/AuthNavButton";
 import MobileMenu from "@/components/MobileMenu";
 
 const languages = [
+    {
+    name: "Problem Solving & Logic",
+    description: "Learn to think like a programmer — the perfect starting point before picking a language.",
+    icon: "🧩",
+    href: "/learn/logic",
+    status: "Available",
+  },
   {
     name: "Java",
     description: "Build a strong foundation in programming, logic and object-oriented development.",

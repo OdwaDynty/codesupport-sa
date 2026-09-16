@@ -1,6 +1,6 @@
 import { supabase } from "@/lib/supabase";
 
-type Language = "java" | "python" | "tailwind" | "typescript" | "javascript" | "cpp";
+type Language = "java" | "python" | "tailwind" | "typescript" | "javascript" | "cpp" | "logic";
 
 const STORAGE_PREFIX = "codesupport_progress_";
 

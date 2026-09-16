@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 
 const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
 const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
@@ -130,13 +130,13 @@ async function generateAiDraft(
     code: string | null;
   }
 ) {
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (!process.env.OPENAI_API_KEY) {
     // AI drafting is optional — if no key is configured, just skip it
     // silently. The admin can still write a response manually as before.
     return;
   }
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   const prompt = `You are a friendly, encouraging coding tutor helping a South African high school learner named ${details.name}.
 
@@ -149,16 +149,13 @@ ${details.code ? `Their code so far:\n\`\`\`\n${details.code}\n\`\`\`` : "They h
 
 Write a short, warm, encouraging response that helps them move forward WITHOUT simply giving them the full solution. Guide them with a hint, ask a clarifying question if the problem is ambiguous, or point out what to check first — the same way a good tutor would. Keep it concise (under 150 words), age-appropriate, and end on an encouraging note. Do not include a greeting like "Hi [name]" or a sign-off — just the helpful content itself, since this will be reviewed and personalized by a human before sending.`;
 
-  const message = await anthropic.messages.create({
-    model: "claude-haiku-4-5-20251001",
+  const completion = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
     max_tokens: 400,
     messages: [{ role: "user", content: prompt }],
   });
 
-  const draftText = message.content
-    .filter((block) => block.type === "text")
-    .map((block) => block.text)
-    .join("\n");
+  const draftText = completion.choices[0]?.message?.content || "";
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
