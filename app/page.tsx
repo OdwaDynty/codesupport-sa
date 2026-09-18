@@ -52,6 +52,13 @@ const languages = [
     href: "/learn/javascript",
     status: "Available",
   },
+    {
+    name: "React",
+    description: "Build interactive user interfaces — the same library CodeSupport SA is built with.",
+    icon: "⚛️",
+    href: "/learn/react",
+    status: "Available",
+  },
 ];
 
 const features = [

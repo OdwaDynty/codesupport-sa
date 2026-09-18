@@ -56,6 +56,15 @@ const languages = [
     href: "/learn/javascript",
   },
     {
+    name: "React",
+    level: "Beginner → Intermediate",
+    description:
+      "Learn to build interactive user interfaces with React — the same library CodeSupport SA is built with.",
+    topics: 8,
+    icon: "⚛️",
+    href: "/learn/react",
+  },
+    {
     name: "C++",
     level: "Beginner → Intermediate",
     description:
@@ -98,7 +107,7 @@ export default function LearnPage() {
 
       {/* Languages */}
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {languages.map((language) => (
             <Link
               key={language.name}
