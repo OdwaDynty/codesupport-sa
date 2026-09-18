@@ -19,7 +19,7 @@ const topics = [
     title: "Components & Props",
     description: "Build reusable pieces of UI, and pass data into them.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "03",
@@ -27,7 +27,7 @@ const topics = [
     title: "State with useState",
     description: "Give a component memory that can change over time.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "04",
@@ -35,7 +35,7 @@ const topics = [
     title: "Handling Events",
     description: "Respond to clicks, typing, and other user interactions.",
     level: "Beginner",
-    available: false,
+    available: true,
   },
   {
     number: "05",
@@ -43,7 +43,7 @@ const topics = [
     title: "Rendering Lists & Conditional Rendering",
     description: "Display arrays of data, and show or hide content based on conditions.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "06",
@@ -51,7 +51,7 @@ const topics = [
     title: "useEffect & Side Effects",
     description: "Run code in response to a component rendering or updating.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "07",
@@ -59,7 +59,7 @@ const topics = [
     title: "Forms in React",
     description: "Capture and manage user input with controlled form elements.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
   {
     number: "08",
@@ -67,7 +67,7 @@ const topics = [
     title: "Building a Small App",
     description: "Combine everything you've learned into one real, working app.",
     level: "Intermediate",
-    available: false,
+    available: true,
   },
 ];
 
